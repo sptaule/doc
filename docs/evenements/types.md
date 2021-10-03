@@ -6,16 +6,16 @@ sidebar_position: 2
 
 ## À quoi correspond un type d'évènement ?
 
-Un **type évènement** est forcément attribué à un **évènement**.
+Un **type évènement** doit <u>forcément</u> être attribué à un **évènement**.
 
 _Exemple de types d'évènement_<br/>
 `Plongée`, `Plongée de nuit`, `Réunion du comité directeur`, etc...
 
-Un type d'évènement possède nécessairement des paramètres associés qui vont permettront de définir à quoi il correspond.
+Un type d'évènement possède nécessairement des paramètres associés qui vous permettront de définir à quoi il correspond.
 
 ### Grade minimum nécessaire
 
-Pour limiter les inscriptions à un évènement selon le grade de l'utilisateur.
+Utile pour limiter les inscriptions à un évènement selon le grade de l'utilisateur.
 
 Par exemple, l'évènement de type `Plongée` n'aura pas de restrictions quant au grade.<br/>
 Car logiquement, tous les **membres**, **directeurs de plongée** ou **administrateurs** peuvent s'inscrire et participer.
@@ -31,9 +31,9 @@ _Représentation sous forme de cases à cocher_
 
 ### Documents requis
 
-Pour rendre des documents nécessaires à l'inscription de l'utilisateur.
+Utile pour rendre des documents nécessaires à l'inscription de l'utilisateur.
 
-Par exemple, l'évènement de type `Plongée` nécessitera les documents suivants :<br/>
+Par exemple, l'évènement de type `Plongée` nécessitera que l'utilisateur ait les documents suivants :<br/>
 **Adhésion au club**, **CACI**, **licence**, etc...
 
 :::info Fonctionnement
@@ -43,8 +43,25 @@ _Représentation sous forme de cases à cocher_
 <input type="checkbox" checked /> Licence<br/>
 :::
 
-### 
+### Code couleur 
 
+La but du code couleur est uniquement décoratif.
+
+Pour vous y retrouver et différencier les **types d'évènements**, vous pouvez assigner une couleur à chacun.<br/>
+
+export const Highlight = ({children, color}) => (
+    <span
+        style={{
+            backgroundColor: color,
+            borderRadius: '2px',
+            color: '#fff',
+            padding: '0.2rem',
+        }}>
+        {children}
+    </span>
+);
+
+Par exemple <Highlight color="#a362ad">Rose</Highlight> | <Highlight color="#1e8c25">Vert</Highlight> | <Highlight color="#c41c30">Rouge</Highlight> | ...
 
 ## Créer un type d'évènement
 
