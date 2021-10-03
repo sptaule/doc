@@ -36,7 +36,15 @@ _Le site de plongée où l'évènement aura lieu.<br/>À choisir parmi une liste
 
 _Le nombre de places disponibles.<br/>Si vous ne renseignez pas ce champ, la valeur maxiumum de places disponibles sur le bateau sera utilisée._
 
-`Contenu`
+### Description
+<span class='grayed'>optionnel</span>
+
+_Si vous souhaitez apporter plus d'informations à l'évènement._
+
+:::tip Bon à savoir
+Vous pouvez aussi insérer une image personnalisée lors de la création d'un évènement.<br/>
+Une image par défaut sera affichée si vous n'en renseignez pas une vous-même.
+:::
 
 <details>
     <summary>Données <code>SQL</code></summary>
@@ -56,11 +64,6 @@ _Le nombre de places disponibles.<br/>Si vous ne renseignez pas ce champ, la val
 | created_at     | datetime        | current_timestamp   |
 | updated_at     | datetime        | NULL                |
 </details>
-
-:::tip Bon à savoir
-Vous pouvez aussi insérer une image personnalisée lors de la création d'un évènement.<br/>
-Une image par défaut sera affichée si vous n'en renseignez pas une vous-même.
-:::
 
 ## Créer plusieurs évènements à la fois
 
