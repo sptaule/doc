@@ -4,21 +4,42 @@ sidebar_position: 1
 
 # Composition d'un évènement
 
+## Qui peut créer un évènement ?
+
 Un **évènement** peut être créé directement depuis la partie publique du site par :
 - un **Administrateur**
 - un **Directeur de plongée**
 
+## De quoi est composé un évènement ?
+
 Un **évènement** doit être créé avec les champs suivants :
-- Type
-- Nom (optionnel)
-- Date
-- Heure
-- Site de plongée
-- Participants maximum
-- Contenu
+
+### Type d'évènement
+_À sélectionner parmi la liste des types d'évènements créés._
+
+### Nom
+<span class='grayed'>optionnel</span>
+
+_Un nom qui apparaitra sur la fiche de l'évènement._
+
+### Date
+_La date à laquelle l'évènement aura lieu._
+
+### Heure
+_L'heure à laquelle l'évènement aura lieu._
+
+### Site de plongée
+_Le site de plongée où l'évènement aura lieu.<br/>À choisir parmi une liste des sites que vous avez créé auparavant ou à rentrer à la main._
+
+### Participants maximum
+<span class='grayed'>optionnel</span>
+
+_Le nombre de places disponibles.<br/>Si vous ne renseignez pas ce champ, la valeur maxiumum de places disponibles sur le bateau sera utilisée._
+
+`Contenu`
 
 <details>
-    <summary>Données d'un <code>évènement</code></summary>
+    <summary>Données <code>SQL</code></summary>
 
 | Champ          | Type            | Valeur par défaut   |
 |----------------|-----------------|---------------------|
@@ -36,33 +57,14 @@ Un **évènement** doit être créé avec les champs suivants :
 | updated_at     | datetime        | NULL                |
 </details>
 
-## Create your first React Page
+:::tip Bon à savoir
+Vous pouvez aussi insérer une image personnalisée lors de la création d'un évènement.<br/>
+Une image par défaut sera affichée si vous n'en renseignez pas une vous-même.
+:::
 
-Create a file at `src/pages/my-react-page.js`:
+## Créer plusieurs évènements à la fois
 
-```php title="src/pages/my-react-page.js"
-/**
- * Import a library from "libs" folder
- * @param string $lib
- */
-function import(string $lib)
-{
-    require_once (__DIR__ . "/libs/{$lib}.php");
-}
-```
+Si vous souhaitez gagner du temps en crééant plusieurs évènements à la fois, c'est possible.<br/>
+Il vous suffit de renseigner autant de **dates** et **heures** que d'évènements que vous voulez créer.
 
-![](.composition_images/0c52f526.jpeg)
-
-A new page is now available at `http://localhost:3000/my-react-page`.
-
-## Create your first Markdown Page
-
-Create a file at `src/pages/my-markdown-page.md`:
-
-```mdx title="src/pages/my-markdown-page.md"
-# My Markdown page
-
-This is a Markdown page
-```
-
-A new page is now available at `http://localhost:3000/my-markdown-page`.
+Pour se faire, vous devez 
