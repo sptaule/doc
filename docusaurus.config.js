@@ -14,6 +14,22 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
   organizationName: 'scuba', // Usually your GitHub org/user name.
   projectName: 'scuba', // Usually your repo name.
 
+  plugins: [
+    [require.resolve('@cmfcmf/docusaurus-search-local'), {
+        indexDocs: true,
+        docsRouteBasePath: '/docs',
+        indexDocSidebarParentCategories: 0,
+        indexBlog: true,
+        blogRouteBasePath: '/blog',
+        indexPages: false,
+        language: "fr",
+        style: undefined,
+        lunr: {
+          tokenizerSeparator: /[\s\-]+/
+      }
+    }]
+  ],
+
   presets: [
     [
       '@docusaurus/preset-classic',
