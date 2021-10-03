@@ -27,6 +27,19 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
+h2 {
+  color: #45a99e;
+  font-size: 1.42rem;
+}
+
 h3 {
-  color: #0D8CF0;
+  color: #7a43b7;
+  font-style: italic;
+  font-size: 1.25rem;
+  margin-bottom: 12px !important;
+}
+
+.grayed {
+  color: #676973;
+  font-family: monospace;
 }
