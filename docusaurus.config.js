@@ -4,15 +4,15 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 // With JSDoc @type annotations, IDEs can provide config autocompletion
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 (module.exports = {
-  title: 'Diveblob',
+  title: 'Scuba',
   tagline: 'Solution de gestion pour les clubs de plongée',
   url: 'https://your-docusaurus-test-site.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'diveblob', // Usually your GitHub org/user name.
-  projectName: 'diveblob', // Usually your repo name.
+  organizationName: 'scuba', // Usually your GitHub org/user name.
+  projectName: 'scuba', // Usually your repo name.
 
   presets: [
     [
@@ -42,7 +42,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'Diveblob',
+        title: 'Scuba',
         logo: {
           alt: 'Documentation Logo',
           src: 'img/logo.svg',
