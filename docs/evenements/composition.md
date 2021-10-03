@@ -4,27 +4,36 @@ sidebar_position: 1
 
 # Composition d'un évènement
 
-Un **évènement** peut être créé directement depuis la partie publique du site par
+Un **évènement** peut être créé directement depuis la partie publique du site par :
 - un **Administrateur**
 - un **Directeur de plongée**
+
+Un **évènement** doit être créé avec les champs suivants :
+- Type
+- Nom (optionnel)
+- Date
+- Heure
+- Site de plongée
+- Participants maximum
+- Contenu
 
 <details>
     <summary>Données d'un <code>évènement</code></summary>
 
-    | Nom                  | Champ          | Type            | Valeur par défaut   |
-    |----------------------|----------------|-----------------|---------------------|
-    | Identifiant          | id             | int UNSIGNED AI | -                   |
-    | Type                 | type_id        | int UNSIGNED    | -                   |
-    | Nom                  | name           | varchar 128     | NULL                |
-    | Date                 | e_date         | date            | -                   |
-    | Heure                | e_time         | time            | -                   |
-    | Site de plongée      | location       | varchar 128     | -                   |
-    | Niveau requis        | required_level | int             | NULL                |
-    | Participants maximum | max_people     | int             | NULL                |
-    | Contenu              | content        | blob            | NULL                |
-    | Créateur             | user_id        | int             | -                   |
-    | Date de création     | created_at     | datetime        | current_timestamp   |
-    | Date de modification | updated_at     | datetime        | NULL                |
+| Champ          | Type            | Valeur par défaut   |
+|----------------|-----------------|---------------------|
+| id             | int UNSIGNED AI | -                   |
+| type_id        | int UNSIGNED    | -                   |
+| name           | varchar 128     | NULL                |
+| e_date         | date            | -                   |
+| e_time         | time            | -                   |
+| location       | varchar 128     | -                   |
+| required_level | int             | NULL                |
+| max_people     | int             | NULL                |
+| content        | blob            | NULL                |
+| user_id        | int             | -                   |
+| created_at     | datetime        | current_timestamp   |
+| updated_at     | datetime        | NULL                |
 </details>
 
 ## Create your first React Page
