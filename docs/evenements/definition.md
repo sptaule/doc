@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Composition d'un évènement
+# Définition d'un évènement
 
 ## Qui peut créer un évènement ?
 
