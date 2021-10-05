@@ -1,3 +1,3 @@
-# Documentation pour Diveblob
+# Documentation pour Scuba
 
-Documentation pour la solution de gestion pour les clubs de plongée.
+Solution de gestion pour les clubs de plongée sous-marine.
