@@ -2,17 +2,11 @@
 sidebar_position: 1
 ---
 
-# Composition d'un utilisateur
+# Définition d'un utilisateur
 
-## Qui peut créer un évènement ?
+## Comment est défini un utilisateur ?
 
-Un **évènement** peut être créé directement depuis la partie publique du site par :
-- un **Administrateur**
-- un **Directeur de plongée**
-
-## De quoi est composé un évènement ?
-
-Un **évènement** doit être créé avec les champs suivants :
+Un **utilisateur** est défini par les champs suivants :
 
 ### Type d'évènement
 _À sélectionner parmi la liste des types d'évènements créés._
