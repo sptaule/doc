@@ -46,14 +46,14 @@ Vous pouvez aussi insérer une image personnalisée lors de la création d'un é
 Une image par défaut sera affichée si vous n'en renseignez pas une vous-même.
 :::
 
-## Créer plusieurs évènements à la fois
+## Créer plusieurs dates à la fois
 
 Si vous souhaitez gagner du temps en crééant plusieurs évènements à la fois, c'est possible.<br/>
 Il vous suffit de renseigner autant de **dates** et **heures** que d'évènements que vous voulez créer.
 
 Pour se faire, vous devez
 
-## Table SQL `event`
+## Table `event`
 
 | Champ            | Type              | Valeur par défaut   |
 |------------------|-------------------|---------------------|
