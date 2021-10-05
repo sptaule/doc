@@ -7,6 +7,7 @@
 
 import React, {ReactNode} from 'react';
 
+// @ts-ignore
 import styles from './styles.module.css';
 
 interface Props {
