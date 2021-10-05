@@ -8,46 +8,39 @@ sidebar_position: 1
 
 Un **utilisateur** est défini par les champs suivants :
 
-### Type d'évènement
-_À sélectionner parmi la liste des types d'évènements créés._
-
-### Nom
+### Nom et prénom
+### Genre
+### Date de naissance
+_La date de naissance servira à calculer l'âge de l'utilisateur.<br/>
+Un mineur pourrait par exemple être limité à certaines inscriptions.<br/>
+L'utilisateur peut, s'il le souhaite, afficher sa date de naissance sur son profil public._
+### Adresse email
+_L'utilisateur doit forcément rentrer une adresse email valide.<br/>
+Ne serait-ce que pour avoir un moyen de le contacter, mais aussi car il devra en premier lieu activer son compte.<br/>
+L'utilisateur peut, s'il le souhaite, afficher son email sur son profil public._
+### Numéro de téléphone
 <span class='grayed'>optionnel</span>
 
-_Un nom qui apparaitra sur la fiche de l'évènement._
+_N'est pas obligatoire mais l'administrateur pourra contacter le membre plus facilement si ce champ est renseigné.<br/>
+L'utilisateur peut, s'il le souhaite, afficher son numéro sur son profil public._
+### Mot de passe
+_À l'inscription, un mot de passe doit être créé pour les futures connexions de l'utilisateur.<br/>
+Un minimum de 8 caractères est requis.<br/>
+Un bon mot de passe facile à retenir peut être une combinaison de 3 mots du dictionnaire.<br/>
+**Exemple** : `SuperPatateRobuste123`_
 
-### Date
-_La date à laquelle l'évènement aura lieu._
+### Niveau de plongée
 
-### Heure
-_L'heure à laquelle l'évènement aura lieu._
+_À sélectionner parmi tous les niveaux de plongée existants sur le site.<br/>
+Le niveau de plongée sert à limiter les inscriptions à certaines plongées.<br/>
+**Exemple** : un `plongeur de bronze` ne pourra pas s'inscrire à une plongée nécessitant d'être minimum `E4 - MF1`_
 
-### Site de plongée
-_Le site de plongée où l'évènement aura lieu.<br/>À choisir parmi une liste des sites que vous avez créé auparavant ou à rentrer à la main._
+### Formation et compétences
 
-### Participants maximum
-<span class='grayed'>optionnel</span>
+_À sélectionner parmi les formations et compétences existantes sur le site.<br/>
+**Exemple** : `Plongeur Photographe 1`, `Plongeur Photographe 2`, `Nitrox Confirmé`, `Encadrant handisport (EH2)`_
 
-_Le nombre de places disponibles.<br/>Si vous ne renseignez pas ce champ, la valeur maxiumum de places disponibles sur le bateau sera utilisée._
-
-### Description
-<span class='grayed'>optionnel</span>
-
-_Si vous souhaitez apporter plus d'informations à l'évènement._
-
-:::tip Bon à savoir
-Vous pouvez aussi insérer une image personnalisée lors de la création d'un évènement.<br/>
-Une image par défaut sera affichée si vous n'en renseignez pas une vous-même.
-:::
-
-## Créer plusieurs dates à la fois
-
-Si vous souhaitez gagner du temps en crééant plusieurs évènements à la fois, c'est possible.<br/>
-Il vous suffit de renseigner autant de **dates** et **heures** que d'évènements que vous voulez créer.
-
-Pour se faire, vous devez
-
-## Table `event`
+## Table `user`
 
 | Champ            | Type              | Valeur par défaut   |
 |------------------|-------------------|---------------------|
