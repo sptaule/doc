@@ -4,52 +4,23 @@ sidebar_position: 4
 
 # Calendrier
 
-Documents are **groups of pages** connected through:
+Le calendrier permet d'afficher les évènements du mois courant.<br/>
+Les mois peuvent être défilés pour voir les évènements futurs ou passés.
 
-- a **sidebar**
-- **previous/next navigation**
-- **versioning**
+Vous pouvez y retrouver en détail :
 
-## Create your first Doc
+- Le **mois courant**
+- La **navigation** (pour aller de mois en mois)
+- Le **type** d'évènement (ainsi que son code couleur associé)
+- La **date** et **l'heure** de l'évènement
 
-Create a markdown file at `docs/hello.md`:
+![img.png](../../static/img/docs/calendar.png)
 
-```md title="docs/hello.md"
-# Hello
+Cliquer sur un évènement du calendrier emmène l'utilisateur sur la fiche complète de l'évènement.
 
-This is my **first Docusaurus document**!
-```
+On y retrouve:
 
-A new document is now available at `http://localhost:3000/docs/hello`.
-
-## Configure the Sidebar
-
-Docusaurus automatically **creates a sidebar** from the `docs` folder.
-
-Add metadatas to customize the sidebar label and position:
-
-```md title="docs/hello.md" {1-4}
----
-sidebar_label: 'Hi!'
-sidebar_position: 3
----
-
-# Hello
-
-This is my **first Docusaurus document**!
-```
-
-It is also possible to create your sidebar explicitly in `sidebars.js`:
-
-```diff title="sidebars.js"
-module.exports = {
-  tutorialSidebar: [
-    {
-      type: 'category',
-      label: 'Tutorial',
--     items: [...],
-+     items: ['hello'],
-    },
-  ],
-};
-```
+- le **détail** de l'évènement
+- les **plongeurs** qui y participent
+- la partie **inscription**
+- l'espace **commentaires**
