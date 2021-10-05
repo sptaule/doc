@@ -46,28 +46,26 @@ Vous pouvez aussi insérer une image personnalisée lors de la création d'un é
 Une image par défaut sera affichée si vous n'en renseignez pas une vous-même.
 :::
 
-<details>
-    <summary>Données <code>SQL</code></summary>
-
-| Champ          | Type            | Valeur par défaut   |
-|----------------|-----------------|---------------------|
-| id             | int UNSIGNED AI | -                   |
-| type_id        | int UNSIGNED    | -                   |
-| name           | varchar 128     | NULL                |
-| e_date         | date            | -                   |
-| e_time         | time            | -                   |
-| location       | varchar 128     | -                   |
-| required_level | int             | NULL                |
-| max_people     | int             | NULL                |
-| content        | blob            | NULL                |
-| user_id        | int             | -                   |
-| created_at     | datetime        | current_timestamp   |
-| updated_at     | datetime        | NULL                |
-</details>
-
 ## Créer plusieurs évènements à la fois
 
 Si vous souhaitez gagner du temps en crééant plusieurs évènements à la fois, c'est possible.<br/>
 Il vous suffit de renseigner autant de **dates** et **heures** que d'évènements que vous voulez créer.
 
-Pour se faire, vous devez 
+Pour se faire, vous devez
+
+## Table SQL `event`
+
+| Champ            | Type              | Valeur par défaut   |
+|------------------|-------------------|---------------------|
+| `id`             | `int UNSIGNED AI` |                    |
+| `type_id`        | `int UNSIGNED`    |                    |
+| `name`           | `varchar 128`     | `NULL`                |
+| `e_date`         | `date`            |                    |
+| `e_time`         | `time`            |                    |
+| `location`       | `varchar 128`     |                    |
+| `required_level` | `int`             | `NULL`                |
+| `max_people`     | `int`             | `NULL`                |
+| `content`        | `blob`            | `NULL`                |
+| `user_id`        | `int`             |                    |
+| `created_at`     | `datetime`        | `current_timestamp`   |
+| `updated_at`     | `datetime`        | `current_timestamp`   |
