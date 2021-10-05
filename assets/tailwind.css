@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .text-shadow-white {
+        text-shadow: 0 0 15px whitesmoke;
+    }
+    span.ripple {
+        position: absolute;
+        border-radius: 50%;
+        transform: scale(0);
+        animation: ripple 600ms linear;
+        background-color: rgba(255, 255, 255, 0.7);
+    }
+    @keyframes ripple {
+        to {
+            transform: scale(4);
+            opacity: 0;
+        }
+    }
+    ::-webkit-scrollbar {
+        width: 12px;
+        height: 12px;
+    }
+    ::-webkit-scrollbar-track {
+        border-radius: 100vh;
+        background: #edf2f7;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #cbd5e0;
+        border-radius: 100vh;
+        border: 3px solid #edf2f7;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: #a0aec0;
+    }
+    @variants hover, focus {
+        .text-shadow-white {
+            text-shadow: 0 0 15px whitesmoke;
+        }
+    }
+}
+
+
+@layer components {
+    .link {
+        @apply px-1 font-semibold border-solid border-b hover:bg-opacity-10 transition;
+    }
+    .btn {
+        @apply transition duration-150 font-semibold py-2 px-4 rounded-sm text-sm focus:ring-2;
+    }
+    .btn-submit {
+        @apply w-full text-white bg-scuba-green rounded-lg focus:ring-2;
+    }
+    .add {
+        @apply bg-green-600 hover:bg-green-500 text-white ring-green-300;
+    }
+    .edit {
+        @apply bg-yellow-500 hover:bg-yellow-400 text-white ring-yellow-300;
+    }
+    .delete {
+        @apply bg-red-600 hover:bg-red-500 text-white ring-red-300;
+    }
+    .back {
+        @apply bg-blue-600 hover:bg-blue-500 text-white ring-blue-300;
+    }
+    .action {
+        @apply bg-purple-600 hover:bg-purple-500 text-white ring-purple-300;
+    }
+    button {
+        @apply relative overflow-hidden;
+    }
+}
