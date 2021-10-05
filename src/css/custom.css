@@ -68,3 +68,8 @@ h3 {
 .logo {
   margin-top: 30px;
 }
+
+table {
+  display: table !important;
+  width: 100% !important;
+}
