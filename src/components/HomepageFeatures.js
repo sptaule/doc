@@ -8,7 +8,7 @@ const FeatureList = [
     Svg: require('../../static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Scuba a été conçue pour que la gestion des clubs de plongée soit intuitive.
+        Scuba a été conçue pour que la gestion des clubs de plongée soit intuitive. Aussi bien pour les administrateurs que pour les plongeurs !
       </>
     ),
   },
