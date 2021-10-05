@@ -68,3 +68,20 @@ Par exemple <Highlight color="#a362ad">Rose</Highlight> | <Highlight color="#1e8
 ## Modifier un type d'évènement
 
 ## Supprimer un type d'évènement
+
+## Table SQL `event_type`
+
+| Champ            | Type              | Valeur par défaut   |
+|------------------|-------------------|---------------------|
+| `id`             | `int UNSIGNED AI` | -                   |
+| `type_id`        | `int UNSIGNED`    | -                   |
+| `name`           | `varchar 128`     | `NULL`                |
+| `e_date`         | `date`            | -                   |
+| `e_time`         | `time`            | -                   |
+| `location`       | `varchar 128`     | -                   |
+| `required_level` | `int`             | `NULL`                |
+| `max_people`     | `int`             | `NULL`                |
+| `content`        | `blob`            | `NULL`                |
+| `user_id`        | `int`             | -                   |
+| `created_at`     | `datetime`        | `current_timestamp`   |
+| `updated_at`     | `datetime`        | `NULL`                |
