@@ -73,3 +73,13 @@ table {
   display: table !important;
   width: 100% !important;
 }
+.member, .director, .admin { font-weight: bolder; }
+.member {
+  color: #309140;
+}
+.director {
+  color: #2d66c3;
+}
+.admin {
+  color: #e1740b;
+}
