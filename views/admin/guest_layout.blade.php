@@ -12,7 +12,7 @@
         background-position: 0 0, 42px 42px;
     }
 </style>
-    <body class="">
+    <body>
         @include('admin.sections.specials.content')
     </body>
     {{ partial('mixed_flash_message') }}
