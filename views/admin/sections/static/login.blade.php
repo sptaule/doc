@@ -1,6 +1,15 @@
 @extends('admin.guest_layout')
 
-<div class="flex items-center min-h-screen p-6 bg-indigo-100 w-screen">
+<style>
+    #bg-wrapper {
+        background-color: #c4cfde;
+        background-image: radial-gradient(#19ad72 0.9px, transparent 0.9px), radial-gradient(#25367c 0.9px, #eaf1f0 0.9px);
+        background-size: 84px 84px;
+        background-position: 0 0, 42px 42px;
+    }
+</style>
+
+<div id="bg-wrapper" class="flex items-center min-h-screen p-6 bg-indigo-100 w-screen">
     <div
             class="flex-1 h-auto max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl"
     >
@@ -26,7 +35,7 @@
 
                     {{ partial('input', ['name' => "password", 'label' => "Mot de passe", 'type' => 'password']) }}
 
-                    <button class="btn btn-submit" type="submit">Connexion</button>
+                    <button class="btn btn-submit py-4" type="submit">Connexion</button>
 
                 </div>
             </div>
