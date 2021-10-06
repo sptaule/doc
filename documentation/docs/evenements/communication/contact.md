@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Contact groupé des inscrits
+# Contact groupé
 
 Documents are **groups of pages** connected through:
 
