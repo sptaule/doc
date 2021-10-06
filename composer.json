@@ -2,7 +2,8 @@
     "name": "sptl/scuba",
     "autoload": {
         "psr-4": {
-            "Sptl\\Scuba\\": "/libs"
+            "App\\": "libs",
+            "": "src"
         }
     },
     "authors": [
@@ -16,6 +17,10 @@
         "imagine/imagine": "^1.2",
         "phpmailer/phpmailer": "^6.5",
       "ext-gd": "*",
-      "ext-pdo": "*"
+      "ext-pdo": "*",
+        "altorouter/altorouter": "^2.0"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^5.3"
     }
 }
