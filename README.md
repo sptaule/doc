@@ -34,7 +34,7 @@ Liste des utilisateurs inscrits.
 
 ## Table `event`
 
-Liste de tous les évènements.
+Liste des évènements.
 
 | Champ            | Type              | Valeur par défaut   |
 | ---------------- | ----------------- | ------------------- |
