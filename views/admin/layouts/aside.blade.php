@@ -42,9 +42,9 @@
     <nav class="flex-1 overflow-hidden hover:overflow-y-auto">
         <ul class="p-2 overflow-hidden">
             <li>
-                <a href="#" class="flex items-center p-1 space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
-                    <span class="h-8 w-8 flex items-center justify-center"><i class="fas fa-home text-scuba-green text-xl"></i></span>
-                    <span :class="{ 'lg:hidden': !isSidebarOpen }">Tableau de bord</span>
+                <a href="#" class="flex items-center space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
+                    <span class="h-8 w-8 flex items-center justify-center"><i class="fas fa-home text-scuba-green text-base"></i></span>
+                    <span :class="{ 'lg:hidden': !isSidebarOpen }" class="text-gray-800 text-sm">Tableau de bord</span>
                 </a>
             </li>
 
@@ -60,27 +60,27 @@
             </div>
 
             <li>
-                <a href="#" class="flex items-center p-1 space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
-                    <span class="h-8 w-8 flex items-center justify-center"><i class="fas fa-users text-scuba-green text-xl"></i></span>
-                    <span :class="{ 'lg:hidden': !isSidebarOpen }">Liste des utilisateurs</span>
+                <a href="#" class="flex items-center space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
+                    <span class="h-8 w-8 flex items-center justify-center"><i class="fas fa-users text-scuba-green text-base"></i></span>
+                    <span :class="{ 'lg:hidden': !isSidebarOpen }" class="text-gray-800 text-sm">Liste des utilisateurs</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-1 space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
-                    <span class="h-8 w-8 flex items-center justify-center"><i class="fas fa-certificate text-scuba-green text-xl"></i></span>
-                    <span :class="{ 'lg:hidden': !isSidebarOpen }">Certificats</span>
+                <a href="#" class="flex items-center space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
+                    <span class="h-8 w-8 flex items-center justify-center"><i class="fas fa-certificate text-scuba-green text-base"></i></span>
+                    <span :class="{ 'lg:hidden': !isSidebarOpen }" class="text-gray-800 text-sm">Certificats</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-1 space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
-                    <span class="h-8 w-8 flex items-center justify-center"><i class="fas fa-id-badge text-scuba-green text-xl"></i></span>
-                    <span :class="{ 'lg:hidden': !isSidebarOpen }">Licences</span>
+                <a href="#" class="flex items-center space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
+                    <span class="h-8 w-8 flex items-center justify-center"><i class="fas fa-id-badge text-scuba-green text-base"></i></span>
+                    <span :class="{ 'lg:hidden': !isSidebarOpen }" class="text-gray-800 text-sm">Licences</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-1 space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
-                    <span class="h-8 w-8 flex items-center justify-center"><i class="fas fa-heart text-scuba-green text-xl"></i></span>
-                    <span :class="{ 'lg:hidden': !isSidebarOpen }">Adhésions</span>
+                <a href="#" class="flex items-center space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
+                    <span class="h-8 w-8 flex items-center justify-center"><i class="fas fa-heart text-scuba-green text-base"></i></span>
+                    <span :class="{ 'lg:hidden': !isSidebarOpen }" class="text-gray-800 text-sm">Adhésions</span>
                 </a>
             </li>
 
@@ -96,15 +96,15 @@
             </div>
 
             <li>
-                <a href="#" class="flex items-center p-1 space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
-                    <span class="h-8 w-8 flex items-center justify-center"><i class="fas fa-calendar-alt text-scuba-green text-xl"></i></span>
-                    <span :class="{ 'lg:hidden': !isSidebarOpen }">Liste des évènements</span>
+                <a href="#" class="flex items-center space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
+                    <span class="h-8 w-8 flex items-center justify-center"><i class="fas fa-calendar-alt text-scuba-green text-base"></i></span>
+                    <span :class="{ 'lg:hidden': !isSidebarOpen }" class="text-gray-800 text-sm">Liste des évènements</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-1 space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
-                    <span class="h-8 w-8 flex items-center justify-center"><i class="fas fa-th-list text-scuba-green text-xl"></i></span>
-                    <span :class="{ 'lg:hidden': !isSidebarOpen }">Types d'évènements</span>
+                <a href="#" class="flex items-center space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
+                    <span class="h-8 w-8 flex items-center justify-center"><i class="fas fa-th-list text-scuba-green text-base"></i></span>
+                    <span :class="{ 'lg:hidden': !isSidebarOpen }" class="text-gray-800 text-sm">Types d'évènements</span>
                 </a>
             </li>
 
@@ -120,15 +120,15 @@
             </div>
 
             <li>
-                <a href="#" class="flex items-center p-1 space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
-                    <span class="h-8 w-8 flex items-center justify-center"><i class="fas fa-clock text-scuba-green text-xl"></i></span>
-                    <span :class="{ 'lg:hidden': !isSidebarOpen }">En attente</span>
+                <a href="#" class="flex items-center space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
+                    <span class="h-8 w-8 flex items-center justify-center"><i class="fas fa-clock text-scuba-green text-base"></i></span>
+                    <span :class="{ 'lg:hidden': !isSidebarOpen }" class="text-gray-800 text-sm">En attente</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-1 space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
-                    <span class="h-8 w-8 flex items-center justify-center"><i class="fas fa-check-double text-scuba-green text-xl"></i></span>
-                    <span :class="{ 'lg:hidden': !isSidebarOpen }">Terminées</span>
+                <a href="#" class="flex items-center space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
+                    <span class="h-8 w-8 flex items-center justify-center"><i class="fas fa-check-double text-scuba-green text-base"></i></span>
+                    <span :class="{ 'lg:hidden': !isSidebarOpen }" class="text-gray-800 text-sm">Terminées</span>
                 </a>
             </li>
 
@@ -144,21 +144,21 @@
             </div>
 
             <li>
-                <a href="#" class="flex items-center p-1 space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
-                    <span class="h-8 w-8 flex items-center justify-center"><i class="fas fa-sticky-note text-scuba-green text-xl"></i></span>
-                    <span :class="{ 'lg:hidden': !isSidebarOpen }">Pages</span>
+                <a href="#" class="flex items-center space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
+                    <span class="h-8 w-8 flex items-center justify-center"><i class="fas fa-sticky-note text-scuba-green text-base"></i></span>
+                    <span :class="{ 'lg:hidden': !isSidebarOpen }" class="text-gray-800 text-sm">Pages</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-1 space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
-                    <span class="h-8 w-8 flex items-center justify-center"><i class="fas fa-bars text-scuba-green text-xl"></i></span>
-                    <span :class="{ 'lg:hidden': !isSidebarOpen }">Menu</span>
+                <a href="#" class="flex items-center space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
+                    <span class="h-8 w-8 flex items-center justify-center"><i class="fas fa-bars text-scuba-green text-base"></i></span>
+                    <span :class="{ 'lg:hidden': !isSidebarOpen }" class="text-gray-800 text-sm">Menu</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-1 space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
-                    <span class="h-8 w-8 flex items-center justify-center"><i class="fas fa-cog text-scuba-green text-xl"></i></span>
-                    <span :class="{ 'lg:hidden': !isSidebarOpen }">Options</span>
+                <a href="#" class="flex items-center space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
+                    <span class="h-8 w-8 flex items-center justify-center"><i class="fas fa-cog text-scuba-green text-base"></i></span>
+                    <span :class="{ 'lg:hidden': !isSidebarOpen }" class="text-gray-800 text-sm">Options</span>
                 </a>
             </li>
 
@@ -174,15 +174,15 @@
             </div>
 
             <li>
-                <a href="#" class="flex items-center p-1 space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
-                    <span class="h-8 w-8 flex items-center justify-center"><i class="fas fa-euro-sign text-scuba-green text-xl"></i></span>
-                    <span :class="{ 'lg:hidden': !isSidebarOpen }">Tarifs</span>
+                <a href="#" class="flex items-center space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
+                    <span class="h-8 w-8 flex items-center justify-center"><i class="fas fa-euro-sign text-scuba-green text-base"></i></span>
+                    <span :class="{ 'lg:hidden': !isSidebarOpen }" class="text-gray-800 text-sm">Tarifs</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-1 space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
-                    <span class="h-8 w-8 flex items-center justify-center"><i class="fas fa-ship text-scuba-green text-xl"></i></span>
-                    <span :class="{ 'lg:hidden': !isSidebarOpen }">Informations du club</span>
+                <a href="#" class="flex items-center space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
+                    <span class="h-8 w-8 flex items-center justify-center"><i class="fas fa-ship text-scuba-green text-base"></i></span>
+                    <span :class="{ 'lg:hidden': !isSidebarOpen }" class="text-gray-800 text-sm">Informations du club</span>
                 </a>
             </li>
             <!-- Sidebar Links... -->
