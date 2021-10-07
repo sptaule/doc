@@ -71,48 +71,38 @@ Par exemple <Highlight color="#a362ad">Rose</Highlight> | <Highlight color="#1e8
 
 ## Table `event_type`
 
-| Champ            | Type              | Valeur par défaut   |
-|------------------|-------------------|---------------------|
-| `id`             | `int UNSIGNED AI` |                    |
-| `description`    | `varchar 255` | `NULL`                    |
-| `color`          | `varchar 9` |                     |
-| `created_at`     | `datetime`        | `current_timestamp`   |
-| `updated_at`     | `datetime`        | `NULL`                |
-
-## Table `rank`
-
-| Champ            | Type              | Valeur par défaut   |
-|------------------|-------------------|---------------------|
-| `id`             | `int UNSIGNED AI` |                    |
-| `name`    | `varchar 64` |                     |
-| `color`          | `varchar 9` |                     |
-| `created_at`     | `datetime`        | `current_timestamp`   |
-| `updated_at`     | `datetime`        | `NULL`                |
+| Champ         | Type              | Valeur par défaut   |
+| ------------- | ----------------- | ------------------- |
+| `id`          | `int UNSIGNED AI` |                     |
+| `description` | `varchar 255`     | `NULL`              |
+| `color`       | `varchar 9`       |                     |
+| `created_at`  | `datetime`        | `current_timestamp` |
+| `updated_at`  | `datetime`        | `NULL`              |
 
 ## Table `document`
 
-| Champ            | Type              | Valeur par défaut   |
-|------------------|-------------------|---------------------|
-| `id`             | `int UNSIGNED AI` |                    |
-| `name`    | `varchar 64` |                     |
-| `description`    | `varchar 255` | `NULL`                    |
-| `created_at`     | `datetime`        | `current_timestamp`   |
-| `updated_at`     | `datetime`        | `NULL`                |
+| Champ         | Type              | Valeur par défaut   |
+| ------------- | ----------------- | ------------------- |
+| `id`          | `int UNSIGNED AI` |                     |
+| `name`        | `varchar 64`      |                     |
+| `description` | `varchar 255`     | `NULL`              |
+| `created_at`  | `datetime`        | `current_timestamp` |
+| `updated_at`  | `datetime`        | `NULL`              |
 
 ## Table `type_rank`
 
-| Champ            | Type              | Valeur par défaut   |
-|------------------|-------------------|---------------------|
-| `id`             | `int UNSIGNED AI` |                    |
-| `type_id`    | `int UNSIGNED` | `NULL`                    |
-| `rank_id`    | `int UNSIGNED` | `NULL`                    |
-| `value`          | `bool` |                     |
+| Champ     | Type              | Valeur par défaut |
+| --------- | ----------------- | ----------------- |
+| `id`      | `int UNSIGNED AI` |                   |
+| `type_id` | `int UNSIGNED`    | `NULL`            |
+| `rank_id` | `int UNSIGNED`    | `NULL`            |
+| `value`   | `bool`            |                   |
 
 ## Table `type_document`
 
-| Champ            | Type              | Valeur par défaut   |
-|------------------|-------------------|---------------------|
-| `id`             | `int UNSIGNED AI` |                    |
-| `type_id`    | `int UNSIGNED` | `NULL`                    |
-| `document_id`    | `int UNSIGNED` | `NULL`                    |
-| `value`          | `bool` |                     |
+| Champ         | Type              | Valeur par défaut |
+| ------------- | ----------------- | ----------------- |
+| `id`          | `int UNSIGNED AI` |                   |
+| `type_id`     | `int UNSIGNED`    | `NULL`            |
+| `document_id` | `int UNSIGNED`    | `NULL`            |
+| `value`       | `bool`            |                   |

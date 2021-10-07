@@ -4,68 +4,74 @@ sidebar_position: 7
 
 # Documents requis
 
-## Qui peut créer un évènement ?
+Plusieurs documents sont requis pour pouvoir s'inscrire aux [différents évènements](/evenements/types.md#documents-requis).
 
-Un **évènement** peut être créé directement depuis la partie publique du site par :
-- un **Administrateur**
-- un **Directeur de plongée**
+## CACI
 
-## De quoi est composé un évènement ?
+_Voir plus d'informations sur [le site de la FFESSM](https://ffessm.fr/pratiquer/le-certificat-medical)_.
 
-Un **évènement** doit être créé avec les champs suivants :
+### Ajouter mon CACI
 
-### Type d'évènement
-_À sélectionner parmi la liste des types d'évènements créés._
+L'utilisateur doit ajouter son CACI et ce dernier devra être validé par un administrateur.<br/>
+Tant qu'il n'a pas été validé, le détenteur ne pourra pas s'inscrire aux évènements nécessitant un CACI valide.
 
-### Nom
-<span class='grayed'>optionnel</span>
+### Remplacer mon CACI
 
-_Un nom qui apparaitra sur la fiche de l'évènement._
+Au bout d'un an, le CACI n'est plus valide et l'utilisateur devra le modifier.<br/>
+Il aura la possibilité de le remplacer 15 jours avant sa date d'expiration.
 
-### Date
-_La date à laquelle l'évènement aura lieu._
+Même principe que pour l'ajout, un administrateur devra valider le nouveau CACI.
 
-### Heure
-_L'heure à laquelle l'évènement aura lieu._
+## Licence
 
-### Site de plongée
-_Le site de plongée où l'évènement aura lieu.<br/>À choisir parmi une liste des sites que vous avez créé auparavant ou à rentrer à la main._
+### Ajouter ma licence
 
-### Participants maximum
-<span class='grayed'>optionnel</span>
+L'utilisateur doit ajouter sa licence et elle devra être validée par un administrateur.<br/>
+Tant qu'elle n'a pas été validée, le détenteur ne pourra pas s'inscrire aux évènements nécessitant une licence valide.
 
-_Le nombre de places disponibles.<br/>Si vous ne renseignez pas ce champ, la valeur maxiumum de places disponibles sur le bateau sera utilisée._
+### Remplacer ma licence
 
-### Description
-<span class='grayed'>optionnel</span>
+Au bout d'un an, le CACI n'est plus valide et l'utilisateur devra le modifier.<br/>
+Il aura la possibilité de le remplacer 15 jours avant sa date d'expiration.
 
-_Si vous souhaitez apporter plus d'informations à l'évènement._
+Même principe que pour l'ajout, un administrateur devra valider le nouveau CACI.
 
-:::tip Bon à savoir
-Vous pouvez aussi insérer une image personnalisée lors de la création d'un évènement.<br/>
-Une image par défaut sera affichée si vous n'en renseignez pas une vous-même.
-:::
+## Adhésion au club
 
-## Créer plusieurs dates à la fois
+L'utilisateur doit être adhérent au club afin de s'inscrire aux différents évènements.<br/>
+L'adhésion est valable un an et doit être renouvellée.
 
-Si vous souhaitez gagner du temps en crééant plusieurs évènements à la fois, c'est possible.<br/>
-Il vous suffit de renseigner autant de **dates** et **heures** que d'évènements que vous voulez créer.
+## Table `caci`
 
-Pour se faire, vous devez
+| Champ        | Type              | Valeur par défaut   |
+| ------------ | ----------------- | ------------------- |
+| `id`         | `int UNSIGNED AI` |                     |
+| `user_id`    | `int UNSIGNED`    |                     |
+| `enactment`  | `date`            |                     |
+| `due`        | `date`            |                     |
+| `approved`   | `bool`            | `FALSE`             |
+| `created_at` | `datetime`        | `current_timestamp` |
+| `updated_at` | `datetime`        | `current_timestamp` |
 
-## Table `event`
+## Table `licence`
 
-| Champ            | Type              | Valeur par défaut   |
-|------------------|-------------------|---------------------|
-| `id`             | `int UNSIGNED AI` |                    |
-| `type_id`        | `int UNSIGNED`    |                    |
-| `name`           | `varchar 128`     | `NULL`                |
-| `e_date`         | `date`            |                    |
-| `e_time`         | `time`            |                    |
-| `location`       | `varchar 128`     |                    |
-| `required_level` | `int`             | `NULL`                |
-| `max_people`     | `int`             | `NULL`                |
-| `content`        | `blob`            | `NULL`                |
-| `user_id`        | `int`             |                    |
-| `created_at`     | `datetime`        | `current_timestamp`   |
-| `updated_at`     | `datetime`        | `current_timestamp`   |
+| Champ          | Type              | Valeur par défaut   |
+| -------------- | ----------------- | ------------------- |
+| `id`           | `int UNSIGNED AI` |                     |
+| `user_id`      | `int UNSIGNED`    |                     |
+| `number`       | `varchar 16`      |                     |
+| `insurance_id` | `INT UNSIGNED`    | `0`                 |
+| `approved`     | `bool`            | `FALSE`             |
+| `created_at`   | `datetime`        | `current_timestamp` |
+| `updated_at`   | `datetime`        | `current_timestamp` |
+
+## Table `membership`
+
+| Champ        | Type              | Valeur par défaut   |
+| ------------ | ----------------- | ------------------- |
+| `id`         | `int UNSIGNED AI` |                     |
+| `user_id`    | `int UNSIGNED`    |                     |
+| `enactment`  | `date`            |                     |
+| `due`        | `date`            |                     |
+| `created_at` | `datetime`        | `current_timestamp` |
+| `updated_at` | `datetime`        | `current_timestamp` |

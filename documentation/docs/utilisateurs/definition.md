@@ -43,16 +43,16 @@ _À sélectionner parmi les formations et compétences existantes sur le site.<b
 ## Table `user`
 
 | Champ            | Type              | Valeur par défaut   |
-|------------------|-------------------|---------------------|
-| `id`             | `int UNSIGNED AI` |                    |
-| `type_id`        | `int UNSIGNED`    |                    |
-| `name`           | `varchar 128`     | `NULL`                |
-| `e_date`         | `date`            |                    |
-| `e_time`         | `time`            |                    |
-| `location`       | `varchar 128`     |                    |
-| `required_level` | `int`             | `NULL`                |
-| `max_people`     | `int`             | `NULL`                |
-| `content`        | `blob`            | `NULL`                |
-| `user_id`        | `int`             |                    |
-| `created_at`     | `datetime`        | `current_timestamp`   |
-| `updated_at`     | `datetime`        | `current_timestamp`   |
+| ---------------- | ----------------- | ------------------- |
+| `id`             | `int UNSIGNED AI` |                     |
+| `type_id`        | `int UNSIGNED`    |                     |
+| `name`           | `varchar 128`     | `NULL`              |
+| `e_date`         | `date`            |                     |
+| `e_time`         | `time`            |                     |
+| `location`       | `varchar 128`     |                     |
+| `required_level` | `int`             | `NULL`              |
+| `max_people`     | `int`             | `NULL`              |
+| `content`        | `blob`            | `NULL`              |
+| `user_id`        | `int`             |                     |
+| `created_at`     | `datetime`        | `current_timestamp` |
+| `updated_at`     | `datetime`        | `current_timestamp` |

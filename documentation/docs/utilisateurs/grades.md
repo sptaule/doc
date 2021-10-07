@@ -30,3 +30,11 @@ De ce fait, il pourra aussi générer des **fiches de sécurité**. Il n'a pas a
 
 L'<span class="admin">administrateur</span> possède tous les privilèges et n'a aucune limitation.
 Il est le seul à avoir accès à la partie administration complète et peut modifier le site dans son intégralité.
+
+## Table `rank`
+
+| Champ   | Type           | Valeur par défaut |
+| ------- | -------------- | ----------------- |
+| `id`    | `int UNSIGNED` |                   |
+| `name`  | `varchar 128`  |                   |
+| `color` | `varchar 9`    |                   |
