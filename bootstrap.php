@@ -6,6 +6,7 @@ error_reporting(E_ALL);
 
 // Define base directory
 define('BASE_PATH', str_replace("\\", "/", __DIR__));
+define('APP_PATH', str_replace("\\", "/", __DIR__) . '/app');
 
 // require libs that are required on almost/every page
 session_start();
@@ -112,7 +113,7 @@ function is_dir_empty($dir): ?bool
     return (count(scandir($dir)) == 2);
 }
 
-function sanitize(mixed $var)
+function sanitize(mixed $var): string
 {
     return htmlspecialchars(strip_tags($var));
 }
