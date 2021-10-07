@@ -34,6 +34,7 @@ module.exports = {
             fontFamily: {
                 classic: ['Montserrat'],
                 opensans: ['Open Sans'],
+                arima: ['Arima Madurai'],
             },
             backgroundImage: theme => ({
                 'blue-sky': "url('../../images/body-bg.jpg')",
