@@ -9,20 +9,65 @@ class DivingLevel
     private string $description;
     private int $rank;
 
-    public static function getAll(string $orderBy = 'order', string $where = null): bool|array
+    public static function getAll(string $orderBy = 'position'): bool|array
     {
-        $query = pdo()->prepare("SELECT * FROM diving_level WHERE ? ORDER BY ?");
-        $query->execute([sanitize($where), sanitize($orderBy)]);
+        $query = pdo()->prepare("SELECT * FROM diving_level ORDER BY {$orderBy}");
+        $query->execute();
         return $query->fetchAll();
     }
 
-    public static function get(int $id): bool|array
+    public static function getCount(): int
+    {
+        $query = pdo()->prepare("SELECT COUNT(id) as count FROM diving_level");
+        $query->execute();
+        return intval($query->fetch()->count);
+    }
+
+    public static function get(int $id)
     {
         $query = pdo()->prepare("SELECT * FROM diving_level WHERE id = ?");
         $query->execute([sanitize($id)]);
-        return $query->fetch();
+        return $query->fetch() ?: abort_404();
     }
 
+    public static function add($data)
+    {
+        validate([
+            'name' => ['required', 'unique:diving_level:name'],
+            'description' => ['max:200'],
+        ]);
 
+        // Set position value equals $count + 1
+        $count = DivingLevel::getCount();
+
+        $name = sanitize($data['name']);
+        $description = sanitize($data['description']) ?? null;
+
+        $query = pdo()->prepare("INSERT INTO diving_level (name, description, position) VALUES (?, ?, ?)");
+        $success = $query->execute([$name, $description, $count + 1]);
+
+        $success === true
+            ? flash_success("<b>$name</b> ajouté")
+            : flash_warning("Erreur lors de l'ajout");
+    }
+
+    public static function edit($data, int $id)
+    {
+        validate([
+            'name' => ['required', "unique_exception:diving_level:name:$id"],
+            'description' => ['max:200'],
+        ]);
+
+        $name = sanitize($data['name']);
+        $description = sanitize($data['description']) ?? null;
+
+        $query = pdo()->prepare("UPDATE diving_level SET name = ?, description = ? WHERE id = ?");
+        $success = $query->execute([$name, $description, sanitize($id)]);
+
+        $success === true
+            ? flash_success("<b>$name</b> modifié")
+            : flash_warning("Erreur lors de la modification");
+        redirect(ADMIN_DIVING_LEVELS);
+    }
 
 }

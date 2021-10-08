@@ -26,12 +26,29 @@ function validate($rules = [])
             if (is_callable($validation)) { // if anonymous function
                 $error = $validation($value);
             } else {
-                if (str_contains($validation, ':')) {
+                if (str_contains($validation, ':') && count(explode(':', $validation)) == 2) {
                     $fnName = explode(':', $validation)[array_key_first(explode(':', $validation))];
                     $fnValue = explode(':', $validation)[array_key_last(explode(':', $validation))];
                     if (is_callable('validate_' . $fnName)) {
                         $validation_function = "validate_{$fnName}";
                         $error = $validation_function($value, $fnValue);
+                    }
+                } elseif (str_contains($validation, ':') && count(explode(':', $validation)) == 3) {
+                    $fnName = explode(':', $validation)[array_key_first(explode(':', $validation))];
+                    $fnTable = explode(':', $validation)[floor((count(explode(':', $validation)) - 1) / 2)];
+                    $fnColumn = explode(':', $validation)[array_key_last(explode(':', $validation))];
+                    if (is_callable('validate_' . $fnName)) {
+                        $validation_function = "validate_{$fnName}";
+                        $error = $validation_function($fnTable, $fnColumn, $value);
+                    }
+                } elseif (str_contains($validation, ':') && count(explode(':', $validation)) == 4) {
+                    $fnName = explode(':', $validation)[array_key_first(explode(':', $validation))];
+                    $fnTable = explode(':', $validation)[array_key_first(explode(':', $validation)) + 1];
+                    $fnColumn = explode(':', $validation)[array_key_last(explode(':', $validation)) - 1];
+                    $fnExceptionValue = explode(':', $validation)[array_key_last(explode(':', $validation))];
+                    if (is_callable('validate_' . $fnName)) {
+                        $validation_function = "validate_{$fnName}";
+                        $error = $validation_function($fnTable, $fnColumn, $fnExceptionValue, $value);
                     }
                 } else {
                     $validation_function = "validate_{$validation}";
@@ -59,6 +76,26 @@ function validate_required($value)
 
     if (empty($value)) {
         return "Le champ est requis";
+    }
+}
+
+function validate_unique(&$table, &$column, $value)
+{
+    $query = pdo()->prepare("SELECT * FROM {$table} WHERE {$column} LIKE ?");
+    $query->execute([$value]);
+    $result = $query->rowCount();
+    if ($result != 0) {
+        return "<b class='text-red-500 tracking-wide'>$value</b> est déjà utilisé";
+    }
+}
+
+function validate_unique_exception(&$table, &$column, &$ExceptionValue, $value)
+{
+    $query = pdo()->prepare("SELECT * FROM {$table} WHERE id != ? AND {$column} LIKE ?");
+    $query->execute([$ExceptionValue, $value]);
+    $result = $query->rowCount();
+    if ($result != 0) {
+        return "<b class='text-red-500 tracking-wide'>$value</b> est déjà utilisé";
     }
 }
 

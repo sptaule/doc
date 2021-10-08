@@ -19,12 +19,13 @@ class Router
         // Routing can match routes with incoming requests
         $matcher = new UrlMatcher($routes, $context);
         try {
-            $matcher = $matcher->match($_SERVER['REQUEST_URI']);
+            // rtrim function is to enable both '/' and '' suffix allowance for routes
+            $matcher = $matcher->match(rtrim($_SERVER['REQUEST_URI'], '/'));
 
             // Cast params to int if numeric
             array_walk($matcher, function(&$param)
             {
-                if(is_numeric($param))
+                if (is_numeric($param))
                 {
                     $param = (int) $param;
                 }

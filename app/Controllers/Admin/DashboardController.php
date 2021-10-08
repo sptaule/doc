@@ -10,6 +10,6 @@ class DashboardController
     public function index(RouteCollection $routes)
     {
         $blade = new BladeInstance(APP_PATH . "/Views", BASE_PATH . "/cache/views");
-        echo $blade->render("admin.sections.static.index");
+        echo $blade->render("admin.static.index", ['title' => "Tableau de bord"]);
     }
 }
