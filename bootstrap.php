@@ -1,5 +1,7 @@
 <?php
 
+use duncan3dc\Laravel\BladeInstance;
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -284,10 +286,11 @@ function redirect_self()
     redirect($_SERVER['REQUEST_URI']);
 }
 
-function abort_404()
+function abort_404(): void
 {
     http_response_code(404);
-    redirect("404.php");
+    $blade = new BladeInstance(APP_PATH . "/Views", BASE_PATH . "/cache/views");
+    echo $blade->render("errors.404");
 }
 
 function abort_422($message = null)
