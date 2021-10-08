@@ -1,9 +1,9 @@
 {
     "name": "sptl/scuba",
+    "description": "Solution de gestion pour les clubs de plongée",
     "autoload": {
         "psr-4": {
-            "App\\": "libs",
-            "": "src"
+            "App\\": "app/"
         }
     },
     "authors": [
@@ -13,12 +13,15 @@
         }
     ],
     "require": {
+        "ext-gd": "*",
+        "ext-pdo": "*",
+        "ext-iconv": "*",
+        "symfony/routing": "^5.3",
         "duncan3dc/blade": "^4.11",
-        "imagine/imagine": "^1.2",
         "phpmailer/phpmailer": "^6.5",
-      "ext-gd": "*",
-      "ext-pdo": "*",
-        "altorouter/altorouter": "^2.0"
+        "imagine/imagine": "^1.2",
+        "symfony/http-foundation": "^5.3",
+        "symfony/config": "^5.3"
     },
     "require-dev": {
         "symfony/var-dumper": "^5.3"
