@@ -1,4 +1,4 @@
-![Alt text](documentation/static/img/logo-full.png?raw=true "Scuba logo")
+<img alt="Logo Scuba" src="https://raw.githubusercontent.com/sptaule/scuba/main/documentation/static/img/logo-full.png?token=ABIEWEOICUZFM2SQZL24423BMAJM6" width="300">
 
 Solution de gestion pour les clubs de plongée sous-marine.
 
