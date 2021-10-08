@@ -1,5 +1,5 @@
 <style>
-    .nice-select { height: 49px !important; line-height: 43px !important; font-size: 15px !important; margin-top: 3px !important; border: 2px solid #D1D5DB !important; }
+    .nice-select { height: 46px !important; line-height: 41px !important; font-size: 16px !important; margin-top: 3px !important; border: 2px solid #D1D5DB !important; color: #393a3d; }
 </style>
 
 <div class="<?= $size ?? '' ?>">
