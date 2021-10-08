@@ -61,6 +61,9 @@ module.exports = {
                 '135': '135deg',
                 '-135': '-135deg'
             },
+            animation: {
+                'bounce-slow': 'bounce 1.5s linear infinite',
+            },
             ripple: theme => ({
                 colors: theme('colors'),
                 modifierTransition: 'background 0.2s',
@@ -78,6 +81,10 @@ module.exports = {
             overflow: ['hover', 'focus'],
             opacity: ['disabled'],
             cursor: ['hover', 'disabled'],
+            backgroundColor: ['odd', 'even'],
+            borderStyle: ['odd', 'even'],
+            borderColor: ['odd', 'even'],
+            transitionProperty: ['responsive', 'motion-safe', 'motion-reduce'],
         },
     },
     plugins: [
