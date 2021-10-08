@@ -1,6 +1,6 @@
 @extends('admin.guest_layout')
 
-@section('admin.sections.specials.content')
+@section('admin.specials.content')
 <div class="flex items-center min-h-screen p-6">
     <div class="flex-1 h-auto max-w-4xl mx-auto overflow-hidden z-50 bg-white rounded-lg shadow-xl">
         <form class="flex flex-col overflow-y-auto md:flex-row" method="POST" enctype="multipart/form-data">

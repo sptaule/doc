@@ -6,7 +6,7 @@
         <a class="btn edit" href="{{ ADMIN_DIVING_LEVELS }}">Annuler</a>
     </div>
 
-    <div id="content" class="w-4/6 mx-auto">
+    <div id="content" class="w-4/6">
         <form action="" method="post" class="space-y-10">
             @php echo csrf_input() @endphp
             <div class="border-l-2 border-green-400 pl-4 w-full">

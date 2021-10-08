@@ -42,7 +42,7 @@
     <nav class="flex-1 overflow-hidden hover:overflow-y-auto">
         <ul class="p-2 overflow-hidden">
             <li>
-                <a href="#" class="flex items-center space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
+                <a href="{{ ADMIN_DASHBOARD }}" class="flex items-center space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
                     <span class="h-8 w-8 flex items-center justify-center"><i class="fas fa-home text-scuba-green text-base"></i></span>
                     <span :class="{ 'lg:hidden': !isSidebarOpen }" class="text-gray-800 text-sm">Tableau de bord</span>
                 </a>
@@ -60,7 +60,7 @@
             </div>
 
             <li>
-                <a href="#" class="flex items-center space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
+                <a href="{{ ADMIN_USERS }}" class="flex items-center space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
                     <span class="h-8 w-8 flex items-center justify-center"><i class="fas fa-users text-scuba-green text-base"></i></span>
                     <span :class="{ 'lg:hidden': !isSidebarOpen }" class="text-gray-800 text-sm">Liste des utilisateurs</span>
                 </a>
@@ -180,6 +180,12 @@
                 </a>
             </li>
             <li>
+                <a href="{{ ADMIN_DIVING_LEVELS }}" class="flex items-center space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
+                    <span class="h-8 w-8 flex items-center justify-center"><i class="fas fa-layer-group text-scuba-green text-base"></i></span>
+                    <span :class="{ 'lg:hidden': !isSidebarOpen }" class="text-gray-800 text-sm">Niveaux de plongée</span>
+                </a>
+            </li>
+            <li>
                 <a href="#" class="flex items-center space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
                     <span class="h-8 w-8 flex items-center justify-center"><i class="fas fa-ship text-scuba-green text-base"></i></span>
                     <span :class="{ 'lg:hidden': !isSidebarOpen }" class="text-gray-800 text-sm">Informations du club</span>
@@ -190,7 +196,7 @@
     </nav>
     <!-- Sidebar footer -->
     <div class="flex-shrink-0 p-2 border-t max-h-14">
-        <button class="flex items-center justify-center w-full px-4 py-2 space-x-1 font-medium tracking-wider uppercase bg-gray-100 hover:bg-red-500 hover:text-white border rounded-md focus:outline-none focus:ring">
+        <button class="flex items-center justify-center w-full px-4 py-2 space-x-1 font-medium tracking-wider uppercase bg-gray-100 hover:bg-red-500 text-gray-600 hover:text-white border rounded-md focus:outline-none focus:ring">
             <span class="h-6 w-6 flex items-center justify-center"><i class="fas fa-sign-out-alt"></i></span>
             <span :class="{'lg:hidden': !isSidebarOpen}">Déconnexion</span>
         </button>

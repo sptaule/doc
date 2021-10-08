@@ -13,7 +13,7 @@
     }
 </style>
     <body>
-        @include('admin.sections.specials.content')
+        @include('admin.specials.content')
     </body>
     {{ partial('mixed_flash_message') }}
 </html>

@@ -1,3 +1,3 @@
 <div class="w-full">
-    @yield('admin.sections.specials.content')
+    @yield('admin.specials.content')
 </div>
