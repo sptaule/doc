@@ -1,6 +1,8 @@
 <?php
 
-require BASE_PATH . '/vendor/autoload.php';
+namespace App\Libs;
+
+use Imagine\Gd\Imagine;
 use Imagine\Image\Box;
 use Imagine\Image\Point;
 use Imagine\Image\ImageInterface;
@@ -38,7 +40,7 @@ class Picture {
 
             $fullPath = $outputPath . DIRECTORY_SEPARATOR . $filename;
 
-            $imagine = new Imagine\Gd\Imagine();
+            $imagine = new Imagine();
             $imagine->setMetadataReader(new \Imagine\Image\Metadata\ExifMetadataReader());
 
             $picture = $imagine->open($photo);

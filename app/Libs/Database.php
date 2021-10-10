@@ -1,10 +1,5 @@
 <?php
 
-const DATABASE_HOST = "localhost";
-const DATABASE_NAME = "scuba";
-const DATABASE_USERNAME = "root";
-const DATABASE_PASSWORD = "apozpoepo";
-
 /**
  * @return mixed|PDO
  * Connect to database
@@ -17,10 +12,10 @@ function pdo()
         return $pdo;
     }
     // define database credentials
-    $servername = DATABASE_HOST;
-    $database = DATABASE_NAME;
-    $username = DATABASE_USERNAME;
-    $password = DATABASE_PASSWORD;
+    $servername = DB_HOST;
+    $database = DB_NAME;
+    $username = DB_USERNAME;
+    $password = DB_PASSWORD;
     // connect to database
     $pdo = new PDO("mysql:host=$servername;dbname=$database;charset=utf8", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

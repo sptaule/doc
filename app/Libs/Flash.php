@@ -21,9 +21,14 @@ function flash_danger($message)
     flash('danger', $message);
 }
 
-function flash($type, $message)
+function flash_confirm($message, $title, $okBtn, $cancelBtn)
 {
-    $_SESSION['flash'] = compact('type', 'message');
+    flash('confirm', $message, $title, $okBtn, $cancelBtn);
+}
+
+function flash($type, $message, $title = null, $okBtn = null, $cancelBtn = null)
+{
+    $_SESSION['flash'] = compact('type', 'message', 'title', 'okBtn', 'cancelBtn');
 }
 
 function get_flash()
