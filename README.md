@@ -1,4 +1,5 @@
 ![](documentation/static/img/logo-full.png)
+
 Solution de gestion pour les clubs de plongée sous-marine.
 
 ## Table `rank`
