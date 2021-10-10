@@ -17,13 +17,20 @@
 
     <div id="content" class="w-full">
         {{ partial('data_grid',
-            ['columns' =>
+            [
+                'columns' =>
                 [
-                    'name' => 'Nom',
-                    'position' => 'Rang'
+                    'name' => ['label' => "Nom"],
+                    'position' => ['label' => "Rang"]
                 ],
-            'data' => $divingLevels,
-            'sortable' => true
+                'data' => $divingLevels,
+                'editLink' => ADMIN_DIVING_LEVEL_EDIT,
+                'sortable' => true,
+                'confirmationBox' =>
+                (object) [
+                    'show' => true,
+                    'callbackUrl' => ADMIN_DIVING_LEVEL_DELETE
+                ]
             ])
         }}
     </div>

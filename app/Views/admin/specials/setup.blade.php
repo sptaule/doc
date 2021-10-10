@@ -56,7 +56,7 @@
                     </div>
                     <div class="col-span-full">
                         {{ partial('file', ['name' => "logo", 'label' => "Logo du club"]) }}
-                        <p class="text-gray-600 italic font-light text-sm">Choisissez le logo du club. JPG et PNG acceptés.</p>
+                        <p class="text-gray-600 italic font-light text-sm">Choisissez le logo du club. JPG ou PNG accepté.</p>
                     </div>
                 </div>
 

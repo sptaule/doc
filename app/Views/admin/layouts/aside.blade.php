@@ -102,7 +102,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
+                <a href="{{ ADMIN_EVENT_TYPES }}" class="flex items-center space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
                     <span class="h-8 w-8 flex items-center justify-center"><i class="fas fa-th-list text-scuba-green text-base"></i></span>
                     <span :class="{ 'lg:hidden': !isSidebarOpen }" class="text-gray-800 text-sm">Types d'évènements</span>
                 </a>
@@ -183,6 +183,12 @@
                 <a href="{{ ADMIN_DIVING_LEVELS }}" class="flex items-center space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
                     <span class="h-8 w-8 flex items-center justify-center"><i class="fas fa-layer-group text-scuba-green text-base"></i></span>
                     <span :class="{ 'lg:hidden': !isSidebarOpen }" class="text-gray-800 text-sm">Niveaux de plongée</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ ADMIN_DOCUMENTS }}" class="flex items-center space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
+                    <span class="h-8 w-8 flex items-center justify-center"><i class="fas fa-file-alt text-scuba-green text-base"></i></span>
+                    <span :class="{ 'lg:hidden': !isSidebarOpen }" class="text-gray-800 text-sm">Documents requis</span>
                 </a>
             </li>
             <li>

@@ -7,9 +7,6 @@
 <link rel="stylesheet" href="{{ APP_CSS }}">
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
 
-<!-- Notiflix -->
-<link rel="stylesheet" href="{{ NOTIFLIX . 'css' }}">
-
 <!-- Image Uploader -->
 <link rel="stylesheet" href="{{ IMAGE_UPLOADER . 'css' }}">
 
