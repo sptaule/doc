@@ -1,6 +1,6 @@
 ![](documentation/static/img/logo-full.png)
 
-Solution de gestion pour les clubs de plongée sous-marine.
+<p style="text-align: center;">Solution de gestion pour les clubs de plongée sous-marine.</p>
 
 ## Table `rank`
 
