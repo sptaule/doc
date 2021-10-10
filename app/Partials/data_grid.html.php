@@ -9,6 +9,7 @@
     .pagination li{display:block;padding:6px 0;background: #d7d6d6;border-radius:4px;border-bottom:2px #525259 solid;}.pagination li:hover{background:#8edbe7;}.pagination li:focus{background:#8edbe7;}.pagination li a{padding:12px}
 </style>
 
+<?php if ($data): ?>
 <div id="resultList">
 
     <div class="flex items-center space-x-1">
@@ -16,7 +17,7 @@
 
         <?php foreach ($columns as $key => $column): ?>
             <button class="sort bg-cool-gray-400 hover:bg-cool-gray-500 focus:bg-cool-gray-500 text-sm" data-sort="<?= $key; ?>">
-                Trier par <b><?= $column; ?></b>
+                Trier par <b><?= $column['label']; ?></b>
             </button>
         <?php endforeach; ?>
     </div>
@@ -25,14 +26,15 @@
         <thead class="bg-green-50 border-l-4 border-r-4 border-b border-t border-green-100">
             <tr>
                 <?php foreach ($columns as $key => $column): ?>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><?= $column; ?></th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><?= $column['label']; ?></th>
                 <?php endforeach; ?>
                 <th class="w-20 px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
             </tr>
         </thead>
         <tbody class="list bg-white divide-y divide-gray-200">
+
             <?php foreach ($data as $k => $row): ?>
-            <tr class="odd:bg-gray-50 even:bg-gray-100 hover:bg-gray-200" id="item-<?= $row->id ?>">
+            <tr class="odd:bg-gray-50 even:bg-gray-100 hover:bg-gray-200" id="item-<?= $row->id ?>" data-box-id="<?= $row->id ?>" data-box-name="<?= $row->name ?>">
                 <?php foreach ($columns as $key => $column): ?>
                     <td class="<?= $key ?> text-gray-800 font-opensans">
 
@@ -43,15 +45,27 @@
                             <?php endif; ?>
                         <?php endif; ?>
 
-                        <?= $row->{$key}; ?>
+                        <!--Display custom values according to type and result-->
+
+                        <?php if (isset($column['type']) && $column['type'] == 'bool'): ?>
+
+                            <?= $row->{$key} == true
+                                ? "<small class='bg-green-100 text-green-600 px-1.5 py-0.5 rounded shadow'>" . $column['trueMessage'] . "</small>"
+                                : "<small class='bg-red-100 text-red-600 px-1.5 py-0.5 rounded shadow'>" . $column['falseMessage'] . "</small>"
+                            ?>
+                        <?php else: ?>
+
+                            <?= $row->{$key}; ?>
+
+                        <?php endif; ?>
                     </td>
                 <?php endforeach; ?>
                 <td class="px-6 py-4 whitespace-nowrap text-right">
-                    <a href="<?= ADMIN_DIVING_LEVEL_EDIT ?><?= $row->id ?>" title="Modifier" class="btn edit py-3 rounded-md duration-300 bg-opacity-0 text-yellow-600 hover:text-gray-800">
+                    <a href="<?= $editLink ?><?= $row->id ?>" title="Modifier" class="btn edit edit-data py-3 rounded-md duration-300 bg-opacity-0 text-yellow-500 hover:text-gray-800">
                         <span>Modifier</span>
                         <i class="fas fa-highlighter"></i>
                     </a>
-                    <a href="#!" title="Supprimer" class="btn delete py-3 rounded-md duration-300 bg-opacity-0 text-red-600 hover:text-white">
+                    <a href="#!" title="Supprimer" class="btn delete delete-data py-3 rounded-md duration-300 bg-opacity-0 text-red-600 hover:text-gray-50">
                         <span>Supprimer</span>
                         <i class="fas fa-trash-alt"></i>
                     </a>
@@ -68,7 +82,19 @@
 
 </div>
 
+<?php if (isset($confirmationBox) && $confirmationBox->show === true): ?>
+    <?= partial('confirmation_box',
+        [
+            'message' => $confirmationBox->message ?? "Voulez-vous vraiment supprimer",
+            'title' => $confirmationBox->title ?? "Confirmation",
+            'callbackUrl' => $confirmationBox->callbackUrl ?? null,
+            'cancelCallbackUrl' => $confirmationBox->cancelCallbackUrl ?? null
+        ]);
+    ?>
+<?php endif; ?>
+
 <script>
+    // Data
     let options = {
         valueNames: [
             <?php foreach ($columns as $key => $column): ?>
@@ -81,6 +107,7 @@
 
     let resultList = new List('resultList', options)
 
+    // Sortable
     <?php if (isset($sortable) && $sortable === true): ?>
         $(".list").sortable({
             cursor: "move",
@@ -112,3 +139,9 @@
         });
     <?php endif; ?>
 </script>
+
+<?php else: ?>
+
+<p class="text-gray-600 italic">Aucune donnée à afficher</p>
+
+<?php endif; ?>

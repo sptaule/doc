@@ -4,7 +4,7 @@
 
 <div class="<?= $size ?? '' ?>">
     <label class="block px-1 text-sm text-gray-600" for="<?= $name ?>"><?= $label ?></label>
-    <select name="<?= $name ?>" id="<?= $name ?>" class="<?= $customSelectClass ?? "" ?> block dark:bg-gray-700 dark:text-white w-max text-nausicaa-darkest focus:outline-none">
+    <select name="<?= $name ?>" id="<?= $name ?>" class="<?= $customSelectClass ?? "" ?> block dark:bg-gray-700 dark:text-white w-max focus:outline-none">
         <?php if (isset($session_option_label) || isset($default_option_label)): ?>
             <option value="<?= $session_option_value ?? $default_option_value ?? "" ?>"><?= $session_option_label ?? $default_option_label ?></option>
         <?php endif; ?>

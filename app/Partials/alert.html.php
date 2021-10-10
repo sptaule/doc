@@ -1,13 +1,19 @@
-<div class="modal" x-data="{ 'showModal': true }" @keydown.escape="showModal = false" style="width: 1050px">
+<div class="modal" x-data="{ 'showModal': true }" @keydown.escape="showModal = false">
 
     <!-- Modal -->
-    <div class="fixed inset-0 z-30 flex items-center justify-center overflow-auto bg-black bg-opacity-30" x-show="showModal">
+    <div class="fixed inset-0 z-30 flex items-center justify-center overflow-auto transform transition"
+         :class="showModal ? 'bg-black bg-opacity-30' : 'hidden'">
 
         <!-- Modal inner -->
-        <div class="z-10 bg-<?= $color ?? 'blue' ?>-100 border-t-4 border-<?= $color ?? 'blue' ?>-500 rounded-b text-<?= $color ?? 'blue' ?>-900 px-4 py-3 shadow-md absolute top-14 mt-0.5 left-1/2 transform -translate-x-1/2" role="alert" @click.away="showModal = false">
-            <button type="button" class="group hover:bg-red-500 hover:text-white transition border-2 border-red-200 z-20 cursor-pointer absolute -right-4 -top-5 shadow rounded-full p-1 hover:scale-105 bg-white text-red-500" @click="showModal = false">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        <div
+                class="z-10 bg-<?= $color ?? 'blue' ?>-100 border-t-4 border-<?= $color ?? 'blue' ?>-500 rounded-lg text-<?= $color ?? 'blue' ?>-900 px-4 py-3 shadow-md absolute top-14 mt-0.5 left-1/2 transform -translate-x-1/2"
+                role="alert" @click.away="showModal = false" x-show="showModal">
+            <button type="button"
+                    class="group hover:bg-red-500 hover:text-white transition border-2 border-red-200 z-20 cursor-pointer absolute -right-4 -top-5 shadow rounded-full p-1 hover:scale-105 bg-white text-red-500"
+                    @click="showModal = false">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                 </svg>
             </button>
             <div class="flex items-center justify-center space-x-2">
@@ -30,6 +36,7 @@
 </div>
 
 <script>
+    <!--If an alert box has been set beforehand and the user didn't close it, then display it-->
     <?php if (isset($cookie) && !isset($_COOKIE[$cookie])): ?>
     $('button').on('click', function () {
         Cookies.set('<?= $cookie; ?>', true);
