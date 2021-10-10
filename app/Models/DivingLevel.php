@@ -9,9 +9,13 @@ class DivingLevel
     private string $description;
     private int $rank;
 
-    public static function getAll(string $orderBy = 'position'): bool|array
+    public static function getAll(string $orderBy = 'position', string $where = null): bool|array
     {
-        $query = pdo()->prepare("SELECT * FROM diving_level ORDER BY {$orderBy}");
+        if (is_null($where)) {
+            $query = pdo()->prepare("SELECT * FROM diving_level ORDER BY {$orderBy}");
+        } else {
+            $query = pdo()->prepare("SELECT * FROM diving_level WHERE {$where} ORDER BY {$orderBy}");
+        }
         $query->execute();
         return $query->fetchAll();
     }
@@ -47,8 +51,8 @@ class DivingLevel
         $success = $query->execute([$name, $description, $count + 1]);
 
         $success === true
-            ? flash_success("<b>$name</b> ajouté")
-            : flash_warning("Erreur lors de l'ajout");
+        ? flash_success("<b>$name</b> ajouté")
+        : flash_warning("Erreur lors de l'ajout");
     }
 
     public static function edit($data, int $id)
@@ -68,6 +72,19 @@ class DivingLevel
             ? flash_success("<b>$name</b> modifié")
             : flash_warning("Erreur lors de la modification");
         redirect(ADMIN_DIVING_LEVELS);
+    }
+
+    public static function delete(int $id): bool
+    {
+        $query = pdo()->prepare("DELETE FROM diving_level WHERE id = ?");
+        return $query->execute([sanitize($id)]);
+    }
+
+    public static function getPosition(int $id)
+    {
+        $query = pdo()->prepare("SELECT position FROM diving_level WHERE id = ?");
+        $query->execute([sanitize($id)]);
+        return $query->fetch()->position;
     }
 
 }
