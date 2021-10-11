@@ -29,14 +29,26 @@
                         <p class="text-gray-600 italic font-light text-sm">Votre prénom.</p>
                     </div>
                     <div>
+                        {{ partial('select', ['name' => 'genre', 'label' => 'Genre', 'options' => $genres, 'option_key_label' => 'name', 'size' => 'flex flex-col']) }}
+                        <p class="text-gray-600 italic font-light text-sm">Votre sexe.</p>
+                    </div>
+                    <div>
+                        {{ partial('input', ['name' => 'birthdate', 'label' => 'Date de naissance', 'type' => 'date']) }}
+                        <p class="text-gray-600 italic font-light text-sm">Votre date de naissance.</p>
+                    </div>
+                    <div>
                         {{ partial('input', ['name' => "email", 'label' => "Email", "default_value" => "lecas83@gmail.com"]) }}
                         <p class="text-gray-600 italic font-light text-sm">Vous pourrez la modifier par la suite.</p>
+                    </div>
+                    <div>
+                        {{ partial('input', ['name' => "phone", 'label' => "Téléphone"]) }}
+                        <p class="text-gray-600 italic font-light text-sm">Vous n'êtes pas forcé de le renseigner.</p>
                     </div>
                     <div class="col-span-full"></div>
                     <div>
                         {{ partial('input', ['name' => "password", 'label' => "Mot de passe", 'type' => 'password', "default_value" => "123456789@@@"]) }}
-                        <p class="text-gray-600 italic font-light text-sm">Minimum 8 caractères.<br>Privilégiez différents caractères (<b class="font-mono">0-9 a-z A-Z @_€+-*</b>).</p>
-                        <p class="text-gray-600 italic font-light text-sm">Exemple d'un bon mot de passe : <b class="font-mono">BateauMonolithe06@</b></p>
+                        <p class="text-gray-600 italic font-light text-sm">Minimum 8 caractères.<br>Privilégiez différents caractères : <b class="font-mono">0-9 a-z A-Z @_€+-*</b></p>
+                        <p class="text-gray-600 italic font-light text-sm">Exemple : <b class="font-mono tracking-wider">BateauMonolithe06+@</b></p>
                     </div>
                     <div>
                         {{ partial('input', ['name' => "password_conf", 'label' => "Confirmation", 'type' => 'password', "default_value" => "123456789@@@"]) }}
@@ -51,7 +63,11 @@
                         <span class="font-extralight text-sm text-ray-500 italic">Des détails supplémentaires pourront être ajoutés par la suite.</span>
                     </h2>
                     <div>
-                        {{ partial('input', ['name' => "club", 'label' => "Nom du club", "default_value" => "Les Plongeurs du Dimanche"]) }}
+                        {{ partial('input', ['name' => "club_name", 'label' => "Nom du club", "default_value" => "Les Plongeurs du Dimanche"]) }}
+                        <p class="text-gray-600 italic font-light text-sm">Vous pourrez le modifier par la suite.</p>
+                    </div>
+                    <div class="col-span-full">
+                        {{ partial('input', ['name' => "club_description", 'label' => "Slogan du club", "default_value" => "Vivre sous l'eau, notre passion"]) }}
                         <p class="text-gray-600 italic font-light text-sm">Vous pourrez le modifier par la suite.</p>
                     </div>
                     <div class="col-span-full">
