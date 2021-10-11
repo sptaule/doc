@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Libs\Picture;
+use App\Models\User;
 use duncan3dc\Laravel\BladeInstance;
 use PDO;
 use PDOException;
@@ -48,11 +49,21 @@ class SetupController
                 flash_warning("Vous devez choisir le logo du club"); save_inputs(); redirect_self();
             }
 
-            $lastname = $_POST['lastname'];
-            $firstname = $_POST['firstname'];
-            $email = $_POST['email'];
+            // -- user info
+            $user_lastname = $_POST['lastname'];
+            $user_firstname = $_POST['firstname'];
+            $user_email = $_POST['email'];
+            $user_genre = $_POST['genre'];
+            $user_birthdate = $_POST['birthdate'];
+            $user_phone = $_POST['phone'] ?? '';
             $password = $_POST['password'];
-            $password_hash = password_hash($password, PASSWORD_BCRYPT);
+            $user_password = password_hash($password, PASSWORD_BCRYPT);
+
+            // -- club info
+            $club_name = $_POST['club_name'] ?? '';
+            $club_description = $_POST['club_description'] ?? '';
+
+            // -- database info
             $db_host = $_POST['db_host'];
             $db_name = $_POST['db_name'];
             $db_username = $_POST['db_username'];
@@ -80,15 +91,31 @@ class SetupController
             file_put_contents(BASE_PATH . DIRECTORY_SEPARATOR . 'config/core.php', "const DB_PASSWORD = '$db_password';" . PHP_EOL, FILE_APPEND);
 
             /** Get all SQL files containing tables info and static data that will be created/inserted */
+            $pdo = new PDO("mysql:host=$db_host;dbname=$db_name;charset=utf8", $db_username, $db_password);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
             $sqlFiles = glob(BASE_PATH . "/sql/*.sql");
             foreach ($sqlFiles as $sqlFile) {
                 $sqlData = file_get_contents($sqlFile);
-                $pdo = new PDO("mysql:host=$db_host;dbname=$db_name;charset=utf8", $db_username, $db_password);
-                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
                 $query = $pdo->prepare($sqlData);
                 $query->execute();
             }
+
+            /** Insert dynamic data */
+            /* global_option */
+            $query = $pdo->prepare("UPDATE global_options SET value = ? WHERE name = 'club_name'");
+            $query->execute([$club_name]);
+            $query = $pdo->prepare("UPDATE global_options SET value = ? WHERE name = 'club_description'");
+            $query->execute([$club_description]);
+            $query = $pdo->prepare("UPDATE global_options SET value = ? WHERE name = 'super_user_firstname'");
+            $query->execute([$user_firstname]);
+            $query = $pdo->prepare("UPDATE global_options SET value = ? WHERE name = 'super_user_lastname'");
+            $query->execute([$user_lastname]);
+            $query = $pdo->prepare("UPDATE global_options SET value = ? WHERE name = 'super_user_email'");
+            $query->execute([$user_email]);
+            /* user */
+            $query = $pdo->prepare("INSERT INTO user (lastname, firstname, birthdate, email, phone, password, diving_level, skillset_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            $query->execute([$user_lastname, $user_firstname, $user_birthdate, $user_email, $user_phone, $user_password, 1, 1]);
 
             $success = true;
 
@@ -100,7 +127,8 @@ class SetupController
         }
 
         /** Send Setup view */
+        $genres = User::getGenres();
         $blade = new BladeInstance(APP_PATH . "/Views", BASE_PATH . "/cache/views");
-        echo $blade->render("admin.specials.setup");
+        echo $blade->render("admin.specials.setup", ['genres' => $genres]);
     }
 }
