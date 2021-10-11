@@ -100,7 +100,7 @@ class SettingController
 
     /*
     * DOCUMENTS
-     */
+    */
 
     public function listDocuments(RouteCollection $routes)
     {
@@ -158,6 +158,15 @@ class SettingController
         // Delete selected diving level
         Document::delete($id);
         echo 1;
+    }
+
+    /*
+    * CLUB
+    */
+
+    public function getInfo(RouteCollection $routes)
+    {
+
     }
 
 }
