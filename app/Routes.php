@@ -85,3 +85,7 @@ define("ADMIN_DOCUMENT_EDIT", str_replace("{id}", "", $path));
 $path = '/admin/document/delete/{id}';
 $routes->add('adminDocumentDelete', new Route($path, ['controller' => 'Admin\SettingController', 'method' => 'deleteDocument']));
 define("ADMIN_DOCUMENT_DELETE", $path);
+
+$path = '/admin/club';
+$routes->add('adminClub', new Route($path, ['controller' => 'Admin\SettingController', 'method' => 'getInfo']));
+define("ADMIN_CLUB", $path);
