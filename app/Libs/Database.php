@@ -20,6 +20,7 @@ function pdo()
     $pdo = new PDO("mysql:host=$servername;dbname=$database;charset=utf8", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+    setlocale(LC_TIME, array('fr_FR.UTF-8', 'fr_FR.utf-8', 'fr_FR.utf8', 'fr_FR@euro', 'fr_FR', 'french'));
     return $pdo;
 }
 
@@ -148,7 +149,7 @@ function get_enum_values($table, $field)
         AND COLUMN_NAME = ?"
     );
     $query->setFetchMode(PDO::FETCH_OBJ);
-    $query->execute([DATABASE_NAME, $table, $field]);
+    $query->execute([DB_NAME, $table, $field]);
     $enum = $query->fetch()->enums;
     $enumArray = explode("','", preg_replace("/(enum|set)\((.+?)'\)/","\\2", $enum));
     $enumArray[array_key_first($enumArray)] = str_replace("'", "", $enumArray[array_key_first($enumArray)]);
