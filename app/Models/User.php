@@ -2,12 +2,19 @@
 
 namespace App\Models;
 
+use DateTime;
+
 class User
 {
-    public static function getAll(string $orderBy = 'created_at DESC', string $where = null): bool|array
+    public static function getAll($orderBy = null): bool|array
     {
-        $query = pdo()->prepare("SELECT * FROM user WHERE ? ORDER BY ?");
-        $query->execute([$where, $orderBy]);
+        if (!is_null($orderBy)) {
+            $query = pdo()->prepare("SELECT * FROM user ORDER BY {$orderBy}");
+            $query->execute();
+        } else {
+            $query = pdo()->prepare("SELECT * FROM user");
+            $query->execute();
+        }
         return $query->fetchAll();
     }
 
@@ -17,5 +24,17 @@ class User
             (object) ['id' => 1, "name" => "Homme"],
             (object) ['id' => 2, "name" => "Femme"]
         ];
+    }
+
+    public static function getAge(string $birthDate): int
+    {
+        $age = date_diff(date_create($birthDate), date_create(date("d-m-Y")));
+        return intval($age->format("%y"));
+    }
+
+    public static function getLastConnection(string $lastConnection): string
+    {
+        $date = new DateTime($lastConnection);
+        return strftime(Club::getValue('date_format') . " à " . Club::getValue('time_format'), $date->getTimestamp());
     }
 }
