@@ -14,6 +14,7 @@ const RIPPLE_EFFECT = "/assets/rippleEffect/rippleEffect.min.";
 const GRID_JS = "/assets/gridJs/gridJs.min.";
 const LIST_JS = "/assets/listJs/listJs.min.";
 const JS_COOKIE = "/assets/jsCookie/jsCookie.min.";
+const MIXITUP = "/assets/mixitup/mixitup.min.";
 
 // IMAGES
 const LOGO_FULL = "/ressources/images/scuba/logo-full.svg";
