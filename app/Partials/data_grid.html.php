@@ -17,7 +17,7 @@
 
         <?php foreach ($columns as $key => $column): ?>
             <button class="sort bg-cool-gray-400 hover:bg-cool-gray-500 focus:bg-cool-gray-500 text-sm" data-sort="<?= $key; ?>">
-                Trier par <b><?= $column['label']; ?></b>
+                <b><?= $column['label']; ?></b>
             </button>
         <?php endforeach; ?>
     </div>
@@ -34,7 +34,7 @@
         <tbody class="list bg-white divide-y divide-gray-200">
 
             <?php foreach ($data as $k => $row): ?>
-            <tr class="odd:bg-gray-50 even:bg-gray-100 hover:bg-gray-200" id="item-<?= $row->id ?>" data-box-id="<?= $row->id ?>" data-box-name="<?= $row->name ?>">
+            <tr class="odd:bg-gray-50 even:bg-gray-100 hover:bg-gray-200" id="item-<?= $row->id ?>" data-box-id="<?= $row->id ?>" data-box-name="<?= $dataBoxName ?? $row->name ?>">
                 <?php foreach ($columns as $key => $column): ?>
                     <td class="<?= $key ?> text-gray-800 font-opensans">
 
