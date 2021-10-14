@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Scuba;
 use duncan3dc\Laravel\BladeInstance;
 use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\RouteCollection;
@@ -38,7 +39,15 @@ class Router
             // Add routes as parameters to the next class
             $params = array_merge(array_slice($matcher, 2, -1), array('routes' => $routes));
 
-            call_user_func_array(array($classInstance, $matcher['method']), $params);
+            if (Scuba::isDeployed() === false) {
+                $className = '\\App\\Controllers\\ScubaController';
+                $classInstance = new $className();
+                $method = 'setup';
+                call_user_func_array(array($classInstance, $method), $params);
+            } else {
+                call_user_func_array(array($classInstance, $matcher['method']), $params);
+            }
+
 
         } catch (MethodNotAllowedException $e) {
             echo 'Route method is not allowed.';
