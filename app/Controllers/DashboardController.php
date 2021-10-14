@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Admin;
+namespace App\Controllers;
 
 use duncan3dc\Laravel\BladeInstance;
 use Symfony\Component\Routing\RouteCollection;

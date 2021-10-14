@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Controllers\Admin;
+namespace App\Controllers;
 
 
+use App\Models\Club;
 use App\Models\DivingLevel;
 use App\Models\Document;
 use duncan3dc\Laravel\BladeInstance;
@@ -135,11 +136,11 @@ class SettingController
         $document = Document::get($id);
         $blade = new BladeInstance(APP_PATH . "/Views", BASE_PATH . "/cache/views");
         echo $blade->render(
-            "admin.static._settings.documents.edit",
-            [
-                'title' => "Modifier un document : <b>$document->name</b>",
-                'document' => $document
-            ]);
+        "admin.static._settings.documents.edit",
+        [
+            'title' => "Modifier un document : <b>$document->name</b>",
+            'document' => $document
+        ]);
     }
 
     /**
@@ -152,7 +153,7 @@ class SettingController
         /*
          * TODO
          * Vérifier si un type d'évènement est limité par ce document
-         * si oui, retirer le retirer de la table `type_document`
+         * si oui, le retirer de la table `type_document`
          */
 
         // Delete selected diving level
@@ -164,9 +165,25 @@ class SettingController
     * CLUB
     */
 
-    public function getInfo(RouteCollection $routes)
+    public function clubInfo(RouteCollection $routes)
     {
-
+        if (is_post()) {
+            Club::updateInfos($_POST);
+        }
+        $blade = new BladeInstance(APP_PATH . "/Views", BASE_PATH . "/cache/views");
+        echo $blade->render(
+        "admin.static._settings.club.index",
+        [
+            'title' => "Informations du club",
+            'clubName' => Club::getValue('club_name'),
+            'clubDescription' => Club::getValue('club_description'),
+            'superUserFirstname' => Club::getValue('super_user_firstname'),
+            'superUserLastname' => Club::getValue('super_user_lastname'),
+            'superUserEmail' => Club::getValue('super_user_email'),
+            'allowRegistrations' => Club::getValue('allow_registrations'),
+            'dateFormat' => Club::getValue('date_format'),
+            'timeFormat' => Club::getValue('time_format')
+        ]);
     }
 
 }

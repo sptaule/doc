@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Admin;
+namespace App\Controllers;
 
 use duncan3dc\Laravel\BladeInstance;
 use Symfony\Component\Routing\RouteCollection;
@@ -10,11 +10,14 @@ class UserController
 {
     public function list(RouteCollection $routes)
     {
-        $query = pdo()->prepare("SELECT * FROM admin");
-        $query->execute();
-        $admins = $query->fetchAll();
+        $users = User::getAll('last_connection DESC');
         $blade = new BladeInstance(APP_PATH . "/Views", BASE_PATH . "/cache/views");
-        echo $blade->render("admin.static._users.index", ['title' => 'Liste des utilisateurs', 'admins' => $admins]);
+        echo $blade->render("admin.static._users.index",
+            [
+                'title' => 'Liste des utilisateurs',
+                'columns' => ["Nom", "Prénom", "Âge", "Contact", "Niveau", "Rang", "Dernière connexion"],
+                'users' => $users,
+            ]);
     }
 
     public function add(RouteCollection $routes)
