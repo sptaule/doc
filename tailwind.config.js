@@ -85,10 +85,12 @@ module.exports = {
             borderStyle: ['odd', 'even'],
             borderColor: ['odd', 'even'],
             transitionProperty: ['responsive', 'motion-safe', 'motion-reduce'],
+            brightness: ['hover', 'focus'],
         },
     },
     plugins: [
         require('tailwindcss-textshadow'),
+        require('@tailwindcss/forms'),
         require('tailwindcss-ripple')(),
         require('tailwindcss-animatecss')({
             classes: ['animate__animated', 'animate__fadeIn', 'animate__bounceIn', 'animate__lightSpeedOut'],
