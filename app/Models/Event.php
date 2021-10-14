@@ -6,7 +6,7 @@ use Symfony\Component\Routing\RouteCollection;
 
 class Event
 {
-    public static function getTypes(string $orderBy = 'name', string $where = null)
+    public static function getTypes(string $orderBy = 'name', string $where = null): bool|array
     {
         if (is_null($where)) {
             $query = pdo()->prepare("SELECT * FROM event_type ORDER BY {$orderBy}");
@@ -17,7 +17,19 @@ class Event
         return $query->fetchAll();
     }
 
+    public static function getType(int $id): object
+    {
+        $query = pdo()->prepare("SELECT * FROM event_type WHERE id = ?");
+        $query->execute([$id]);
+        return $query->fetch();
+    }
+
     public static function addType($data)
+    {
+
+    }
+
+    public static function editType($data)
     {
 
     }
