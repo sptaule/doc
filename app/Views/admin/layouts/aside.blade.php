@@ -192,7 +192,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
+                <a href="{{ ADMIN_CLUB }}" class="flex items-center space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
                     <span class="h-8 w-8 flex items-center justify-center"><i class="fas fa-ship text-scuba-green text-base"></i></span>
                     <span :class="{ 'lg:hidden': !isSidebarOpen }" class="text-gray-800 text-sm">Informations du club</span>
                 </a>
