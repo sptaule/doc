@@ -51,7 +51,7 @@ class SettingController
         echo $blade->render(
         "admin.static._settings.diving_levels.edit",
         [
-            'title' => 'Modifier un niveau de plongée',
+            'title' => "Modifier le niveau : <b>$divingLevel->name</b>",
             'divingLevel' => $divingLevel
         ]);
     }
@@ -138,7 +138,7 @@ class SettingController
         echo $blade->render(
         "admin.static._settings.documents.edit",
         [
-            'title' => "Modifier un document : <b>$document->name</b>",
+            'title' => "Modifier le document : <b>$document->name</b>",
             'document' => $document
         ]);
     }
