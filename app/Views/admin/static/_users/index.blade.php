@@ -40,7 +40,7 @@
                 <div
                     data-last-connection="{{ display_date($user->last_connection, 'Y-m-d') }}"
                     data-registration-date="{{ display_date($user->created_at, 'Y-m-d') }}"
-                    class="relative p-2 shadow filter hover:brightness-105 mix {{ $user->rank_id == 1 ? 'member' : '' }} {{ $user->rank_id == 2 ? 'director' : '' }} {{ $user->rank_id == 3 ? 'administrator' : '' }}">
+                    class="relative p-2 shadow filter hover:brightness-105 mix group {{ $user->rank_id == 1 ? 'member' : '' }} {{ $user->rank_id == 2 ? 'director' : '' }} {{ $user->rank_id == 3 ? 'administrator' : '' }}">
                     <div class="py-3">
                         <h1 class="text-black w-full flex flex-col space-x-2 items-center justify-center font-bold text-gray-600 font-arima text-lg">
                             <a href="{{ ADMIN_USER_VIEW . $user->id }}" class="text-center">{{ $user->firstname }} {{ $user->lastname }}</a>
@@ -50,10 +50,10 @@
                             <img src="https://i.pravatar.cc/150?img={{ $k }}" class="shadow-lg h-20 w-20 rounded-full" alt="">
                         </a>
                         <div class="absolute top-0 left-0 bg-white w-full grid grid-cols-2 gap-0 text-gray-500">
-                            <a href="{{ ADMIN_USER_VIEW . $user->id }}" class="flex items-center justify-center p-1.5 shadow-sm hover:bg-blue-200 hover:text-blue-500" title="Accéder à la fiche complète">
+                            <a href="{{ ADMIN_USER_VIEW . $user->id }}" class="flex items-center justify-center p-1.5 shadow-sm group-hover:bg-blue-200 hover:bg-blue-200 hover:text-blue-500" title="Accéder à la fiche complète">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
                             </a>
-                            <a href="{{ ADMIN_USER_EDIT . $user->id }}" class="flex items-center justify-center p-1.5 shadow-sm hover:bg-yellow-200 hover:text-yellow-500" title="Modifier les informations">
+                            <a href="{{ ADMIN_USER_EDIT . $user->id }}" class="flex items-center justify-center p-1.5 shadow-sm group-hover:bg-yellow-200 hover:bg-yellow-200 hover:text-yellow-500" title="Modifier les informations">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
                             </a>
                         </div>

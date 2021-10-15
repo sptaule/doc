@@ -71,7 +71,7 @@
                     <div
                             @click.away="isOpen = false"
                             x-show.transition.opacity="isOpen"
-                            class="absolute mt-3 transform -translate-x-full bg-white rounded-md shadow-lg min-w-max"
+                            class="absolute mt-3 transform -translate-x-full bg-white rounded-md shadow-lg min-w-max z-50"
                     >
                         <div class="flex flex-col p-4 space-y-1 font-medium border-b">
                             <span class="font-extralight text-gray-800">Bonjour</span>

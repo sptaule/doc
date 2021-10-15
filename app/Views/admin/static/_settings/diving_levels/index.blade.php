@@ -2,8 +2,14 @@
 
 @section('admin.layouts.main')
 
-    <div id="section-action-nav" class="flex space-x-1.5 items-center p-2 rounded bg-gradient-to-r from-gray-50 to-transparent w-full">
-        <a class="btn add" href="{{ ADMIN_DIVING_LEVEL_ADD }}">Ajouter un niveau de plongée</a>
+    <link rel="stylesheet" href="{{ MIXITUP . 'css' }}">
+
+    <div class="controls w-full rounded flex items-center justify-start space-x-2">
+        <div class="text-white font-arima inline-block h-12 rounded text-lg flex items-center justify-center">
+            <span>{!! $title !!}</span>
+        </div>
+        <div class="h-10 w-0.5 bg-gray-500"></div>
+        <a class="btn add py-3" href="{{ ADMIN_DIVING_LEVEL_ADD }}">Ajouter un niveau de plongée</a>
     </div>
 
     {{ partial('alert',
@@ -15,7 +21,7 @@
         ])
      }}
 
-    <div id="content" class="w-full">
+    <div id="content" class="w-full my-4">
         {{ partial('data_grid',
             [
                 'columns' =>
