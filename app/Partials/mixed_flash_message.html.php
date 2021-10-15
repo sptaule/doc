@@ -91,7 +91,7 @@
             cssAnimationDuration: 300,
             cssAnimationStyle: 'fade', // 'zoom' - 'fade'
             plainText: false,
-            titleColor: '#181d26',
+            titleColor: '#bb0d0d',
             titleFontSize: '16px',
             titleMaxLength: 34,
             messageColor: '#1e1e1e',
@@ -104,6 +104,5 @@
             cancelButtonColor: '#f8f8f8',
             cancelButtonBackground: '#a9a9a9',
         });
-            
     </script>
 <?php endif ?>
