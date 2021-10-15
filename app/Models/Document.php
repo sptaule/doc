@@ -83,4 +83,35 @@ class Document
         return $query->execute([sanitize($id)]);
     }
 
+    public static function getTypeDocuments(int $id): bool|array
+    {
+        $query = pdo()->prepare("SELECT d.id as document_id, d.name as name, d.slug as slug, etd.value as value FROM event_type_document etd LEFT JOIN document d on d.id = etd.document_id WHERE etd.event_type_id = ?");
+        $query->execute([$id]);
+        $results = $query->fetchAll();
+        $typeDocuments = [];
+        foreach ($results as $result) {
+            $typeDocuments[$result->document_id] = (object) [
+                'name' => $result->name,
+                'slug' => $result->slug,
+                'value' => $result->value
+            ];
+        }
+        return $typeDocuments;
+    }
+
+    public static function getTypeRanks(int $id): bool|array
+    {
+        $query = pdo()->prepare("SELECT r.rank_id as rank_id, rank_name as name, etr.value as value FROM event_type_rank etr LEFT JOIN `rank` r on r.rank_id = etr.rank_id WHERE etr.event_type_id = ?");
+        $query->execute([$id]);
+        $results = $query->fetchAll();
+        $typeRanks = [];
+        foreach ($results as $result) {
+            $typeRanks[$result->rank_id] = (object) [
+                'name' => $result->name,
+                'value' => $result->value
+            ];
+        }
+        return $typeRanks;
+    }
+
 }

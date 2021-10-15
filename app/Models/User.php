@@ -26,6 +26,13 @@ class User
         ];
     }
 
+    public static function getRanks(): array
+    {
+        $query = pdo()->prepare("SELECT * FROM `rank` ORDER BY rank_id");
+        $query->execute();
+        return $query->fetchAll();
+    }
+
     public static function getAge(string $birthDate): int
     {
         $age = date_diff(date_create($birthDate), date_create(date("d-m-Y")));
