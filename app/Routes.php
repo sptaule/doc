@@ -55,6 +55,10 @@ $path = '/admin/events/type/edit/{id}';
 $routes->add('adminEventTypeEdit', new Route($path, ['controller' => 'EventController', 'method' => 'editType'], ['id' => '[0-9]+']));
 define("ADMIN_EVENT_TYPE_EDIT", str_replace("{id}", "", $path));
 
+$path = '/admin/events/type/delete/{id}';
+$routes->add('adminEventTypeDelete', new Route($path, ['controller' => 'EventController', 'method' => 'deleteType']));
+define("ADMIN_EVENT_TYPE_DELETE", $path);
+
 // ** SETTINGS
 
 $path = '/admin/diving-levels';
