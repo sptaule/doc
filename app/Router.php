@@ -39,13 +39,22 @@ class Router
             // Add routes as parameters to the next class
             $params = array_merge(array_slice($matcher, 2, -1), array('routes' => $routes));
 
+            // if Scuba is not deployed yet, force setup route
             if (Scuba::isDeployed() === false) {
                 $className = '\\App\\Controllers\\ScubaController';
                 $classInstance = new $className();
-                $method = 'setup';
-                call_user_func_array(array($classInstance, $method), $params);
+                call_user_func_array(array($classInstance, 'setup'), $params);
             } else {
-                call_user_func_array(array($classInstance, $matcher['method']), $params);
+                // If Scuba is already deployed and setup route in requested redirect to admin dashboard
+                if ($className = '\\App\\Controllers\\ScubaController' && $matcher['method'] == 'setup') {
+                    flash_warning("Scuba a déja été installé");
+                    $className = '\\App\\Controllers\\DashboardController';
+                    $classInstance = new $className();
+                    call_user_func_array(array($classInstance, 'index'), $params);
+                // Or redirect to requested route
+                } else {
+                    call_user_func_array(array($classInstance, $matcher['method']), $params);
+                }
             }
 
 
