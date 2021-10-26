@@ -60,6 +60,3 @@ La liste des tâches à faire pour Scuba
   - [x] `Supprimer`
 
 ## Public
-
-Identifiant : 4214039A
-Mot de passe : Poussy+11
