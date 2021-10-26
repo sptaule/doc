@@ -12,10 +12,11 @@ if (DEBUG === true) {
     error_reporting(E_ALL);
 }
 
-session_start();
+session()->start();
 
 /** CSRF_TOKEN */
-$_SESSION['CSRF_TOKEN'] = $_SESSION['CSRF_TOKEN'] ?? random_str();
+// $_SESSION['CSRF_TOKEN'] = $_SESSION['CSRF_TOKEN'] ?? random_str();
+session()->set('CSRF_TOKEN', session()->get('CSRF_TOKEN') ?? random_str());
 
 // require libs that are required on almost/every page
 import("Auth");
