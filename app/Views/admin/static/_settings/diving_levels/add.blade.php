@@ -9,7 +9,7 @@
             <span>{!! $title !!}</span>
         </div>
         <div class="h-10 w-0.5 bg-gray-500"></div>
-        <a class="btn add py-3" href="{{ ADMIN_DIVING_LEVELS }}">Annuler</a>
+        <a class="btn cancel py-3" href="{{ ADMIN_DIVING_LEVELS }}">Annuler</a>
     </div>
 
     <div id="content" class="w-4/6">

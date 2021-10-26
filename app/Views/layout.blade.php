@@ -3,24 +3,24 @@
 <head>
     @include('layouts.head')
 </head>
-    <body
-        class="{{
-            (is_on_page(USER_DASHBOARD) || is_on_page(USER_EDIT))
-            && isset($_SESSION['user'])
-            ? 'bg-aup-orange bg-opacity-80'
-            : 'bg-aup-white' }} bg-fixed">
+    <body>
 
         <header class="sticky top-0 z-50">
             @include('layouts.header')
         </header>
 
-        <main class="bg-aup-orange">
+        <main class="">
             @include('layouts.main')
         </main>
 
-        <footer class="bg-aup-white py-8">
+        <footer class="">
             @include('layouts.footer')
         </footer>
+
+        <div id="back2Top" class="hidden hover:shadow-lg bg-gray-200 text-center float-right cursor-pointer p-2 w-10 h-10 rounded-full hover:text-scuba-green fixed right-5 bottom-5">
+            <i class="fas fa-arrow-up"></i>
+        </div>
+        <script src="/assets/custom_scripts/back-to-top.js"></script>
 
     </body>
 </html>

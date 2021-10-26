@@ -21,7 +21,7 @@
                         <i class="text-gray-500 fas fa-book"></i>
                         <span>Aide</span>
                     </a>
-                    {{--{{ partial('documentation') }}--}}
+                    {{ partial('documentation') }}
                     <!-- Options Button -->
                     <div class="relative" x-data="{ isOpen: false }">
                         <button

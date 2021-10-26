@@ -2,14 +2,12 @@
 
 @section('admin.layouts.main')
 
-    <link rel="stylesheet" href="{{ MIXITUP . 'css' }}">
-
     <div class="controls w-full rounded flex items-center justify-start space-x-2">
         <div class="text-white font-arima inline-block h-12 rounded text-lg flex items-center justify-center">
             <span>{!! $title !!}</span>
         </div>
         <div class="h-10 w-0.5 bg-gray-500"></div>
-        <a class="btn add py-3" href="{{ ADMIN_DOCUMENTS }}">Annuler</a>
+        <a class="btn cancel py-3" href="{{ ADMIN_DOCUMENTS }}">Annuler</a>
     </div>
 
     <div id="content" class="w-4/6">

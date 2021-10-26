@@ -144,15 +144,15 @@
             </div>
 
             <li>
-                <a href="#" class="flex items-center space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
+                <a href="{{ ADMIN_PAGES }}" class="flex items-center space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
                     <span class="h-8 w-8 flex items-center justify-center"><i class="fas fa-sticky-note text-scuba-green text-base"></i></span>
                     <span :class="{ 'lg:hidden': !isSidebarOpen }" class="text-gray-800 text-sm">Pages</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
+                <a href="{{ ADMIN_MENUS }}" class="flex items-center space-x-2 rounded-md hover:bg-gray-200 border border-transparent hover:border-gray-300" :class="{'justify-center': !isSidebarOpen}">
                     <span class="h-8 w-8 flex items-center justify-center"><i class="fas fa-bars text-scuba-green text-base"></i></span>
-                    <span :class="{ 'lg:hidden': !isSidebarOpen }" class="text-gray-800 text-sm">Menu</span>
+                    <span :class="{ 'lg:hidden': !isSidebarOpen }" class="text-gray-800 text-sm">Menus</span>
                 </a>
             </li>
             <li>
@@ -202,9 +202,9 @@
     </nav>
     <!-- Sidebar footer -->
     <div class="flex-shrink-0 p-2 border-t max-h-14">
-        <button class="flex items-center justify-center w-full px-4 py-2 space-x-1 font-medium tracking-wider uppercase bg-gray-100 hover:bg-red-500 text-gray-600 hover:text-white border rounded-md focus:outline-none focus:ring">
+        <a href="{{ ADMIN_LOGOUT }}" class="flex items-center justify-center w-full px-4 py-2 space-x-1 font-medium tracking-wider uppercase bg-gray-100 hover:bg-red-500 text-gray-600 hover:text-white border rounded-md focus:outline-none focus:ring">
             <span class="h-6 w-6 flex items-center justify-center"><i class="fas fa-sign-out-alt"></i></span>
             <span :class="{'lg:hidden': !isSidebarOpen}">Déconnexion</span>
-        </button>
+        </a>
     </div>
 </aside>

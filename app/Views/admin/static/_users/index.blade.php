@@ -2,8 +2,6 @@
 
 @section('admin.layouts.main')
 
-    <link rel="stylesheet" href="{{ MIXITUP . 'css' }}">
-
     <div class="w-full">
         <div class="controls rounded flex items-center justify-start space-x-2">
             <a class="btn add py-3" href="{{ ADMIN_USER_ADD }}">Créer un utilisateur</a>
@@ -66,25 +64,6 @@
         </div>
     </div>
 
-    <script>
-        let containerEl = document.querySelector('.container');
-        let mixer = mixitup(containerEl, {
-            animation: {
-                effects: 'fade scale stagger(60ms)'
-            },
-            load: {
-                filter: 'none'
-            }
-        });
-        containerEl.classList.add('mixitup-ready');
-        mixer.show()
-            .then(function() {
-                mixer.configure({
-                    animation: {
-                        effects: 'fade scale'
-                    }
-                });
-            });
-    </script>
+    <script src="/assets/custom_scripts/mixitup-display.js"></script>
 
 @endsection

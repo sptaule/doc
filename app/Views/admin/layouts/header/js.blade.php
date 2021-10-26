@@ -1,5 +1,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+<script src="https://use.fontawesome.com/408dbfef94.js"></script>
+
 <script src="{{ JS_COOKIE . 'js' }}"></script>
 
 <script src="{{ ALPINE . 'js' }}" defer></script>

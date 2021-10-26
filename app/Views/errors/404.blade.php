@@ -7,7 +7,7 @@
                 <h1 class="inline-block font-opensans font-extrabold text-4xl text-scuba-green">404</h1>
                 <p class="text-gray-700 py-4">La page demandée n'a pas été trouvée.</p>
                 <p class="text-gray-700 py-4">
-                    <a href="" class="pb-1 border-b hover:border-gray-700 transition">Retourner à l'accueil</a>
+                    <a href="{{ PUBLIC_HOME }}" class="pb-1 border-b hover:border-gray-700 transition">Retourner à l'accueil</a>
                 </p>
             </div>
         </div>

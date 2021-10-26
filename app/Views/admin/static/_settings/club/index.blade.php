@@ -2,7 +2,7 @@
 
 @section('admin.layouts.main')
 
-    <form action="" method="post" class="grid grid-flow-row grid-cols-3 gap-x-12 w-full space-y-2">
+    <form action="" method="post" class="grid grid-flow-row grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-x-12 w-full space-y-2">
         @php echo csrf_input() @endphp
         <div class="bg-teal-50 shadow-md p-2">
             {{ partial('input', ['name' => 'club_name', 'label' => 'Nom du club', 'default_value' => $clubName]) }}
@@ -66,6 +66,24 @@
             }}
         </div>
         <div class="col-span-full"></div>
+        <div class="bg-indigo-50 shadow-md p-2">
+            {{ partial('input', ['name' => 'facebook_url', 'default_value' => $facebookUrl, 'label' => '<i class="fab fa-facebook-square text-blue-500 align-base mr-0.5 text-2xl"></i> <span class="leading-3 inline-flex">Facebook</span>']) }}
+        </div>
+        <div class="bg-indigo-50 shadow-md p-2">
+            {{ partial('input', ['name' => 'instagram_url', 'default_value' => $instagramUrl, 'label' => '<i class="fab fa-instagram-square text-purple-500 align-base mr-0.5 text-2xl"></i> <span class="leading-3 inline-flex">Instagram</span>']) }}
+        </div>
+        <div class="bg-indigo-50 shadow-md p-2">
+            {{ partial('input', ['name' => 'youtube_url', 'default_value' => $youtubeUrl, 'label' => '<i class="fab fa-youtube-square text-red-500 align-base mr-0.5 text-2xl"></i> <span class="leading-3 inline-flex">YouTube</span>']) }}
+        </div>
+        <div class="bg-indigo-50 shadow-md p-2">
+            {{ partial('input', ['name' => 'whatsapp_url', 'default_value' => $whatsappUrl, 'label' => '<i class="fab fa-whatsapp-square text-green-500 align-base mr-0.5 text-2xl"></i> <span class="leading-3 inline-flex">WhatsApp</span>']) }}
+        </div>
+        <div class="bg-indigo-50 shadow-md p-2">
+            {{ partial('input', ['name' => 'twitter_url', 'default_value' => $twitterUrl, 'label' => '<i class="fab fa-twitter-square text-cyan-500 align-base mr-0.5 text-2xl"></i> <span class="leading-3 inline-flex">Twitter</span>']) }}
+        </div>
+        <div class="bg-indigo-50 shadow-md p-2">
+            {{ partial('input', ['name' => 'snapchat_url', 'default_value' => $snapchatUrl, 'label' => '<i class="fab fa-snapchat-square text-yellow-500 align-base mr-0.5 text-2xl"></i> <span class="leading-3 inline-flex">Snapchat</span>']) }}
+        </div>
         <button type="submit" class="btn submit">Valider les modifications</button>
     </form>
 

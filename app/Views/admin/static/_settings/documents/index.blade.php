@@ -2,8 +2,6 @@
 
 @section('admin.layouts.main')
 
-    <link rel="stylesheet" href="{{ MIXITUP . 'css' }}">
-
     <div class="controls w-full rounded flex items-center justify-start space-x-2">
         <div class="text-white font-arima inline-block h-12 rounded text-lg flex items-center justify-center">
             <span>{!! $title !!}</span>

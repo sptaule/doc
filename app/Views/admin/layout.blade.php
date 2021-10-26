@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html :class="{ 'theme-dark': dark }" x-data="data()" lang="fr">
+<html lang="fr">
 <head>
     @include('admin.layouts.head')
 </head>

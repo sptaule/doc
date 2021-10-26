@@ -5,7 +5,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@100;400&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="{{ APP_CSS }}">
-<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
+
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
 <!-- Image Uploader -->
 <link rel="stylesheet" href="{{ IMAGE_UPLOADER . 'css' }}">
@@ -15,3 +16,6 @@
 
 <!-- NiceSelect -->
 <link rel="stylesheet" href="{{ NICE_SELECT . 'css' }}">
+
+<!-- Mixitup -->
+<link rel="stylesheet" href="{{ MIXITUP . 'css' }}">

@@ -1,391 +1,269 @@
-@php
-    if (maintenance_status() === true) {
-        flash_danger("Le site est actuellement en maintenance<br>Tu as été redirigé ici en attendant <span class='text-2xl'>😇</span>");
-        redirect(PUBLIC_MAINTENANCE);
-    }
-    $query = pdo()->prepare("SELECT * FROM categories ORDER BY id");
-    $query->execute();
-    $categories = $query->fetchAll();
-    $query = pdo()->prepare("SELECT * FROM global_options WHERE name = ?");
-    $query->execute(['permanent_blob']);
-    $permanentBlob = $query->fetch();
-@endphp
-
-<style>
-    .custom-shape-divider-bottom-1630246037{width:100%;overflow:hidden;line-height:0}.custom-shape-divider-bottom-1630246037 svg{position:relative;display:block;width:calc(100% + 1.3px);height:10px}.custom-shape-divider-bottom-1630246037 .shape-fill{fill:#e4761c}
-</style>
-
-@if($permanentBlob->status == 1 && !empty($permanentBlob->content))
-    <div id="top-blob" class="w-full flex flex-row items-center space-x-12 bg-aup-black text-aup-white text-shadow-white px-4 lg:px-24 py-4">
-        <div class="flex flex-row space-x-12 items-center w-full lg:max-w-6xl mx-auto">
-            <img class="hidden lg:flex" src="https://cdn-icons-png.flaticon.com/64/2375/2375555.png" alt="">
-            <div>
-                {!! $permanentBlob->content !!}
-            </div>
-        </div>
-    </div>
-@endif
-
-<div id="top-logo" class="h-64 flex items-center bg-aup-orange justify-center">
-    <div class="flex items-center justify-center w-48 h-48 bg-aup-white bg-opacity-75 transform transition hover:shadow-2xl rounded-full transform hover:scale-90">
-        <a href="{{ PUBLIC_HOME }}"
-           class="w-full py-1 px-2 flex items-center justify-center space-x-1.5 h-20 text-sm 2xl:text-base transform transition hover:scale-95">
-            <img src="/images/logo-aup-black.svg" alt="" class="w-48 h-48">
-        </a>
-    </div>
-</div>
-
-<div id="navigation" class="h-auto hidden lg:flex items-center justify-center font-classic bg-aup-orange">
-    <ul class="px-1 xl:px-3 box-content group w-full mx-auto flex flex-row justify-center space-x-2 items-center text-aup-white font-bold">
-
-        <li id="navigation-logo"
-            class="hidden transition ease-in-out flex items-center justify-center duration-700 mr-8 hover:shadow-lg hover:bg-aup-white hover:bg-opacity-75 rounded-full transform hover:scale-90">
-            <a href="{{ PUBLIC_HOME }}"
-               class="w-full py-1 px-2 flex items-center justify-center space-x-1.5 h-20 text-sm 2xl:text-base hover:text-shadow-white transform transition hover:scale-95">
-                <img src="/images/logo-aup-black-simple.svg" alt="" class="w-16 h-16">
-            </a>
-        </li>
-
-        <li class="transition ease-in-out flex items-center justify-center duration-700">
-            <div x-data="{open: false}" @mouseover="open = true" @mouseleave="open = false">
-                <div class="relative flex items-center space-x-1 cursor-pointer">
-                    <a href="{{ PUBLIC_SHOP }}"
-                       class="w-full py-1 px-2 flex items-center justify-center space-x-1.5 h-20 text-sm 2xl:text-base hover:text-shadow-white">
-                        <img src="https://image.flaticon.com/icons/png/32/4624/4624313.png" alt="" class="w-5 h-5">
-                        <span>Boutique</span>
+<header class="bg-white shadow">
+    <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:divide-y lg:divide-gray-200 lg:px-4">
+        <div class="relative h-24 flex justify-between">
+            <div class="relative z-10 px-2 flex lg:px-0">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="/">
+                        <img
+                        class="block h-20 w-auto transform hover:scale-95 duration-100"
+                        title="Accueil - {{ \App\Models\Club::getValue('club_name') }}"
+                        src="https://nausicaa-plongee.com/images/nausicaa/logo-full.svg"
+                        alt="Logo - {{ \App\Models\Club::getValue('club_name') }}">
                     </a>
-                    <div
-                            class="w-max min-w-full origin-center absolute top-16 left-1/2 transform -translate-x-1/2 rounded-md shadow-lg transition-all duration-200 ring-1 ring-black ring-opacity-5 focus:outline-none z-50"
-                            x-show="open"
-                            x-cloak
-                            x-transition:enter="transition ease-out duration-100 transform"
-                            x-transition:enter-start="opacity-0 scale-95"
-                            x-transition:enter-end="opacity-100 scale-100"
-                            x-transition:leave="transition ease-in duration-75 transform"
-                            x-transition:leave-start="opacity-100 scale-100"
-                            x-transition:leave-end="opacity-0 scale-95">
-                        <div class="py-1 w-full bg-white overflow-hidden rounded-md group normal-case font-semibold tracking-wide text-aup-black submenu"
-                             style="z-index:9999 !important;">
-                            @foreach($categories as $category)
-                                <a href="/shop/?cat={{ $category->slug }}"
-                                   class="flex items-center space-x-1.5 px-4 py-2 text-sm w-full bg-white hover:bg-aup-orange rounded-lg hover:bg-opacity-20 transform hover:translate-x-1 transition-all duration-300">
-                                    <img src="{{ $category->icon }}" class="w-6 h-6" alt="{{ $category->slug }}">
-                                    <span>{{ $category->name }}</span>
-                                </a>
-                            @endforeach
+                </div>
+            </div>
+            <div class="relative z-0 flex-1 px-2 flex items-center justify-center sm:absolute sm:inset-0">
+                <div class="w-full sm:max-w-xs">
+                    <label
+                    for="search"
+                    class="sr-only">
+                        Recherche
+                    </label>
+                    <div class="relative">
+                        <div class="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center">
+                            <!-- Heroicon name: solid/search -->
+                            <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                            </svg>
                         </div>
+                        <input id="search" name="search" class="block w-full bg-gray-100 border border-transparent rounded-md py-2 pl-10 pr-3 text-sm placeholder-gray-400 focus:outline-none focus:bg-gray-200 focus:ring-scuba-dark focus:text-gray-900 focus:shadow focus:placeholder-gray-500 sm:text-sm" placeholder="Recherche" type="search">
                     </div>
                 </div>
             </div>
-        </li>
+            <div class="relative z-10 flex items-center lg:hidden">
+                <!-- Mobile menu button -->
+                <button
+                type="button"
+                class="rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                aria-controls="mobile-menu"
+                aria-expanded="false">
+                    <span class="sr-only">Open menu</span>
+                    <!--
+                      Icon when menu is closed.
 
-        <li class="transition ease-in-out flex items-center justify-center duration-700">
-            <a href="{{ PUBLIC_JOURNAL }}"
-               class="w-full py-1 px-2 flex items-center justify-center space-x-1.5 h-20 text-sm 2xl:text-base hover:text-shadow-white">
-                <img src="https://image.flaticon.com/icons/png/32/3127/3127361.png" alt="" class="w-5 h-5">
-                <span>Journal des Piafeurs</span>
-            </a>
-        </li>
+                      Heroicon name: outline/menu
 
-        <li class="transition ease-in-out flex items-center justify-center duration-700">
-            <div class="" x-data="{open: false}" @mouseover="open = true" @mouseleave="open = false">
-                <div class="relative flex items-center space-x-1 cursor-pointer">
-                    <a href="#!"
-                       class="w-full py-1 px-2 flex items-center justify-center space-x-1.5 h-20 text-sm 2xl:text-base hover:text-shadow-white">
-                        <img src="https://image.flaticon.com/icons/png/32/391/391038.png" alt="" class="w-5 h-5">
-                        <span>C'est quoi ?</span>
-                    </a>
-                    <div
-                            class="w-max min-w-full origin-center absolute top-16 left-1/2 transform -translate-x-1/2 rounded-md shadow-lg transition-all duration-200 ring-1 ring-black ring-opacity-5 focus:outline-none z-50"
-                            x-show="open"
-                            x-cloak
-                            x-transition:enter="transition ease-out duration-100 transform"
-                            x-transition:enter-start="opacity-0 scale-95"
-                            x-transition:enter-end="opacity-100 scale-100"
-                            x-transition:leave="transition ease-in duration-75 transform"
-                            x-transition:leave-start="opacity-100 scale-100"
-                            x-transition:leave-end="opacity-0 scale-95">
-                        <div class="py-1 w-full bg-white overflow-hidden rounded-md group normal-case font-semibold tracking-wide text-aup-black submenu"
-                             style="z-index:9999 !important;">
-                            <a href="{{ PUBLIC_CLINIQUE }}"
-                               class="flex items-center space-x-1.5 px-4 py-2 text-sm w-full bg-white hover:bg-aup-orange rounded-lg hover:bg-opacity-20 transform hover:translate-x-1 transition-all duration-300">
-                                <img src="https://image.flaticon.com/icons/png/32/2309/2309962.png" class="w-6 h-6"
-                                     alt="">
-                                <span>La clinique du Piaf</span>
-                            </a>
-                            <a href="{{ PUBLIC_NURSERIE }}"
-                               class="flex items-center space-x-1.5 px-4 py-2 text-sm w-full bg-white hover:bg-aup-orange rounded-lg hover:bg-opacity-20 transform hover:translate-x-1 transition-all duration-300">
-                                <img src="https://image.flaticon.com/icons/png/32/3741/3741131.png" class="w-6 h-6"
-                                     alt="">
-                                <span>La nurserie</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </li>
+                      Menu open: "hidden", Menu closed: "block"
+                    -->
+                    <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                    <!--
+                      Icon when menu is open.
 
-        <li class="transition ease-in-out flex items-center justify-center duration-700">
-            <a href="{{ PUBLIC_CONTACT }}"
-               class="w-full py-1 px-2 flex items-center justify-center space-x-1.5 h-20 text-sm 2xl:text-base hover:text-shadow-white">
-                <img src="https://image.flaticon.com/icons/png/32/190/190432.png" alt="" class="w-5 h-5">
-                <span>Contact</span>
-            </a>
-        </li>
+                      Heroicon name: outline/x
 
-        @if(!is_connected())
-        <li class="transition ease-in-out flex items-center justify-center duration-700">
-            <div class="" x-data="{open: false}" @mouseover="open = true" @mouseleave="open = false">
-                <div class="relative flex items-center space-x-1 cursor-pointer">
-                    <a href="#!"
-                       class="w-full py-1 px-2 flex items-center justify-center space-x-1.5 h-20 text-sm 2xl:text-base hover:text-shadow-white">
-                        <img src="https://image.flaticon.com/icons/png/32/1177/1177568.png" alt="" class="w-5 h-5">
-                        <span>Espace membre</span>
-                    </a>
-                    <div
-                            class="w-max min-w-full origin-center absolute top-16 left-1/2 transform -translate-x-1/2 rounded-md shadow-lg transition-all duration-200 ring-1 ring-black ring-opacity-5 focus:outline-none z-50"
-                            x-show="open"
-                            x-cloak
-                            x-transition:enter="transition ease-out duration-100 transform"
-                            x-transition:enter-start="opacity-0 scale-95"
-                            x-transition:enter-end="opacity-100 scale-100"
-                            x-transition:leave="transition ease-in duration-75 transform"
-                            x-transition:leave-start="opacity-100 scale-100"
-                            x-transition:leave-end="opacity-0 scale-95">
-                        <div class="py-1 w-full bg-white overflow-hidden rounded-md group normal-case font-semibold tracking-wide text-aup-black submenu"
-                             style="z-index:9999 !important;">
-                            <a href="{{ USER_LOGIN }}"
-                               class="flex items-center space-x-1.5 px-4 py-2 text-sm w-full bg-white hover:bg-aup-orange rounded-lg hover:bg-opacity-20 transform hover:translate-x-1 transition-all duration-300">
-                                <img src="https://cdn-icons-png.flaticon.com/32/1828/1828466.png" class="w-5 h-5"
-                                     alt="">
-                                <span>Connexion</span>
-                            </a>
-                            <a href="{{ USER_REGISTER }}"
-                               class="flex items-center space-x-1.5 px-4 py-2 text-sm w-full bg-white hover:bg-aup-orange rounded-lg hover:bg-opacity-20 transform hover:translate-x-1 transition-all duration-300">
-                                <img src="https://cdn-icons-png.flaticon.com/32/2921/2921222.png" class="w-5 h-5"
-                                     alt="">
-                                <span>Inscription</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </li>
-        @else
-            <li class="transition ease-in-out flex items-center justify-center duration-700">
-                <a href="{{ USER_DASHBOARD }}"
-                   class="w-full py-1 px-2 flex items-center justify-center space-x-1.5 h-20 text-sm 2xl:text-base hover:text-shadow-white">
-                    <img src="https://image.flaticon.com/icons/png/32/1177/1177568.png" alt="" class="w-5 h-5">
-                    <span>Mon compte</span>
-                </a>
-            </li>
-        @endif
-    </ul>
-</div>
-
-<div id="nav-decoration" class="hidden lg:block custom-shape-divider-bottom-1630246037">
-    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-              class="shape-fill"></path>
-    </svg>
-</div>
-
-<div class="block lg:hidden w-full text-gray-50">
-    <div x-data="{ open: false }"
-         class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-around md:px-6 lg:px-8">
-        <div class="p-4 flex flex-row items-center justify-around">
-            <a href="{{ PUBLIC_HOME }}"
-               class="text-xl font-semibold tracking-widest text-gray-50 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline">AdopteUnPiaf</a>
-            <button class="flex flex-row items-center space-x-2 ml-8 text-white rounded-lg focus:outline-none focus:shadow-outline" @click="open = !open">
-                <span class="text-shadow-white" style="font-variant:small-caps">menu</span>
-                <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
-                    <path x-show="!open" fill-rule="evenodd"
-                          d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z"
-                          clip-rule="evenodd"></path>
-                    <path x-show="open" fill-rule="evenodd"
-                          d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                          clip-rule="evenodd"></path>
-                </svg>
-            </button>
-        </div>
-        <nav :class="{'flex': open, 'hidden': !open}"
-             class="pb-4 md:pb-0 hidden lg:flex pt-3 flex-col items-center justify-center font-classic">
-
-            <a href="{{ PUBLIC_HOME }}"
-               class="flex items-center justify-center space-x-1.5 px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
-                <img src="https://cdn-icons-png.flaticon.com/32/2817/2817871.png" alt="" class="w-5 h-5">
-                <span>Accueil</span>
-            </a>
-
-            <div @click.away="open = false" class="relative" x-data="{ open: false }">
-                <button @click="open = !open"
-                        class="flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
-                    <img src="https://image.flaticon.com/icons/png/32/4624/4624313.png" alt="" class="w-5 h-5 mr-1.5">
-                    <a href="{{ PUBLIC_SHOP }}">Boutique</a>
-                    <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}"
-                         class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1">
-                        <path fill-rule="evenodd"
-                              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                              clip-rule="evenodd"></path>
+                      Menu open: "block", Menu closed: "hidden"
+                    -->
+                    <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
-                <div x-show="open" x-transition:enter="transition ease-out duration-100"
-                     style="z-index: 9999 !important;" x-transition:enter-start="transform opacity-0 scale-95"
-                     x-transition:enter-end="transform opacity-100 scale-100"
-                     x-transition:leave="transition ease-in duration-75"
-                     x-transition:leave-start="transform opacity-100 scale-100"
-                     x-transition:leave-end="transform opacity-0 scale-95"
-                     class="bg-white absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48">
-                    <div class="py-1 w-full bg-white overflow-hidden rounded-md group normal-case font-semibold tracking-wide text-aup-black submenu"
-                         style="z-index:9999 !important;width: max-content">
-                        @foreach($categories as $category)
-                            <a href="/shop/?cat={{ $category->slug }}"
-                               class="flex items-center space-x-1.5 px-4 py-2 text-sm w-full bg-white hover:bg-aup-orange rounded-lg hover:bg-opacity-20 transform hover:translate-x-1 transition-all duration-300">
-                                <img src="{{ $category->icon }}" class="w-6 h-6" alt="{{ $category->slug }}">
-                                <span>{{ $category->name }}</span>
+            </div>
+            <div class="hidden lg:relative lg:z-10 lg:ml-4 lg:flex lg:items-center">
+                <div x-data="{ open: false }">
+                    <button
+                    x-on:click="open = ! open"
+                    type="button"
+                    class="bg-gray-100 flex-shrink-0 rounded-full p-1 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                        <span class="sr-only">View notifications</span>
+                        <!-- Heroicon name: outline/bell -->
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                        </svg>
+                    </button>
+                    <div
+                    x-show="open"
+                    x-transition
+                    class="dropdown absolute right-0 mt-2 w-96 bg-gray-100 rounded-md shadow-xl text-center border border-scuba-dark border-opacity-20">
+                        <div class="p-2 w-full flex flex-col items-start">
+                            <span class="text-gray-600 italic text-sm">Notifications</span>
+                            <div class="h-0.5 w-full bg-gray-200 my-1.5"></div>
+                            <span class="text-gray-400 italic text-sm">Aucune nouvelle notification</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile dropdown -->
+                <div class="flex-shrink-0 relative ml-2">
+                    <div
+                    x-data="{ open: false }"
+                    @mouseleave="open = false">
+                        <button
+                        @mouseover="open = true"
+                        type="button"
+                        class="text-gray-700 rounded-full flex items-center justify-center text-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                        id="user-menu-button"
+                        aria-expanded="false"
+                        aria-haspopup="true">
+                            <span class="sr-only">Open user menu</span>
+                            <img
+                            class="px-0 mx-0 h-8 w-8 rounded-full"
+                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                            alt="Avatar">
+                            <span class="px-1.5">Lucas</span>
+                        </button>
+                        <div
+                        x-show="open"
+                        x-transition:enter="transition ease-out duration-150"
+                        x-transition:enter-start="opacity-0 transform scale-90"
+                        x-transition:enter-end="opacity-100 transform scale-100"
+                        x-transition:leave="transition ease-in duration-150"
+                        x-transition:leave-start="opacity-100 transform scale-100"
+                        x-transition:leave-end="opacity-0 transform scale-90"
+                        class="dropdown absolute left-1/2 transform -translate-x-1/2 w-max bg-gray-100 rounded-md shadow-xl text-center border border-scuba-dark border-opacity-20">
+                            <a href="#"
+                               class="block px-4 py-2 text-sm text-gray-700 hover:bg-scuba-green hover:text-white font-medium">
+                                Mon compte
+                            </a>
+                            <a href="#"
+                               class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-500 hover:text-white font-medium">
+                                Déconnexion
+                            </a>
+                        </div>
+                    </div>
+
+                    <!--
+                      Dropdown menu, show/hide based on menu state.
+
+                      Entering: "transition ease-out duration-100"
+                        From: "transform opacity-0 scale-95"
+                        To: "transform opacity-100 scale-100"
+                      Leaving: "transition ease-in duration-75"
+                        From: "transform opacity-100 scale-100"
+                        To: "transform opacity-0 scale-95"
+                    -->
+
+
+                </div>
+            </div>
+        </div>
+
+        <nav class="hidden lg:py-1.5 lg:flex lg:space-x-2.5" aria-label="Global">
+
+            <a href="#" class="text-gray-700 hover:bg-scuba-green hover:text-white rounded-md py-2 px-3 inline-flex items-center text-sm font-medium">
+                Accueil
+            </a>
+
+            @foreach(\App\Models\Navigation::getMenus() as $menu)
+                <div
+                        x-data="{ open: false }"
+                        @mouseleave="open = false"
+                        class="relative">
+                    <!-- Dropdown toggle button -->
+                    <button
+                            @mouseover="open = true"
+                            class="text-gray-700 rounded-md py-2 px-3 inline-flex items-center text-sm font-medium">
+                        <span class="mr-1">Club</span>
+                        <svg class="w-4 h-4 text-white text-gray-800" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                             fill="currentColor">
+                            <path fill-rule="evenodd"
+                                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                  clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                    <!-- Dropdown menu -->
+                    <div
+                            x-show="open"
+                            x-transition:enter="transition ease-out duration-150"
+                            x-transition:enter-start="opacity-0 transform scale-90"
+                            x-transition:enter-end="opacity-100 transform scale-100"
+                            x-transition:leave="transition ease-in duration-150"
+                            x-transition:leave-start="opacity-100 transform scale-100"
+                            x-transition:leave-end="opacity-0 transform scale-90"
+                            class="dropdown absolute left-1/2 transform -translate-x-1/2 w-max bg-gray-100 rounded-md shadow-xl text-center border border-scuba-dark border-opacity-20">
+                        @foreach(\App\Models\Navigation::getPages("m.id = $menu->id") as $childPage)
+                            <a href="/{{ $menu->slug }}/{{ $childPage->slug }}"
+                               class="block px-4 py-2 text-sm text-gray-300 text-gray-700 hover:bg-scuba-green hover:text-white font-medium">
+                                {{ $childPage->name }}
                             </a>
                         @endforeach
                     </div>
                 </div>
-            </div>
+            @endforeach
 
-            <a href="{{ PUBLIC_JOURNAL }}"
-               class="flex items-center justify-center space-x-1.5 px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
-                <img src="https://image.flaticon.com/icons/png/32/3127/3127361.png" alt="" class="w-5 h-5">
-                <span>Journal des Piafeurs</span>
+            @foreach(\App\Models\Navigation::getPages() as $page)
+                @if(is_null($page->menu_id))
+                    <a href="/{{ $page->slug }}" class="text-gray-700 hover:bg-scuba-green hover:text-white rounded-md py-2 px-3 inline-flex items-center text-sm font-medium">
+                        {{ $page->name }}
+                    </a>
+                @endif
+            @endforeach
+
+            <div class="hidden lg:inline-block h-auto w-0.5 bg-gray-100"></div>
+
+            <a href="#" class="text-gray-700 hover:bg-scuba-green hover:text-white rounded-md py-2 px-3 inline-flex items-center text-sm font-medium">
+                Formations
             </a>
 
-            <div @click.away="open = false" class="relative" x-data="{ open: false }">
-                <button @click="open = !open"
-                        class="flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
-                    <img src="https://image.flaticon.com/icons/png/32/391/391038.png" alt="" class="w-5 h-5 mr-1.5">
-                    <a href="#!">C'est quoi ?</a>
-                    <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}"
-                         class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1">
-                        <path fill-rule="evenodd"
-                              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                              clip-rule="evenodd"></path>
-                    </svg>
-                </button>
-                <div x-show="open" x-transition:enter="transition ease-out duration-100"
-                     style="z-index: 9999 !important" x-transition:enter-start="transform opacity-0 scale-95"
-                     x-transition:enter-end="transform opacity-100 scale-100"
-                     x-transition:leave="transition ease-in duration-75"
-                     x-transition:leave-start="transform opacity-100 scale-100"
-                     x-transition:leave-end="transform opacity-0 scale-95"
-                     class="bg-white absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48">
-                    <div class="w-max px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-800"
-                         style="z-index: 9999 !important">
-                        <a href="{{ PUBLIC_CLINIQUE }}"
-                           class="flex items-center space-x-1.5 px-4 py-2 text-sm w-full bg-white hover:bg-aup-orange rounded-lg hover:bg-opacity-20 transform hover:translate-x-1 transition-all duration-300">
-                            <img src="https://image.flaticon.com/icons/png/32/2309/2309962.png" class="w-6 h-6"
-                                 alt="">
-                            <span class="text-aup-black font-semibold">La clinique</span>
-                        </a>
-                        <a href="{{ PUBLIC_NURSERIE }}"
-                           class="flex items-center space-x-1.5 px-4 py-2 text-sm w-full bg-white hover:bg-aup-orange rounded-lg hover:bg-opacity-20 transform hover:translate-x-1 transition-all duration-300">
-                            <img src="https://image.flaticon.com/icons/png/32/3741/3741131.png" class="w-6 h-6"
-                                 alt="">
-                            <span class="text-aup-black font-semibold">La nurserie</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <a href="{{ PUBLIC_CONTACT }}"
-               class="flex items-center justify-center space-x-1.5 px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
-                <img src="https://image.flaticon.com/icons/png/32/190/190432.png" alt="" class="w-5 h-5">
-                <span>Contact</span>
+            <a href="#" class="text-gray-700 hover:bg-scuba-green hover:text-white rounded-md py-2 px-3 inline-flex items-center text-sm font-medium">
+                Sites de plongée
             </a>
 
-            @if(!is_connected())
-            <div @click.away="open = false" class="relative" x-data="{ open: false }">
-                <button @click="open = !open"
-                        class="flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
-                    <a href="#!">Espace membre</a>
-                    <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}"
-                         class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1">
-                        <path fill-rule="evenodd"
-                              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                              clip-rule="evenodd"></path>
-                    </svg>
-                </button>
-                <div x-show="open" x-transition:enter="transition ease-out duration-100"
-                     style="z-index: 9999 !important" x-transition:enter-start="transform opacity-0 scale-95"
-                     x-transition:enter-end="transform opacity-100 scale-100"
-                     x-transition:leave="transition ease-in duration-75"
-                     x-transition:leave-start="transform opacity-100 scale-100"
-                     x-transition:leave-end="transform opacity-0 scale-95"
-                     class="bg-white absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48">
-                    <div class="w-max px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-800"
-                         style="z-index: 9999 !important">
-                        <a href="{{ USER_LOGIN }}"
-                           class="flex items-center space-x-1.5 px-4 py-2 text-sm w-full bg-white hover:bg-aup-orange rounded-lg hover:bg-opacity-20 transform hover:translate-x-1 transition-all duration-300">
-                            <img src="https://cdn-icons-png.flaticon.com/32/1828/1828466.png" class="w-5 h-5"
-                                 alt="">
-                            <span>Connexion</span>
-                        </a>
-                        <a href="{{ USER_REGISTER }}"
-                           class="flex items-center space-x-1.5 px-4 py-2 text-sm w-full bg-white hover:bg-aup-orange rounded-lg hover:bg-opacity-20 transform hover:translate-x-1 transition-all duration-300">
-                            <img src="https://cdn-icons-png.flaticon.com/32/2921/2921222.png" class="w-5 h-5"
-                                 alt="">
-                            <span>Inscription</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            @else
-                <a href="{{ USER_DASHBOARD }}"
-                   class="flex items-center justify-center space-x-1.5 px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
-                    <img src="https://image.flaticon.com/icons/png/32/1177/1177568.png" alt="" class="w-5 h-5">
-                    <span>Mon compte</span>
-                </a>
-            @endif
+            <div class="hidden lg:inline-block h-auto w-0.5 bg-gray-100"></div>
+
+            <a href="#" class="text-gray-700 hover:bg-scuba-green hover:text-white rounded-md py-2 px-3 inline-flex items-center text-sm font-medium">
+                Évènements
+            </a>
+
+            <a href="#" class="text-gray-700 hover:bg-scuba-green hover:text-white rounded-md py-2 px-3 inline-flex items-center text-sm font-medium">
+                Membres
+            </a>
 
         </nav>
     </div>
-</div>
 
-<script>
-    $.fn.animateTransform = function () {
-        for (var a = null, b = null, c = 400, d = function () {
-        }, e = 0; e < arguments.length; e++) "string" == typeof arguments[e] ? a ? b = arguments[e] : a = arguments[e] : "number" == typeof arguments[e] ? c = arguments[e] : "function" == typeof arguments[e] && (d = arguments[e]);
-        if (a && !b && (b = a, a = null), b) {
-            a && this.css("transform", a), c < 16 && (c = 16);
-            var f = this.css("transition");
-            this.css("transition", "transform " + c + "ms"), this.css("transform", b);
-            var g = this;
-            setTimeout(function () {
-                g.css("transition", f || ""), g.css("transform", b), d()
-            }, c)
-        }
+    <!-- Mobile menu, show/hide based on menu state. -->
+    <nav
+    class="lg:hidden"
+    aria-label="Global"
+    id="mobile-menu">
+        <div class="pt-2 pb-3 px-2 space-y-1">
+            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+            <a href="#" class="bg-gray-900 text-white block rounded-md py-2 px-3 text-base font-medium" aria-current="page">Dashboard</a>
+
+            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md py-2 px-3 text-base font-medium">Team</a>
+
+            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md py-2 px-3 text-base font-medium">Projects</a>
+
+            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md py-2 px-3 text-base font-medium">Calendar</a>
+        </div>
+        <div class="border-t border-gray-700 pt-4 pb-3">
+            <div class="px-4 flex items-center">
+                <div class="flex-shrink-0">
+                    <img
+                    class="h-10 w-10 rounded-full"
+                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    alt="">
+                </div>
+                <div class="ml-3">
+                    <div class="text-base font-medium text-white">Tom Cook</div>
+                    <div class="text-sm font-medium text-gray-400">tom@example.com</div>
+                </div>
+                <button type="button" class="ml-auto flex-shrink-0 bg-gray-800 rounded-full p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                    <span class="sr-only">View notifications</span>
+                    <!-- Heroicon name: outline/bell -->
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                    </svg>
+                </button>
+            </div>
+            <div class="mt-3 px-2 space-y-1">
+                <a href="#" class="block rounded-md py-2 px-3 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Your Profile</a>
+
+                <a href="#" class="block rounded-md py-2 px-3 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Settings</a>
+
+                <a href="#" class="block rounded-md py-2 px-3 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Sign out</a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<style>
+    .dropdown a:first-child:hover {
+        border-radius: 5px 5px 0 0;
     }
-    let header = $('header');
-    let topLogo = $('#top-logo');
-    let topBlob = $('#top-blob');
-    let navigation = $('#navigation');
-    let navigationLogo = $('#navigation-logo');
-    let navigationDecoration = $('#nav-decoration');
-    let topLogoHeight = $(topLogo).height();
-    let topBlobHeight = $(topBlob).height() ?? 0;
-
-    @if(!is_on_page(USER_DASHBOARD) && !is_on_page(USER_EDIT))
-
-        $(window).on('scroll', function () {
-            let scroll = $(window).scrollTop();
-            if (scroll >= 1) {
-                $(header).animateTransform(`translateY(-${topLogoHeight + topBlobHeight + 25}px)`, 500);
-                $(navigationLogo).removeClass("hidden");
-                $(navigation).addClass("shadow-xl");
-            } else if (scroll <= 250) {
-                $(header).animateTransform(`translateY(0)`, 750);
-                $(navigationLogo).addClass("hidden");
-            }
-        });
-
-    @else
-
-        $(topLogo).addClass('hidden')
-
-    @endif
-
-</script>
+    .dropdown a:last-child:hover {
+        border-radius: 0 0 5px 5px;
+    }
+</style>
