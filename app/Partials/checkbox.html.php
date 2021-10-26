@@ -5,6 +5,9 @@
         name="<?= $name ?>"
         id="<?= $id ?>"
         <?php if (isset($model->{$name}) && $model->{$name} == 1) { echo 'checked'; } ?>
+        <?php if (isset($toggle)): ?>
+            data-toggle="<?= $toggle; ?>"
+        <?php endif; ?>
         <?= get_input($name) === 'on' ? 'checked' : '' ?>
         <?= $state ?? '' ?>
     >
@@ -13,3 +16,12 @@
         <span class="text-gray-500 text-sm italic"><?= $subLabel ?? '' ?></span>
     </label>
 </div>
+
+<?php if (isset($toggle)): ?>
+<!--Will toggle (when checkbox checked) the element with class 'foobar' (defined in $toggle)-->
+    <script>
+        $('#<?= $id ?>').on('change', function () {
+            $('.' + $(this).data('toggle')).toggle();
+        });
+    </script>
+<?php endif; ?>

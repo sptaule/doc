@@ -6,7 +6,7 @@
     <?php foreach ($options as $k => $option): ?>
         <label class="inline-flex items-center cursor-pointer">
             <input type="radio" class="focus:outline-none text-scuba-green focus:bg-white focus:border-white bg-white h-6 w-6 cursor-pointer" value="<?= $k ?>" name="<?= $name ?>" <?= $k == $value ? 'checked' : '' ?>>
-            <span class="ml-2"><?= $option ?? 'Option' ?></span>
+            <span class="ml-2 text-gray-700"><?= $option ?? 'Option' ?></span>
         </label>
     <?php endforeach; ?>
 </div>
