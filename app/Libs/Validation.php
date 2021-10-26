@@ -266,18 +266,20 @@ function validate_search_number($name)
 function validate_login_admin($login, $password)
 {
     // $login = htmlspecialchars($login);
-    $query = pdo()->prepare("SELECT * FROM admins WHERE email = ?");
+    $query = pdo()->prepare("SELECT * FROM user WHERE email = ?");
     $query->execute([$login]);
-    $user = $query->fetch();
-    if ($user && password_verify($password, $user->password)) {
-        $_SESSION['admin'] = $user;
-        flash_success("Bonjour $user->name");
+    $admin = $query->fetch();
+    if ($admin && password_verify($password, $admin->password)) {
+        session()->set('admin', $admin);
+        $admin->genre == 'Homme' ? $connectedGenre = 'connecté' : $connectedGenre = 'connectée';
+        flash_success("Bonjour et bienvenue <b>$admin->firstname</b>, vous êtes " . $connectedGenre);
         save_inputs();
-        redirect('/admin/index.php');
+        redirect(ADMIN_DASHBOARD);
     } else {
         $_SESSION['errors']['credentials'] = 'Identifiants incorrects';
+        flash_warning($_SESSION['errors']['credentials']);
         save_inputs();
-        redirect('/admin/login.php');
+        redirect(ADMIN_LOGIN);
     }
 }
 

@@ -1,8 +1,20 @@
 <?php
 
-function is_connected()
+function is_admin_connected(): bool
 {
-    if (isset($_SESSION['user'])) return true; else return false;
+    if (session()->has('admin') && session()->get('admin')->rank_id == 3) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function admin_required()
+{
+    if (!is_admin_connected()) {
+        flash_warning("Page accessible pour les administrateurs<br>Connectez-vous si vous êtes administrateur");
+        redirect(ADMIN_LOGIN);
+    }
 }
 
 function forbid_if_not_admin()
@@ -22,10 +34,4 @@ function forbid_if_not_connected()
         flash_danger("Vous devez être connecté pour accéder à cette page");
         redirect("/user/login");
     }
-}
-
-function maintenance_status(): bool
-{
-    $query = pdo()->prepare("SELECT status FROM global_options WHERE name = ?"); $query->execute(['maintenance']);
-    return boolval($query->fetch()->status);
 }
