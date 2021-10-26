@@ -17,6 +17,16 @@ define("SCUBA_SETUP", $path);
 * * * ADMIN ROUTES
 * * * * */
 
+// * AUTH
+
+$path = '/admin/login';
+$routes->add('adminLogin', new Route($path, ['controller' => 'AuthController', 'method' => 'loginAdmin']));
+define("ADMIN_LOGIN", $path);
+
+$path = '/admin/logout';
+$routes->add('adminLogout', new Route($path, ['controller' => 'AuthController', 'method' => 'logout']));
+define("ADMIN_LOGOUT", $path);
+
 // * DASHBOARD
 
 $path = '/admin';
@@ -58,6 +68,40 @@ define("ADMIN_EVENT_TYPE_EDIT", str_replace("{id}", "", $path));
 $path = '/admin/events/type/delete/{id}';
 $routes->add('adminEventTypeDelete', new Route($path, ['controller' => 'EventController', 'method' => 'deleteType']));
 define("ADMIN_EVENT_TYPE_DELETE", $path);
+
+// ** APPEARANCE
+
+$path = '/admin/pages';
+$routes->add('adminPages', new Route($path, ['controller' => 'AppearanceController', 'method' => 'listPages']));
+define("ADMIN_PAGES", $path);
+
+$path = '/admin/page/add';
+$routes->add('adminPageAdd', new Route($path, ['controller' => 'AppearanceController', 'method' => 'addPage']));
+define("ADMIN_PAGE_ADD", $path);
+
+$path = '/admin/page/edit/{id}';
+$routes->add('adminPageEdit', new Route($path, ['controller' => 'AppearanceController', 'method' => 'editPage'], ['id' => '[0-9]+']));
+define("ADMIN_PAGE_EDIT", str_replace("{id}", "", $path));
+
+$path = '/admin/page/delete/{id}';
+$routes->add('adminPageDelete', new Route($path, ['controller' => 'AppearanceController', 'method' => 'deletePage']));
+define("ADMIN_PAGE_DELETE", $path);
+
+$path = '/admin/menus';
+$routes->add('adminMenus', new Route($path, ['controller' => 'AppearanceController', 'method' => 'listMenus']));
+define("ADMIN_MENUS", $path);
+
+$path = '/admin/menu/add';
+$routes->add('adminMenuAdd', new Route($path, ['controller' => 'AppearanceController', 'method' => 'addMenu']));
+define("ADMIN_MENU_ADD", $path);
+
+$path = '/admin/menu/edit/{id}';
+$routes->add('adminMenuEdit', new Route($path, ['controller' => 'AppearanceController', 'method' => 'editMenu'], ['id' => '[0-9]+']));
+define("ADMIN_MENU_EDIT", str_replace("{id}", "", $path));
+
+$path = '/admin/menu/delete/{id}';
+$routes->add('adminMenuDelete', new Route($path, ['controller' => 'AppearanceController', 'method' => 'deleteMenu']));
+define("ADMIN_MENU_DELETE", $path);
 
 // ** SETTINGS
 
@@ -101,3 +145,21 @@ define("ADMIN_DOCUMENT_DELETE", $path);
 $path = '/admin/club';
 $routes->add('adminClub', new Route($path, ['controller' => 'SettingController', 'method' => 'clubInfo']));
 define("ADMIN_CLUB", $path);
+
+/* * * * *
+* * * PUBLIC ROUTES
+* * * * */
+
+$path = '/';
+$routes->add('publicHome', new Route($path, ['controller' => 'NavigationController', 'method' => 'home']));
+define("PUBLIC_HOME", $path);
+
+$path = '/{pageSlug}';
+$routes->add('publicPage', new Route($path, ['controller' => 'NavigationController', 'method' => 'page'],
+    ['pageSlug' => '^[a-z0-9]+(?:-[a-z0-9]+)*$']));
+define("PUBLIC_PAGE", $path);
+
+$path = '/{menuSlug}/{pageSlug}';
+$routes->add('publicChildPage', new Route($path, ['controller' => 'NavigationController', 'method' => 'childPage'],
+    array('menuSlug' => '^[a-z0-9]+(?:-[a-z0-9]+)*$', 'pageSlug' => '^[a-z0-9]+(?:-[a-z0-9]+)*$')));
+define("PUBLIC_CHILD_PAGE", $path);
