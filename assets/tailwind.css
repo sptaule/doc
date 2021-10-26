@@ -56,6 +56,9 @@
     .add {
         @apply bg-blue-600 hover:bg-blue-500 text-white ring-blue-300;
     }
+    .cancel {
+        @apply bg-true-gray-600 hover:bg-true-gray-500 text-white ring-true-gray-300;
+    }
     .edit {
         @apply bg-yellow-500 hover:bg-yellow-400 text-white ring-yellow-300;
     }

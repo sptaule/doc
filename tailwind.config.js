@@ -84,6 +84,7 @@ module.exports = {
             backgroundColor: ['odd', 'even'],
             borderStyle: ['odd', 'even'],
             borderColor: ['odd', 'even'],
+            borderRadius: ['first', 'last'],
             transitionProperty: ['responsive', 'motion-safe', 'motion-reduce'],
             brightness: ['hover', 'focus'],
         },

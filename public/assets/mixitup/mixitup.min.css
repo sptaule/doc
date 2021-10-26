@@ -61,8 +61,16 @@
     color: #e1740b;
 }
 
+.control[data-filter=".parent"] {
+    color: #645AF3;
+}
+
+.control[data-filter=".child"] {
+    color: #CF3DE1;
+}
+
 .control[data-filter="none"] {
-    color: #2f2f2f;
+    color: #645AF3;
 }
 
 /* Container
@@ -110,6 +118,14 @@
 
 .mix.director {
     color: #2d66c3;
+}
+
+.mix.parent {
+    color: #645AF3;
+}
+
+.mix.child {
+    color: #CF3DE1;
 }
 
 /* Grid Breakpoints
