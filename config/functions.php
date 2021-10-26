@@ -1,16 +1,26 @@
 <?php
 
+use Symfony\Component\HttpFoundation\Session\Session;
+
+function session(): Session
+{
+    static $session;
+    if ($session) return $session;
+    $session = new Session();
+    return $session;
+}
+
 function csrf_input($delay = 600): string
 {
     $expiration_time = time() + $delay;
-    $hash = hash_hmac('sha256', $expiration_time, $_SESSION['CSRF_TOKEN']);
+    $hash = hash_hmac('sha256', $expiration_time, session()->get('CSRF_TOKEN'));
     return "<input type='hidden' name='CSRF_TOKEN' value='{$expiration_time}-{$hash}'>";
 }
 
 function save_inputs()
 {
     foreach ($_POST as $key => $value) {
-        if (in_array($key, ['password'])) {
+        if ($key == 'password') {
             continue;
         }
         $_SESSION['inputs'] = $_SESSION['inputs'] ?? [];
@@ -133,7 +143,7 @@ function is_post(bool $csrf = true): bool
                 save_inputs();
                 redirect_self();
             }
-            if ($hash !== hash_hmac('sha256', $time, $_SESSION['CSRF_TOKEN'])) {
+            if ($hash !== hash_hmac('sha256', $time, session()->get('CSRF_TOKEN'))) {
                 flash_danger("Problème avec le formulaire, veuillez réessayer");
                 save_inputs();
                 redirect_self();
@@ -250,7 +260,8 @@ function generate_captcha(int $number_a, int $number_b): string
             $txt = 'Combien font ' . $number_a_literal . ' fois ' . $number_b_literal . ' ?';
             break;
     }
-    $_SESSION['captcha_result'] = $result;
+    // $_SESSION['captcha_result'] = $result;
+    session()->set('captcha_result', $result);
 
     $img = imagecreate(270, 17);
     imagecolorallocate($img, 255, 255, 255);
@@ -283,4 +294,8 @@ function abort_422($message = null)
 {
     http_response_code(422);
     die();
+}
+
+function relax() {
+    ;
 }
