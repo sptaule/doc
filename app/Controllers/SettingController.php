@@ -18,6 +18,7 @@ class SettingController
 
     public function listDivingLevels(RouteCollection $routes)
     {
+        admin_required();
         $divingLevels = DivingLevel::getAll();
         $blade = new BladeInstance(APP_PATH . "/Views", BASE_PATH . "/cache/views");
         echo $blade->render(
@@ -30,6 +31,7 @@ class SettingController
 
     public function addDivingLevel(RouteCollection $routes)
     {
+        admin_required();
         if (is_post()) {
             DivingLevel::add($_POST);
         }
@@ -43,6 +45,7 @@ class SettingController
 
     public function editDivingLevel(int $id, RouteCollection $routes)
     {
+        admin_required();
         if (is_post()) {
             DivingLevel::edit($_POST, $id);
         }
@@ -58,6 +61,7 @@ class SettingController
 
     public function sortDivingLevels(RouteCollection $routes)
     {
+        admin_required();
         if (is_post(false)) {
             $index = 0;
             foreach ($_POST['item'] as $item) {
@@ -77,6 +81,7 @@ class SettingController
      */
     public function deleteDivingLevel(int $id, RouteCollection $routes)
     {
+        admin_required();
         // Get selected diving level position
         $position = DivingLevel::getPosition($id);
 
@@ -105,6 +110,7 @@ class SettingController
 
     public function listDocuments(RouteCollection $routes)
     {
+        admin_required();
         $documents = Document::getAll();
         $blade = new BladeInstance(APP_PATH . "/Views", BASE_PATH . "/cache/views");
         echo $blade->render(
@@ -117,6 +123,7 @@ class SettingController
 
     public static function addDocument(RouteCollection $routes)
     {
+        admin_required();
         if (is_post()) {
             Document::add($_POST);
         }
@@ -130,6 +137,7 @@ class SettingController
 
     public function editDocument(int $id, RouteCollection $routes)
     {
+        admin_required();
         if (is_post()) {
             Document::edit($_POST, $id);
         }
@@ -150,6 +158,7 @@ class SettingController
      */
     public function deleteDocument(int $id, RouteCollection $routes)
     {
+        admin_required();
         /*
          * TODO
          * Vérifier si un type d'évènement est limité par ce document
@@ -167,6 +176,7 @@ class SettingController
 
     public function clubInfo(RouteCollection $routes)
     {
+        admin_required();
         if (is_post()) {
             Club::updateInfos($_POST);
         }
@@ -182,7 +192,13 @@ class SettingController
             'superUserEmail' => Club::getValue('super_user_email'),
             'allowRegistrations' => Club::getValue('allow_registrations'),
             'dateFormat' => Club::getValue('date_format'),
-            'timeFormat' => Club::getValue('time_format')
+            'timeFormat' => Club::getValue('time_format'),
+            'facebookUrl' => Club::getValue('facebook_url'),
+            'instagramUrl' => Club::getValue('instagram_url'),
+            'youtubeUrl' => Club::getValue('youtube_url'),
+            'whatsappUrl' => Club::getValue('whatsapp_url'),
+            'twitterUrl' => Club::getValue('twitter_url'),
+            'snapchatUrl' => Club::getValue('snapchat_url'),
         ]);
     }
 

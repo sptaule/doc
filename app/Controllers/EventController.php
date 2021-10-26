@@ -12,6 +12,7 @@ class EventController
 {
     public function listTypes(RouteCollection $routes)
     {
+        admin_required();
         $types = Event::getTypes();
         $blade = new BladeInstance(APP_PATH . "/Views", BASE_PATH . "/cache/views");
         echo $blade->render(
@@ -24,6 +25,7 @@ class EventController
 
     public function addType(RouteCollection $routes)
     {
+        admin_required();
         if (is_post()) {
             Event::addType($_POST);
         }
@@ -41,6 +43,7 @@ class EventController
 
     public function editType(int $id, RouteCollection $routes)
     {
+        admin_required();
         if (is_post()) {
             Event::editType($_POST, $id);
         }
@@ -64,6 +67,7 @@ class EventController
 
     public static function deleteType(int $id, RouteCollection $routes)
     {
+        admin_required();
         Event::deleteType($id);
     }
 }
