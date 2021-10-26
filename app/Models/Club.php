@@ -28,7 +28,13 @@ class Club
         $allowRegistrations = Club::getValue('allow_registrations');
         $dateFormat = Club::getValue('date_format');
         $timeFormat = Club::getValue('time_format');
-        return [$clubName, $clubDescription, $superUserFirstname, $superUserLastname, $superUserEmail, $allowRegistrations, $dateFormat, $timeFormat];
+        $facebookUrl = Club::getValue('facebook_url');
+        $instagramUrl = Club::getValue('instagram_url');
+        $youtubeUrl = Club::getValue('youtube_url');
+        $whatsappUrl = Club::getValue('whatsapp_url');
+        $twitterUrl = Club::getValue('twitter_url');
+        $snapchatUrl = Club::getValue('snapchat_url');
+        return [$clubName, $clubDescription, $superUserFirstname, $superUserLastname, $superUserEmail, $allowRegistrations, $dateFormat, $timeFormat, $facebookUrl, $instagramUrl, $youtubeUrl, $whatsappUrl, $twitterUrl, $snapchatUrl];
     }
 
     public static function updateInfos($data)
