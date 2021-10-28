@@ -6,14 +6,14 @@
     <body>
 
         <header class="sticky top-0 z-50">
-            @include('layouts.header')
+            @include('layouts.header', ['navElements' => \App\Models\Navigation::getNav()])
         </header>
 
-        <main class="">
+        <main>
             @include('layouts.main')
         </main>
 
-        <footer class="">
+        <footer>
             @include('layouts.footer')
         </footer>
 
