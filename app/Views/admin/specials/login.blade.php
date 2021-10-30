@@ -26,7 +26,7 @@
 
                     <div>
                         <div class="mt-1">
-                            {{ partial('input', ['name' => 'email', 'label' => 'Adresse email', 'type' => 'email']) }}
+                            {{ partial('input', ['name' => 'email', 'label' => 'Adresse email', 'type' => 'email', 'autofocus' => true]) }}
                         </div>
                     </div>
 

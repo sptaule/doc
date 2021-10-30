@@ -72,36 +72,40 @@ define("ADMIN_EVENT_TYPE_DELETE", $path);
 // ** APPEARANCE
 
 $path = '/admin/pages';
-$routes->add('adminPages', new Route($path, ['controller' => 'AppearanceController', 'method' => 'listPages']));
+$routes->add('adminPages', new Route($path, ['controller' => 'NavigationController', 'method' => 'listPages']));
 define("ADMIN_PAGES", $path);
 
 $path = '/admin/page/add';
-$routes->add('adminPageAdd', new Route($path, ['controller' => 'AppearanceController', 'method' => 'addPage']));
+$routes->add('adminPageAdd', new Route($path, ['controller' => 'NavigationController', 'method' => 'addPage']));
 define("ADMIN_PAGE_ADD", $path);
 
 $path = '/admin/page/edit/{id}';
-$routes->add('adminPageEdit', new Route($path, ['controller' => 'AppearanceController', 'method' => 'editPage'], ['id' => '[0-9]+']));
+$routes->add('adminPageEdit', new Route($path, ['controller' => 'NavigationController', 'method' => 'editPage'], ['id' => '[0-9]+']));
 define("ADMIN_PAGE_EDIT", str_replace("{id}", "", $path));
 
 $path = '/admin/page/delete/{id}';
-$routes->add('adminPageDelete', new Route($path, ['controller' => 'AppearanceController', 'method' => 'deletePage']));
+$routes->add('adminPageDelete', new Route($path, ['controller' => 'NavigationController', 'method' => 'deletePage']));
 define("ADMIN_PAGE_DELETE", $path);
 
 $path = '/admin/menus';
-$routes->add('adminMenus', new Route($path, ['controller' => 'AppearanceController', 'method' => 'listMenus']));
+$routes->add('adminMenus', new Route($path, ['controller' => 'NavigationController', 'method' => 'listMenus']));
 define("ADMIN_MENUS", $path);
 
 $path = '/admin/menu/add';
-$routes->add('adminMenuAdd', new Route($path, ['controller' => 'AppearanceController', 'method' => 'addMenu']));
+$routes->add('adminMenuAdd', new Route($path, ['controller' => 'NavigationController', 'method' => 'addMenu']));
 define("ADMIN_MENU_ADD", $path);
 
 $path = '/admin/menu/edit/{id}';
-$routes->add('adminMenuEdit', new Route($path, ['controller' => 'AppearanceController', 'method' => 'editMenu'], ['id' => '[0-9]+']));
+$routes->add('adminMenuEdit', new Route($path, ['controller' => 'NavigationController', 'method' => 'editMenu'], ['id' => '[0-9]+']));
 define("ADMIN_MENU_EDIT", str_replace("{id}", "", $path));
 
 $path = '/admin/menu/delete/{id}';
-$routes->add('adminMenuDelete', new Route($path, ['controller' => 'AppearanceController', 'method' => 'deleteMenu']));
+$routes->add('adminMenuDelete', new Route($path, ['controller' => 'NavigationController', 'method' => 'deleteMenu']));
 define("ADMIN_MENU_DELETE", $path);
+
+$path = '/admin/customization';
+$routes->add('adminCustomize', new Route($path, ['controller' => 'AppearanceController', 'method' => 'customization']));
+define("ADMIN_CUSTOMIZATION", $path);
 
 // ** SETTINGS
 
@@ -150,6 +154,8 @@ define("ADMIN_CLUB", $path);
 * * * PUBLIC ROUTES
 * * * * */
 
+// * STATIC & DYNAMIC PAGES
+
 $path = '/';
 $routes->add('publicHome', new Route($path, ['controller' => 'NavigationController', 'method' => 'home']));
 define("PUBLIC_HOME", $path);
@@ -157,9 +163,31 @@ define("PUBLIC_HOME", $path);
 $path = '/{pageSlug}';
 $routes->add('publicPage', new Route($path, ['controller' => 'NavigationController', 'method' => 'page'],
     ['pageSlug' => '^[a-z0-9]+(?:-[a-z0-9]+)*$']));
-define("PUBLIC_PAGE", $path);
+define("PUBLIC_PAGE", str_replace("{pageSlug}", "", $path));
 
 $path = '/{menuSlug}/{pageSlug}';
 $routes->add('publicChildPage', new Route($path, ['controller' => 'NavigationController', 'method' => 'childPage'],
     array('menuSlug' => '^[a-z0-9]+(?:-[a-z0-9]+)*$', 'pageSlug' => '^[a-z0-9]+(?:-[a-z0-9]+)*$')));
-define("PUBLIC_CHILD_PAGE", $path);
+define("PUBLIC_CHILD_PAGE", str_replace("{menuSlug}/{pageSlug}", "", $path));
+
+// * ACCOUNT
+
+$path = '/register';
+$routes->add('register', new Route($path, ['controller' => 'UserController', 'method' => 'register']));
+define("USER_REGISTER", $path);
+
+// * AUTH
+
+$path = '/auth/user/login';
+$routes->add('loginUser', new Route($path, ['controller' => 'AuthController', 'method' => 'loginUser']));
+define("USER_LOGIN", $path);
+
+$path = '/auth/user/logout';
+$routes->add('userLogout', new Route($path, ['controller' => 'AuthController', 'method' => 'logout']));
+define("USER_LOGOUT", $path);
+
+// * EDITOR
+
+$path = '/editor/upload/image';
+$routes->add('editorImageUpload', new Route($path, ['controller' => 'AppearanceController', 'method' => 'editorImageUpload']));
+define("EDITOR_IMAGE_UPLOAD", $path);

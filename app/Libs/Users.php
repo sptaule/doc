@@ -18,7 +18,7 @@ class User {
      * @param array $data
      * Crée un compte utilisateur (à activer).
      */
-    #[NoReturn] public static function register(array $data)
+    public static function register(array $data)
     {
         validate([
             'email' => ['required', 'email', 'email_not_already_in_use'],
@@ -64,7 +64,7 @@ class User {
      * @param string $password
      * Connecte un utilisateur grâce à son email et password.
      */
-    #[NoReturn] public static function login(string $email, string $password)
+    public static function login(string $email, string $password)
     {
         $query = pdo()->prepare("SELECT * FROM users WHERE email = ?");
         $query->execute([$email]);
@@ -90,7 +90,7 @@ class User {
      * @param int $user_id
      * Met à jour les informations générales de l'utilisateur.
      */
-    #[NoReturn] public static function update_general(array $data, int $user_id)
+    public static function update_general(array $data, int $user_id)
     {
         validate([
             'firstname' => ['required'],
@@ -123,7 +123,7 @@ class User {
      * @param int $user_id
      * Met à jour le mot de passe de l'utilisateur.
      */
-    #[NoReturn] public static function update_password(array $data, int $user_id)
+    public static function update_password(array $data, int $user_id)
     {
         validate([
             'current_password' => ['required'],
@@ -164,7 +164,7 @@ class User {
      * @param int $user_id
      * Met à jour l'addresse de l'utilisateur. Si l'addresse n'a pas déjà été créée, alors elle le sera.
      */
-    #[NoReturn] public static function update_address(array $data, int $user_id)
+    public static function update_address(array $data, int $user_id)
     {
         validate([
             'address_line_1' => ['required', 'min:8'],

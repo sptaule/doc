@@ -54,26 +54,6 @@ function import(string $lib)
 }
 
 /**
- * Is the user is on this page
- * @param string $page
- * @return bool
- */
-function is_on_page(string $page): bool
-{
-    return $_SERVER['SCRIPT_NAME'] === $page;
-}
-
-/**
- * Is the user is on this directory
- * @param string $directory
- * @return bool
- */
-function is_on_directory(string $directory): bool
-{
-    return str_starts_with($_SERVER['SCRIPT_NAME'], $directory);
-}
-
-/**
  * Delete a directory (even if not empty)
  * @param $dir
  * @return bool

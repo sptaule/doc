@@ -45,7 +45,7 @@
 
 @layer components {
     .link {
-        @apply px-1 font-semibold border-solid border-b hover:bg-opacity-10 transition;
+        @apply px-1 font-semibold border-solid border-b hover:bg-opacity-10 transition hover:text-scuba-dark hover:border-scuba-dark;
     }
     .btn {
         @apply transition duration-150 font-semibold py-2 px-4 rounded-sm text-sm focus:ring-2;

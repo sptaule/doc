@@ -10,8 +10,8 @@
         <a class="btn add py-3" href="{{ ADMIN_PAGES }}">Annuler</a>
     </div>
 
-    <div id="content" class="w-4/6">
-        <form action="" method="post" class="space-y-10">
+    <div id="content" class="w-3/4">
+        <form action="" method="post" class="space-y-10 my-12">
             @php echo csrf_input() @endphp
             <div class="border-l-2 border-green-400 pl-4 w-full space-y-4">
                 <div class="flex flex-row items-end justify-start space-x-0.5">
@@ -46,8 +46,8 @@
                 @endif
 
                 <div class="flex flex-row items-end justify-start space-x-0.5">
-                    <div class="flex flex-col sm:flex-row space-x-4 w-full">
-                        {{ partial('textarea', ['name' => 'content', 'label' => 'Contenu', 'size' => 'w-full']) }}
+                    <div class="flex flex-col w-full">
+                        {{ partial('quill', ['name' => "editor", 'label' => "Contenu de la page"]) }}
                     </div>
                 </div>
             </div>

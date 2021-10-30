@@ -1,5 +1,5 @@
 <style>
-    .nice-select { height: 44px !important; line-height: 40px !important; font-size: 16px !important; margin-top: 1px !important; border: 1px solid #D1D5DB !important; color: #393a3d; }
+    .nice-select { height: 44px !important; line-height: 40px !important; font-size: 16px !important; margin-top: 1px !important; border: 1px solid #D1D5DB !important; color: #393a3d; z-index: 15 !important; }
     .nice-select:hover { border: 1px solid #2563EB !important; }
     .nice-select ul { border: 0px solid #2563EB !important; -webkit-box-shadow: 0 0 20px 5px rgba(4,10,23,0.25) !important; box-shadow: 0 0 20px 5px rgba(4,10,23,0.25) !important; }
     .nice-select li.option:hover, .nice-select li.option.selected:hover { background: #b2daf8 !important; }

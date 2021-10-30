@@ -1,13 +1,16 @@
 <nav class="hidden lg:py-1.5 lg:flex lg:space-x-1" aria-label="Global">
 
-    <a href="/" class="text-gray-700 hover:bg-scuba-green hover:text-white rounded-md py-2 px-3 inline-flex items-center text-sm font-medium">
+    <a
+        href="{{ PUBLIC_HOME }}"
+        title="Accueil - {{ \App\Models\Club::getValue('club_name') }}"
+        class="text-gray-700 hover:bg-scuba-green hover:text-white rounded-md py-2 px-3 inline-flex items-center text-sm font-medium">
         Accueil
     </a>
 
     @foreach ($navElements as $k => $navElement)
 
-
         @if (isset($navElement['menu']))
+
             <div
                     x-data="{ open: false }"
                     @mouseleave="open = false"
@@ -36,6 +39,7 @@
                         class="dropdown absolute left-1/2 transform -translate-x-1/2 w-max bg-gray-100 rounded-md shadow-xl text-center border border-scuba-dark border-opacity-20">
                     @for ($i = 0; $i <= sizeof($navElement) - 2; $i++)
                         <a href="/{{ $navElement['menu']['slug'] }}/{{ $navElement[$i]->slug }}"
+                           title="Page {{ $navElement[$i]->name }}"
                            class="block px-4 py-2 text-sm text-gray-300 text-gray-700 hover:bg-scuba-green hover:text-white font-medium">
                             {{ $navElement[$i]->name }}
                         </a>
@@ -43,9 +47,14 @@
                 </div>
             </div>
         @else
-            <a href="/{{ $navElement['slug'] }}" class="text-gray-700 hover:bg-scuba-green hover:text-white rounded-md py-2 px-3 inline-flex items-center text-sm font-medium">
-                {{ $navElement['name'] }}
-            </a>
+            @if($navElement['deletable'] == 1)
+                <a
+                    href="/{{ $navElement['slug'] }}"
+                    title="Page {{ $navElement['name'] }}"
+                    class="text-gray-700 hover:bg-scuba-green hover:text-white rounded-md py-2 px-3 inline-flex items-center text-sm font-medium">
+                    {{ $navElement['name'] }}
+                </a>
+            @endif
         @endif
 
     @endforeach

@@ -8,93 +8,44 @@ use Symfony\Component\Routing\RouteCollection;
 
 class AppearanceController
 {
-    public function listPages(RouteCollection $routes)
-    {
-        $pages = Navigation::getPages();
-        $blade = new BladeInstance(APP_PATH . "/Views", BASE_PATH . "/cache/views");
-        echo $blade->render("admin.static._appearance.pages.index",
-        [
-            'title' => 'Liste des pages',
-            'pages' => $pages,
-        ]);
-    }
+    /** OPTIONS / CUSTOMIZATION */
 
-    public function addPage(RouteCollection $routes)
+    public function customization(RouteCollection $routes)
     {
-        if (is_post()) {
-            Navigation::addPage($_POST);
-        }
-        $menus = Navigation::getMenus();
-        $blade = new BladeInstance(APP_PATH . "/Views", BASE_PATH . "/cache/views");
-        echo $blade->render("admin.static._appearance.pages.add",
-        [
-            'title' => 'Créer une page',
-            'menus' => $menus,
-        ]);
-    }
-
-    public function editPage(int $id, RouteCollection $routes)
-    {
-        if (is_post()) {
-            Navigation::editPage($_POST, $id);
-        }
-        $page = Navigation::getPage($id);
-        $menus = Navigation::getMenus();
         $blade = new BladeInstance(APP_PATH . "/Views", BASE_PATH . "/cache/views");
         echo $blade->render(
-        "admin.static._appearance.pages.edit",
+        "admin.static._appearance.customization.index",
         [
-            'title' => "Modifier la page : <b>$page->name</b>",
-            'page' => $page,
-            'menus' => $menus
+            'title' => "Personnaliser l'apparence du site"
         ]);
     }
 
-    public static function deletePage(int $id, RouteCollection $routes)
-    {
-        Navigation::deletePage($id);
-    }
+    /** EDITOR */
 
-    public function listMenus(RouteCollection $routes)
+    public function editorImageUpload(RouteCollection $routes)
     {
-        $menus = Navigation::getMenus();
-        $blade = new BladeInstance(APP_PATH . "/Views", BASE_PATH . "/cache/views");
-        echo $blade->render("admin.static._appearance.menus.index",
-        [
-            'title' => 'Liste des menus',
-            'menus' => $menus,
-        ]);
-    }
-
-    public function addMenu(RouteCollection $routes)
-    {
-        if (is_post()) {
-            Navigation::addMenu($_POST);
+        define("UPLOADDIR", BASE_PATH .  "/public/upload/content/pages");
+        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+            $file = array_shift($_FILES);
+            $imgName = random_str(12);
+            if (move_uploaded_file($file['tmp_name'], UPLOADDIR . "/" . $imgName . '.' . pathinfo($file['name'], PATHINFO_EXTENSION))) {
+                $file = '/upload/content/pages/' . $imgName . '.' . pathinfo($file['name'], PATHINFO_EXTENSION);
+                $data = array(
+                    'success' => true,
+                    'file' => $file,
+                );
+            } else {
+                $data = array(
+                    'message' => 'uploadError',
+                );
+            }
+        } else {
+            $data = array(
+                'message' => 'uploadNotAjax',
+                'formData' => $_POST
+            );
         }
-        $blade = new BladeInstance(APP_PATH . "/Views", BASE_PATH . "/cache/views");
-        echo $blade->render("admin.static._appearance.menus.add",
-        [
-            'title' => 'Créer un menu'
-        ]);
+        echo json_encode($data, JSON_UNESCAPED_SLASHES);
     }
 
-    public function editMenu(int $id, RouteCollection $routes)
-    {
-        if (is_post()) {
-            Navigation::editMenu($_POST, $id);
-        }
-        $menu = Navigation::getMenu($id);
-        $blade = new BladeInstance(APP_PATH . "/Views", BASE_PATH . "/cache/views");
-        echo $blade->render(
-        "admin.static._appearance.menus.edit",
-        [
-            'title' => "Modifier le menu : <b>$menu->name</b>",
-            'menu' => $menu
-        ]);
-    }
-
-    public static function deleteMenu(int $id, RouteCollection $routes)
-    {
-        Navigation::deleteMenu($id);
-    }
 }

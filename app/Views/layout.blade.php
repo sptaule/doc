@@ -3,7 +3,10 @@
 <head>
     @include('layouts.head')
 </head>
-    <body>
+    <body x-data="setup()"
+          x-init="$refs.loading.classList.add('hidden')">
+
+        @include('common.loader')
 
         <header class="sticky top-0 z-50">
             @include('layouts.header', ['navElements' => \App\Models\Navigation::getNav()])

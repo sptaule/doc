@@ -126,6 +126,22 @@ class Scuba
 
     }
 
+    /**
+     * @throws \Exception
+     */
+    public static function formatDateTime(string $datetime, bool $timestamp = false)
+    {
+        $date = new \DateTime($datetime);
+        if (is_null($timestamp) || $timestamp === false) {
+            $dateFormat = Club::getValue('date_format');
+            $timeFormat = Club::getValue('time_format');
+            return strftime($dateFormat . ' à ' . $timeFormat, $date->getTimestamp());
+        }
+        else {
+            return $date->getTimestamp();
+        }
+    }
+
     public static function formatColor(string $color, $hashtag = true): string
     {
         if (str_contains($color, '#') && $hashtag === true) {

@@ -1,20 +1,10 @@
-<div class="flex h-screen overflow-y-hidden bg-white" x-data="setup()"
-     x-init="$refs.loading.classList.add('hidden')">
-    <!-- Loading screen -->
-    <div
-            x-ref="loading"
-            class="fixed inset-0 z-50 flex items-center justify-center text-white bg-black bg-opacity-50"
-            style="backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)"
-    >
-        Chargement en cours...
-    </div>
-
+<div class="flex h-screen overflow-y-hidden bg-white">
     <!-- Sidebar backdrop -->
     <div
-            x-show.in.out.opacity="isSidebarOpen"
-            class="fixed inset-0 z-10 bg-black bg-opacity-20 lg:hidden"
-            style="backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)"
-    ></div>
+        x-show.in.out.opacity="isSidebarOpen"
+        class="fixed inset-0 z-10 bg-black bg-opacity-20 lg:hidden"
+        style="backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)">
+    </div>
 
 <!-- Sidebar -->
 <aside

@@ -1,3 +1,5 @@
+@if(is_connected())
+
 <div x-data="{ open: false }">
     <button
         x-on:click="open = ! open"
@@ -19,3 +21,5 @@
         </div>
     </div>
 </div>
+
+@endif

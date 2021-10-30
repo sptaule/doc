@@ -1,8 +1,8 @@
 <link rel="stylesheet" href="/assets/trumbowyg/ui/trumbowyg.min.css">
 <script src="/assets/trumbowyg/trumbowyg.min.js"></script>
 
-<div class="mb-4 mt-4 <?= $size ?? '' ?>">
-    <textarea placeholder="Contenu de la page..." name="<?= $name ?>" id="<?= $name ?>" cols="30" rows="10" style="min-height:50vh;"></textarea>
+<div class="<?= $size ?? '' ?>">
+    <textarea placeholder="Contenu de la page..." name="<?= $name ?>" id="<?= $name ?>" cols="30" rows="10" style="min-height:50vh;"><?= $content ?? null ?></textarea>
     <?= partial('form_error', ['name' => $name]) ?>
 </div>
 
@@ -20,11 +20,11 @@
         },
         btns: [
             ['historyUndo','historyRedo'],
-            ['h1', 'h2', 'h3', 'h4', 'fontsize'],
-            ['strong', 'em', 'del'],
+            ['p', 'h1', 'h2', 'h3', 'h4', 'fontsize'],
+            ['strong', 'em', 'underline'],
             ['foreColor', 'backColor', 'emoji'],
             ['createLink', 'unlink'],
-            ['upload', 'giphy'],
+            ['upload', 'giphy', 'noembed'],
             ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
             ['unorderedList', 'orderedList'],
             ['mention'],
@@ -41,6 +41,7 @@
                 step: 16,
             },
             upload: {
+                lang: 'fr',
                 serverPath: "<?= EDITOR_IMAGE_UPLOAD; ?>",
                 urlPropertyName: 'file',
             },

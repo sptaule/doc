@@ -24,6 +24,23 @@ class AuthController
         echo $blade->render("admin.specials.login", ['title' => "Connexion administrateur"]);
     }
 
+    public function loginUser(RouteCollection $routes)
+    {
+        if (is_connected()) {
+            flash_warning("Votre compte est déjà connecté");
+            redirect(PUBLIC_HOME);
+        }
+        if (is_post()) {
+            validate([
+                'email' => ['required'],
+                'password' => ['required']
+            ]);
+            validate_login_user(sanitize($_POST['email']), $_POST['password']);
+        }
+        $blade = new BladeInstance(APP_PATH . "/Views", BASE_PATH . "/cache/views");
+        echo $blade->render("static._user.login", ['title' => "Connexion"]);
+    }
+
     public function logout(RouteCollection $routes)
     {
         if (!is_admin_connected()) {

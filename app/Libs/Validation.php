@@ -266,11 +266,12 @@ function validate_search_number($name)
 function validate_login_admin($login, $password)
 {
     // $login = htmlspecialchars($login);
-    $query = pdo()->prepare("SELECT * FROM user WHERE email = ?");
+    $query = pdo()->prepare("SELECT * FROM user WHERE email = ? AND rank_id = 3");
     $query->execute([$login]);
     $admin = $query->fetch();
     if ($admin && password_verify($password, $admin->password)) {
         session()->set('admin', $admin);
+        session()->set('user', $admin);
         $admin->genre == 'Homme' ? $connectedGenre = 'connecté' : $connectedGenre = 'connectée';
         flash_success("Bonjour et bienvenue <b>$admin->firstname</b>, vous êtes " . $connectedGenre);
         save_inputs();
@@ -280,6 +281,28 @@ function validate_login_admin($login, $password)
         flash_warning($_SESSION['errors']['credentials']);
         save_inputs();
         redirect(ADMIN_LOGIN);
+    }
+}
+
+function validate_login_user($login, $password)
+{
+    $query = pdo()->prepare("SELECT * FROM user WHERE email = ?");
+    $query->execute([$login]);
+    $user = $query->fetch();
+    if ($user && password_verify($password, $user['password']) && $user['verified'] == 0) {
+        flash_warning("Merci de valider votre compte avant de vous connecter<br>Le lien d'activation a été envoyé sur votre adresse email");
+        save_inputs();
+        redirect(USER_LOGIN);
+    }
+    if ($user && password_verify($password, $user['password']) && $user['verified'] == 1) {
+        $_SESSION['user'] = $user;
+        flash_success("Bonjour <b>{$user['firstname']}</b>");
+        save_inputs();
+        redirect(PUBLIC_HOME);
+    } else {
+        flash_warning("Identifiants incorrects");
+        save_inputs();
+        redirect(USER_LOGIN);
     }
 }
 
@@ -293,28 +316,6 @@ function validateAge($birthday, $age)
         return false;
     }
     return true;
-}
-
-function validate_login_user($login, $password)
-{
-    $query = pdo()->prepare("SELECT * FROM users WHERE email = ?");
-    $query->execute([$login]);
-    $user = $query->fetch();
-    if ($user && password_verify($password, $user['password']) && $user['verified'] == 0) {
-        flash_warning("Merci de valider votre compte avant de vous connecter<br>Le lien d'activation a été envoyé sur votre adresse email");
-        save_inputs();
-        redirect('/user/login');
-    }
-    if ($user && password_verify($password, $user['password']) && $user['verified'] == 1) {
-        $_SESSION['user'] = $user;
-        flash_success("Bonjour <b>{$user['firstname']}</b>");
-        save_inputs();
-        redirect('/');
-    } else {
-        flash_warning("Identifiants incorrects");
-        save_inputs();
-        redirect('/user/login');
-    }
 }
 
 function validate_update_user_info($email, $user)

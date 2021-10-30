@@ -5,7 +5,7 @@
                 <div class="flex-shrink-0 flex items-center">
                     <a href="/">
                         <img
-                        class="block h-20 w-auto transform hover:scale-95 duration-100"
+                        class="block h-20 w-auto"
                         title="Accueil - {{ \App\Models\Club::getValue('club_name') }}"
                         src="https://nausicaa-plongee.com/images/nausicaa/logo-full.svg"
                         alt="Logo - {{ \App\Models\Club::getValue('club_name') }}">

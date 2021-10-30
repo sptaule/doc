@@ -18,7 +18,10 @@
             <?php endif; ?>
            <?php if (isset($step)): ?>
             step="<?= $step ?>"
-           <?php endif; ?>>
+           <?php endif; ?>
+            <?php if (isset($autofocus)): ?>
+                autofocus
+            <?php endif; ?>>
     <p class="text-purple-500 italic text-sm"><?= $hint ?? '' ?>
         <?= partial('form_error', ['name' => $name]) ?>
 </div>

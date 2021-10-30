@@ -10,18 +10,22 @@
         <a class="btn add py-3" href="{{ ADMIN_PAGES }}">Annuler</a>
     </div>
 
-    <div id="content" class="w-4/6">
-        <form action="" method="post" class="space-y-10">
+    <div id="content" class="w-3/4">
+        <form action="" method="post" class="space-y-10 my-12" enctype="multipart/form-data">
             @php echo csrf_input() @endphp
+
+            {{--Is the page editable/deletable or not--}}
+            {{ partial('input', ['name' => 'deletable', 'type' => 'hidden', 'label' => '', 'size' => 'hidden', 'model' => $page]) }}
+
             <div class="border-l-2 border-green-400 pl-4 w-full space-y-4">
-                <p class="text-gray-500 italic">Informations générales</p>
                 <div class="flex flex-row items-end justify-start space-x-0.5">
                     <div class="flex flex-col sm:flex-row space-x-4">
                         {{ partial('input', ['name' => 'name', 'label' => 'Nom', 'model' => $page]) }}
                     </div>
                 </div>
 
-                @if($menus)
+                {{--Si des menus existent et que la page est modifiable--}}
+                @if($menus && $page->deletable)
                     <div class="flex flex-col sm:flex-row space-x-4">
                         <div class="bg-teal-50 shadow-md p-2 flex flex-col items-start justify-center">
                             {{ partial('checkbox', [
@@ -49,8 +53,8 @@
                 @endif
 
                 <div class="flex flex-row items-end justify-start space-x-0.5">
-                    <div class="flex flex-col sm:flex-row space-x-4 w-full">
-                        {{ partial('textarea', ['name' => 'content', 'label' => 'Contenu', 'model' => $page, 'size' => 'w-full']) }}
+                    <div class="flex flex-col w-full">
+                        {{ partial('quill', ['name' => "editor", 'label' => "Contenu de la page", "content" => $page->content]) }}
                     </div>
                 </div>
             </div>
