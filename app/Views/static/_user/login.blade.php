@@ -8,7 +8,7 @@
             <h1 class="font-arima text-scuba-green text-3xl">Connectez-vous</h1>
             <p class="text-gray-700 text-center">
                 Accédez à votre compte et aux différentes parties du site.<br>
-                Retrouvez les évènements du club.<br>
+                Retrouvez et participez aux évènements du club.<br>
                 Gérez vos inscriptions.
             </p>
             <div class="my-8 text-gray-700">
