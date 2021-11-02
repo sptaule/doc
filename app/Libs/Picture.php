@@ -14,15 +14,17 @@ class Picture {
      * @param $outputFolder <p>Output folder where file(s) will be saved (after "srv/scuba/")</p>
      * @param array|string[] $sizes <p>An array of desired exported sizes (ex: ['small', 'medium']). Default export all sizes.</p>
      */
-    static function upload_photo($photo, $outputFolder, array $sizes = ['big', 'medium', 'small'], $name = 'rand')
+    static function upload_photo($photo, $outputFolder, array $sizes = ['big', 'medium', 'small'], $name = 'rand', string $extension = null)
     {
-        $mime_type = getimagesize($photo)['mime'];
-        if ($mime_type == 'image/jpeg' || $mime_type == 'image/jpg') {
-            $extension = 'jpg';
-        } elseif ($mime_type == 'image/png') {
-            $extension = 'png';
-        } else {
-            die();
+        if (is_null($extension)) {
+            $mime_type = getimagesize($photo)['mime'];
+            if ($mime_type == 'image/jpeg' || $mime_type == 'image/jpg') {
+                $extension = 'jpg';
+            } elseif ($mime_type == 'image/png') {
+                $extension = 'png';
+            } else {
+                die();
+            }
         }
 
         $name == 'rand' ? $hash = random_str(15) : $hash = $name;
