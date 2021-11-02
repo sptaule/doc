@@ -7,7 +7,7 @@
                         <img
                         class="block h-20 w-auto"
                         title="Accueil - {{ \App\Models\Club::getValue('club_name') }}"
-                        src="https://nausicaa-plongee.com/images/nausicaa/logo-full.svg"
+                        src="{{ CLUB_LOGO }}"
                         alt="Logo - {{ \App\Models\Club::getValue('club_name') }}">
                     </a>
                 </div>
