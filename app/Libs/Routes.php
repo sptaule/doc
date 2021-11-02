@@ -19,3 +19,4 @@ const MIXITUP = "/assets/mixitup/mixitup.min.";
 // IMAGES
 const LOGO_FULL = "/ressources/images/scuba/logo-full.svg";
 const LOGO = "/ressources/images/scuba/logo.svg";
+const CLUB_LOGO = "/ressources/images/club/logo/logo_medium.png";
