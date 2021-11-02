@@ -38,7 +38,7 @@
                     </div>
                 </div>
             @empty
-                <p class="border-l-2 border-scuba-light shadow px-2 py-4 italic text-gray-500">
+                <p class="border-l-2 border-scuba-light shadow px-2 py-4 italic text-gray-500 -ml-4">
                     Vous n'avez pas encore créé de menu.<br>
                     Utilisez le bouton ci-dessus pour créer votre premier menu !
                 </p>
