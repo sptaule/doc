@@ -43,22 +43,27 @@ class AuthController
 
     public function logout(RouteCollection $routes)
     {
-        if (!is_admin_connected()) {
-            flash_warning("Vous n'êtes pas connecté");
-            redirect(ADMIN_LOGIN);
+        if (!is_connected()) {
+            flash_warning("Vous n'êtes pas connecté(e)");
+            redirect(USER_LOGIN);
         }
         if (session()->has('user')) {
             $currentAuthUser = 'user';
         } elseif (session()->has('admin')) {
             $currentAuthUser = 'admin';
+        } else {
+            $currentAuthUser = null;
         }
         if (!is_null($currentAuthUser)) {
-            $currentAuthFirstname = session()->get($currentAuthUser)->firstname;
             session()->get($currentAuthUser)->genre == 'Homme' ? $connectedGenre = "déconnecté" : $connectedGenre = "déconnectée";
             session()->remove($currentAuthUser);
             session()->invalidate();
-            flash_success("Vous êtes à présent " . $connectedGenre . ", à bientôt <b>" . $currentAuthFirstname . "</b>");
-            redirect(ADMIN_LOGIN);
+            flash_success("Vous êtes à présent " . $connectedGenre . ", à bientôt <b>" . session()->get($currentAuthUser)->firstname . "</b>");
+            if ($currentAuthUser == 'admin') {
+                redirect(ADMIN_LOGIN);
+            } elseif ($currentAuthUser == 'user') {
+                redirect(USER_LOGIN);
+            }
         }
     }
 }
