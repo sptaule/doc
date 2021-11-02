@@ -45,9 +45,9 @@ class Router
                 $classInstance = new $className();
                 call_user_func_array(array($classInstance, 'setup'), $params);
             } else {
-                // If Scuba is already deployed and setup route in requested redirect to admin dashboard
+                // If Scuba is already deployed and setup route is requested redirect to admin dashboard
                 if ($className = '\\App\\Controllers\\ScubaController' && $matcher['method'] == 'setup') {
-                    flash_warning("Scuba a déja été installé");
+                    flash_warning("Scuba a déjà été installé");
                     $className = '\\App\\Controllers\\DashboardController';
                     $classInstance = new $className();
                     call_user_func_array(array($classInstance, 'index'), $params);
