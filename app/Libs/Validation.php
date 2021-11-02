@@ -265,7 +265,6 @@ function validate_search_number($name)
 
 function validate_login_admin($login, $password)
 {
-    // $login = htmlspecialchars($login);
     $query = pdo()->prepare("SELECT * FROM user WHERE email = ? AND rank_id = 3");
     $query->execute([$login]);
     $admin = $query->fetch();
@@ -289,14 +288,14 @@ function validate_login_user($login, $password)
     $query = pdo()->prepare("SELECT * FROM user WHERE email = ?");
     $query->execute([$login]);
     $user = $query->fetch();
-    if ($user && password_verify($password, $user['password']) && $user['verified'] == 0) {
-        flash_warning("Merci de valider votre compte avant de vous connecter<br>Le lien d'activation a été envoyé sur votre adresse email");
-        save_inputs();
-        redirect(USER_LOGIN);
-    }
-    if ($user && password_verify($password, $user['password']) && $user['verified'] == 1) {
-        $_SESSION['user'] = $user;
-        flash_success("Bonjour <b>{$user['firstname']}</b>");
+    if ($user && password_verify($password, $user->password)) {
+        session()->set('user', $user);
+        // if user is an admin, also create admin array in session
+        if ($user->rank_id == 3) {
+            session()->set('admin', $user);
+        }
+        $user->genre == 'Homme' ? $connectedGenre = 'connecté' : $connectedGenre = 'connectée';
+        flash_success("Bonjour <b>{$user->firstname}</b>, vous êtes " . $connectedGenre);
         save_inputs();
         redirect(PUBLIC_HOME);
     } else {
