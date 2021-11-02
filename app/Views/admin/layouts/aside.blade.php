@@ -21,7 +21,7 @@
     <div class="flex items-center justify-between flex-shrink-0 p-2"
          :class="{'lg:justify-center': !isSidebarOpen}">
         <div class="p-2 text-xl font-semibold leading-8 tracking-wider uppercase whitespace-nowrap">
-            <img width="150px" src="{{ LOGO_FULL }}" alt="">
+            <img class="max-h-12 max-w-full" src="{{ CLUB_LOGO }}" alt="">
         </div>
 
         <button @click="toggleSidebarMenu()" class="p-2 rounded-md lg:hidden">
@@ -190,11 +190,4 @@
             <!-- Sidebar Links... -->
         </ul>
     </nav>
-    <!-- Sidebar footer -->
-    <div class="flex-shrink-0 p-2 border-t max-h-14">
-        <a href="{{ ADMIN_LOGOUT }}" class="flex items-center justify-center w-full px-4 py-2 space-x-1 font-medium tracking-wider uppercase bg-gray-100 hover:bg-red-500 text-gray-600 hover:text-white border rounded-md focus:outline-none focus:ring">
-            <span class="h-6 w-6 flex items-center justify-center"><i class="fas fa-sign-out-alt"></i></span>
-            <span :class="{'lg:hidden': !isSidebarOpen}">Déconnexion</span>
-        </a>
-    </div>
 </aside>
