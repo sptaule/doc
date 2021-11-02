@@ -17,7 +17,7 @@
                         class="px-0 mx-0 h-8 w-8 rounded-full"
                         src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                         alt="Avatar">
-                <span class="px-1.5">Lucas</span>
+                <span class="px-1.5">{{ session()->get('user')->firstname }}</span>
             </button>
             <div
                 x-show="open"
@@ -40,7 +40,7 @@
                     <span class="text-gray-50 h-6 w-6 shadow-md inline-flex items-center justify-center bg-gradient-to-tr from-scuba-light to-blue-500 font-semibold rounded-md p-0.5">12</span>
                 </a>
                 <div class="w-full h-0.5 bg-gray-200"></div>
-                <a href="#"
+                <a href="{{ USER_LOGOUT }}"
                    class="inline-block px-4 py-2 text-sm text-gray-700 hover:text-red-500 font-medium">
                     Déconnexion
                 </a>
