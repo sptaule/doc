@@ -19,7 +19,7 @@
             </div>
         </div>
 
-        <div class="py-8 px-4 sm:rounded-lg sm:px-10">
+        <div class="py-8 px-4 sm:rounded-lg sm:px-32">
 
             <form class="space-y-4" action="#" method="POST">
 
