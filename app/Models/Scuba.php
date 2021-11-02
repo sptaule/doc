@@ -56,7 +56,7 @@ class Scuba
         $user_birthdate = $data['birthdate'];
         $user_phone = $data['phone'] ?? '';
         $password = $data['password'];
-        $user_password = password_hash($password, PASSWORD_BCRYPT);
+        $user_password = password_hash($password, PASSWORD_DEFAULT);
 
         // -- club info
         $club_name = $data['club_name'] ?? '';
@@ -70,7 +70,7 @@ class Scuba
 
         /** Process club logo and save it in different sizes */
         foreach ($_FILES['images']['tmp_name'] as $image) {
-            Picture::upload_photo($image, "/ressources/images/club/logo/", ['small', 'medium'], 'logo');
+            Picture::upload_photo($image, "/ressources/images/club/logo/", ['small', 'medium', 'big'], 'logo', 'png');
         }
 
         /** Verify database credentials */
@@ -115,7 +115,7 @@ class Scuba
 
         /* user */
         $query = $pdo->prepare("INSERT INTO user (lastname, firstname, genre, birthdate, email, phone, password, rank_id, diving_level_id, skillset_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $query->execute([$user_lastname, $user_firstname, $user_genre, $user_birthdate, $user_email, $user_phone, $user_password, 1, 1, 1]);
+        $query->execute([$user_lastname, $user_firstname, $user_genre, $user_birthdate, $user_email, $user_phone, $user_password, 3, 1, 1]);
 
         /** Check if scuba has been deployed correctly */
         if (Scuba::isDeployed()) {
