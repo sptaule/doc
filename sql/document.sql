@@ -1,6 +1,6 @@
 CREATE TABLE `document`
 (
-    `id`          int(10) unsigned                       NOT NULL AUTO_INCREMENT,
+    `id`          int(10) UNSIGNED                       NOT NULL AUTO_INCREMENT,
     `name`        varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
     `slug`        varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
     `description` varchar(255) COLLATE utf8mb4_unicode_ci         DEFAULT NULL,
