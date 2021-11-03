@@ -156,6 +156,28 @@ define("ADMIN_CLUB", $path);
 
 // * STATIC & DYNAMIC PAGES
 
+// * ACCOUNT
+
+$path = '/register';
+$routes->add('register', new Route($path, ['controller' => 'UserController', 'method' => 'register']));
+define("USER_REGISTER", $path);
+
+// * AUTH
+
+$path = '/user/login';
+$routes->add('loginUser', new Route($path, ['controller' => 'AuthController', 'method' => 'loginUser']));
+define("USER_LOGIN", $path);
+
+$path = '/user/logout';
+$routes->add('userLogout', new Route($path, ['controller' => 'AuthController', 'method' => 'logout']));
+define("USER_LOGOUT", $path);
+
+// * EDITOR
+
+$path = '/editor/upload/image';
+$routes->add('editorImageUpload', new Route($path, ['controller' => 'AppearanceController', 'method' => 'editorImageUpload']));
+define("EDITOR_IMAGE_UPLOAD", $path);
+
 $path = '/';
 $routes->add('publicHome', new Route($path, ['controller' => 'NavigationController', 'method' => 'home']));
 define("PUBLIC_HOME", $path);
@@ -169,25 +191,3 @@ $path = '/{menuSlug}/{pageSlug}';
 $routes->add('publicChildPage', new Route($path, ['controller' => 'NavigationController', 'method' => 'childPage'],
     array('menuSlug' => '^[a-z0-9]+(?:-[a-z0-9]+)*$', 'pageSlug' => '^[a-z0-9]+(?:-[a-z0-9]+)*$')));
 define("PUBLIC_CHILD_PAGE", str_replace("{menuSlug}/{pageSlug}", "", $path));
-
-// * ACCOUNT
-
-$path = '/register';
-$routes->add('register', new Route($path, ['controller' => 'UserController', 'method' => 'register']));
-define("USER_REGISTER", $path);
-
-// * AUTH
-
-$path = '/auth/user/login';
-$routes->add('loginUser', new Route($path, ['controller' => 'AuthController', 'method' => 'loginUser']));
-define("USER_LOGIN", $path);
-
-$path = '/auth/user/logout';
-$routes->add('userLogout', new Route($path, ['controller' => 'AuthController', 'method' => 'logout']));
-define("USER_LOGOUT", $path);
-
-// * EDITOR
-
-$path = '/editor/upload/image';
-$routes->add('editorImageUpload', new Route($path, ['controller' => 'AppearanceController', 'method' => 'editorImageUpload']));
-define("EDITOR_IMAGE_UPLOAD", $path);
