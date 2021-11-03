@@ -8,7 +8,7 @@
 <div class="<?= $size ?? '' ?>">
     <label class="block px-1 text-sm font-semibold text-gray-700 mt-0.5" for="<?= $name ?>"><?= $label ?></label>
     <p class="block italic px-1 text-sm text-gray-500"><?= $subLabel ?? '' ?></p>
-    <select name="<?= $name ?>" id="<?= $name ?>" class="block dark:bg-gray-700 dark:text-white w-max focus:outline-none <?= $customSelectClass ?? "" ?>">
+    <select name="<?= $name ?>" id="<?= $name ?>" class="block dark:bg-gray-700 dark:text-white w-max wide focus:outline-none <?= $customSelectClass ?? "" ?>">
         <?php if (isset($session_option_label) || isset($default_option_label)): ?>
             <option value="<?= $session_option_value ?? $default_option_value ?? "" ?>"><?= $session_option_label ?? $default_option_label ?></option>
         <?php endif; ?>
@@ -37,14 +37,18 @@
 <?php endif; ?>
 
 <!--Display the select options like a table-->
-<?php if (isset($tableDisplay) && $tableDisplay === true): ?>
+<?php if (isset($tableDisplay)): ?>
     <script>
         $(function() {
             let ul = $('select#<?= $name; ?>').next().find("ul");
             let wi = $(window).width(), count = $(ul).children().length, columns;
-            count % 2 == 0 ? columns = 4 : columns = 3;
+            count % 2 === 0 ? columns = 4 : columns = 3;
             if (wi >= 865) {
+            <?php if (is_integer($tableDisplay)): ?>
+                ul.addClass(`w-max grid grid-cols-<?= $tableDisplay ?> gap-<?= $gap ?? 0; ?>`)
+            <?php else: ?>
                 ul.addClass(`w-max grid grid-cols-${columns} gap-<?= $gap ?? 0; ?>`)
+            <?php endif; ?>
             }
         });
     </script>
