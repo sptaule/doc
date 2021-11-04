@@ -5,10 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "run": "npx tailwindcss -o public/assets/app.css",
-    "build": "webpack"
+    "run": "npx tailwindcss -o public/assets/app.css"
   },
-  "author": "",
+  "author": "sptl",
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^10.3.3",

@@ -48,7 +48,8 @@ class Club
             'super_user_lastname' => ['required'],
             'super_user_email' => ['required', 'email'],
             'date_format' => ['required'],
-            'time_format' => ['required']
+            'min_age_to_register' => ['required'],
+            'max_age_to_register' => ['required'],
         ]);
 
         foreach ($data as $key => $d) {
@@ -58,13 +59,17 @@ class Club
             }
         }
 
-        // Different treatment for checkbox
+        // Different treatment for checkboxes
         $allowRegistrations = isset($data['allow_registrations']) ? 1 : 0;
         $query = pdo()->prepare("UPDATE global_option SET global_option_value = ? WHERE global_option_name = 'allow_registrations'");
         $query->execute([$allowRegistrations]);
 
+        $manualUserApproval = isset($data['manual_user_approval']) ? 1 : 0;
+        $query = pdo()->prepare("UPDATE global_option SET global_option_value = ? WHERE global_option_name = 'manual_user_approval'");
+        $query->execute([$manualUserApproval]);
+
         $success === true
-            ? flash_success("Les informations du club ont été modifiées")
+            ? flash_success("Les informations ont été mises à jour")
             : flash_warning("Erreur lors de la modification");
         redirect(ADMIN_CLUB);
     }

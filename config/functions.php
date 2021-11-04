@@ -44,6 +44,11 @@ function get_input($key)
     return get_inputs()[$key] ?? null;
 }
 
+function get_input_array($arr, $key)
+{
+    return get_inputs()[$arr][$key] ?? null;
+}
+
 /**
  * Import a library from "libs" folder
  * @param string $lib

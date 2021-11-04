@@ -199,6 +199,9 @@ class SettingController
             'whatsappUrl' => Club::getValue('whatsapp_url'),
             'twitterUrl' => Club::getValue('twitter_url'),
             'snapchatUrl' => Club::getValue('snapchat_url'),
+            'minAgeToRegister' => Club::getValue('min_age_to_register'),
+            'maxAgeToRegister' => Club::getValue('max_age_to_register'),
+            'manualUserApproval' => Club::getValue('manual_user_approval'),
         ]);
     }
 

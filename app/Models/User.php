@@ -26,6 +26,13 @@ class User
         ];
     }
 
+    public static function getSkills(): array
+    {
+        $query = pdo()->prepare("SELECT * FROM skill ORDER BY id");
+        $query->execute();
+        return $query->fetchAll();
+    }
+
     public static function getRanks(): array
     {
         $query = pdo()->prepare("SELECT * FROM `rank` ORDER BY rank_id");
@@ -43,5 +50,24 @@ class User
     {
         $date = new DateTime($lastConnection);
         return strftime(Club::getValue('date_format') . " à " . Club::getValue('time_format'), $date->getTimestamp());
+    }
+
+    public static function register(mixed $data)
+    {
+        validate([
+            'firstname' => ['required', 'min:2', 'max:64'],
+            'lastname' => ['required', 'min:2', 'max:64'],
+            'birthdate' => ['required', 'min:10', 'max:10', 'birthdate'],
+            'email' => ['required', 'email', 'max:128'],
+            'phone' => ['min:10', 'max:10', 'number'],
+        ]);
+
+        if ($data['genre'] != "Homme" && $data['genre'] != "Femme") {
+            save_inputs();
+            flash_warning("Merci de sélectionnez votre sexe");
+            redirect_self();
+        }
+
+
     }
 }

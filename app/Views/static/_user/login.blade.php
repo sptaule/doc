@@ -6,13 +6,14 @@
 
         <div class="py-8 px-4 sm:rounded-lg sm:px-10 flex flex-col items-center justify-center">
             <h1 class="font-arima text-scuba-green text-3xl">Connectez-vous</h1>
+            <div class="h-0.5 w-12 bg-scuba-green mt-2 mb-4"></div>
             <p class="text-gray-700 text-center">
                 Accédez à votre compte et aux différentes parties du site.<br>
                 Retrouvez et participez aux évènements du club.<br>
                 Gérez vos inscriptions.
             </p>
             <div class="my-8 text-gray-700">
-                <p>
+                <p class="text-sm">
                     Vous n'avez pas encore de compte ?
                     <a class="link text-scuba-dark" href="{{ USER_REGISTER }}">Inscrivez-vous !</a>
                 </p>

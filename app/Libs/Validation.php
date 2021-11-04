@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Club;
+
 function get_errors()
 {
     static $errors;
@@ -199,18 +201,20 @@ function validate_search_name($name)
     }
 }
 
-function validate_birthdate($birthday, $age = 8)
+function validate_birthdate($birthday)
 {
-    // $birthday can be UNIX_TIMESTAMP or just a string-date.
-    if (is_string($birthday)) {
-        $birthday = strtotime($birthday);
+    $minAge = Club::getValue('min_age_to_register');
+    $maxAge = Club::getValue('max_age_to_register');
+    $bDay = str_replace('/', '-', $birthday);
+    if (is_string($bDay)) {
+        $bDay = strtotime($bDay);
     }
     // 31536000 is the number of seconds in a 365 days year.
-    if (time() - $birthday < $age * 31536000)  {
-        return "Vous devez avoir $age ans minimum";
+    if (time() - $bDay < $minAge * 31536000)  {
+        return "Vous devez avoir $minAge ans minimum pour vous inscrire";
     }
-    if (time() - $birthday > 100 * 31536000)  {
-        return "Vous avez réellement plus de 100 ans ?";
+    if (time() - $bDay > $maxAge * 31536000)  {
+        return "Vous devez avoir $maxAge ans maximum pour vous inscrire";
     }
 }
 

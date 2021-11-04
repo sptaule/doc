@@ -37,4 +37,22 @@ class UserController
             'divingLevels' => $divingLevels,
         ]);
     }
+
+    public function register(RouteCollection $routes)
+    {
+        if (is_post()) {
+            User::register($_POST);
+        }
+        $genres = User::getGenres();
+        $divingLevels = DivingLevel::getAll();
+        $skills = User::getSkills();
+        $blade = new BladeInstance(APP_PATH . "/Views", BASE_PATH . "/cache/views");
+        echo $blade->render("static._user.register",
+        [
+            'title' => 'Inscription',
+            'genres' => $genres,
+            'divingLevels' => $divingLevels,
+            'skills' => $skills,
+        ]);
+    }
 }

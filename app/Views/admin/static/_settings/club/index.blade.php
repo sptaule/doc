@@ -2,7 +2,7 @@
 
 @section('admin.layouts.main')
 
-    <form action="" method="post" class="grid grid-flow-row grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-x-12 w-full space-y-2">
+    <form action="" method="post" class="relative grid grid-flow-row grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-x-12 w-full space-y-2">
         @php echo csrf_input() @endphp
         <div class="col-span-full">
             <p class="block w-full bg-blue-100 px-8 py-2 font-arima text-xl border rounded-md shadow">Le club</p>
@@ -28,17 +28,52 @@
         </div>
 
         <div class="col-span-full">
-            <p class="block w-full bg-teal-100 px-8 py-2 mt-4 font-arima text-xl border rounded-md shadow">Autorisations et formats</p>
+            <p class="block w-full bg-teal-100 px-8 py-2 mt-4 font-arima text-xl border rounded-md shadow">Inscriptions</p>
         </div>
-        <div class="bg-teal-50 shadow-md p-2 flex flex-col items-start justify-start">
-            <p class="text-gray-600 italic text-sm">Si vous souhaitez fermer les inscriptions, cochez la case ci-dessous</p>
-            {{ partial('checkbox', [
-                'id' => 'allow_registrations',
-                'name' => 'allow_registrations',
-                'label' => 'Autoriser les inscriptions',
-                'subLabel' => "Si non, personne ne pourra créer de compte sur le site.",
-                'state' => $allowRegistrations == 1 ? 'checked' : ''])
-            }}
+        <div class="bg-teal-50 shadow-md p-2 flex flex-col items-start justify-start space-y-4">
+            <div>
+                {{ partial('checkbox', [
+                    'id' => 'allow_registrations',
+                    'name' => 'allow_registrations',
+                    'label' => 'Autoriser les inscriptions',
+                    'subLabel' => "Si non, personne ne pourra créer de compte sur le site.",
+                    'state' => $allowRegistrations == 1 ? 'checked' : ''])
+                }}
+            </div>
+            <div>
+                {{ partial('checkbox', [
+                    'id' => 'manual_user_approval',
+                    'name' => 'manual_user_approval',
+                    'label' => 'Approuver les membres manuellement',
+                    'subLabel' => "Si oui, le compte du membre ne sera pas activé tant que vous ne l'aurez pas approuvé.",
+                    'state' => $manualUserApproval == 1 ? 'checked' : ''])
+                }}
+            </div>
+            <div class="grid grid-cols-2 gap-x-24 bg-white p-4 rounded-md w-full">
+                <p class="col-span-full mb-2 text-gray-600 text-sm italic">Âges autorisés à s'inscrire sur le site</p>
+                {{ partial('input', [
+                    'name' => 'min_age_to_register',
+                    'label' => 'Âge min',
+                    'subLabel' => '',
+                    'type' => 'number',
+                    'min' => 1,
+                    'default_value' => $minAgeToRegister,
+                    'class' => 'mx-auto w-20',
+                    'size' => 'md:flex flex-col md:flex-row md:items-center md:justify-center',
+                    'labelClass' => 'text-sm font-normal'])
+                }}
+                {{ partial('input', [
+                    'name' => 'max_age_to_register',
+                    'label' => 'Âge max',
+                    'subLabel' => '',
+                    'type' => 'number',
+                    'max' => 99,
+                    'default_value' => $maxAgeToRegister,
+                    'class' => 'mx-auto w-20',
+                    'size' => 'md:flex flex-col md:flex-row md:items-center md:justify-center',
+                    'labelClass' => 'text-sm font-normal'])
+                }}
+            </div>
         </div>
         <div class="bg-teal-50 shadow-md p-2">
             {{ partial('radio', [
@@ -95,7 +130,11 @@
         <div class="bg-purple-50 shadow-md p-2">
             {{ partial('input', ['name' => 'snapchat_url', 'placeholder' => 'Lien Snapchat du club', 'default_value' => $snapchatUrl, 'label' => '<div class="h-max w-full flex items-center justify-center space-x-2"><img class="inline" src="https://cdn-icons-png.flaticon.com/32/1216/1216734.png"><span class="leading-3 inline-flex">Snapchat</span></div>']) }}
         </div>
-        <button type="submit" class="btn submit py-4 col-span-full">Valider les modifications</button>
+        <button type="submit" class="md:fixed top-1 right-0 transform translate-y-full btn submit py-3.5 col-span-full flex items-center justify-center space-x-1">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <span>Valider les modifications</span>
+        </button>
     </form>
 
 @endsection
+

@@ -91,7 +91,9 @@ module.exports = {
     },
     plugins: [
         require('tailwindcss-textshadow'),
-        require('@tailwindcss/forms'),
+        require('@tailwindcss/forms')({
+            strategy: 'class',
+        }),
         require('tailwindcss-ripple')(),
         require('tailwindcss-animatecss')({
             classes: ['animate__animated', 'animate__fadeIn', 'animate__bounceIn', 'animate__lightSpeedOut'],
