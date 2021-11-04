@@ -9,6 +9,9 @@
             data-toggle="<?= $toggle; ?>"
         <?php endif; ?>
         <?= get_input($name) === 'on' ? 'checked' : '' ?>
+        <?php if (isset($arrayInputName)): ?>
+            <?= get_input_array($arrayInputName, $id) === 'on' ? 'checked' : '' ?>
+        <?php endif; ?>
         <?= $state ?? '' ?>
     >
     <label class="ml-2 flex flex-col items-start cursor-pointer select-none" id="<?= $id ?>" for="<?= $id ?>">

@@ -1,7 +1,12 @@
 <div class="py-2" x-data="{ show: true }">
     <label for="<?= $name ?>" class="px-1 text-sm font-semibold text-gray-600"><?= $label ?></label>
     <div class="relative">
-        <input id="<?= $name ?>" <?php if (isset($required)): ?> required <?php endif; ?> name="<?= $name ?>" placeholder="<?= $placeholder ?? '' ?>" :type="show ? 'password' : 'text'" class="appearance-none block w-full text-gray-700 border border-gray-300 rounded py-2.5 px-4 leading-tight focus:outline-none focus:bg-white focus:border-white">
+        <input
+        id="<?= $name ?>"
+        name="<?= $name ?>" placeholder="<?= $placeholder ?? '' ?>"
+        :type="show ? 'password' : 'text'"
+        class="appearance-none block w-full text-gray-700 border-2 border-gray-300 rounded py-2.5 px-4 leading-tight focus:outline-none focus:ring-0"
+        <?php if (isset($required)): ?> required <?php endif; ?>>
         <div class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5">
 
             <svg class="h-5 w-5 text-gray-700" fill="none" @click="show = !show"
