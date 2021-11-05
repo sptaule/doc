@@ -21,4 +21,4 @@ const DEBUG = true;
 const DB_HOST = 'localhost';
 const DB_NAME = 'scuba';
 const DB_USERNAME = 'root';
-const DB_PASSWORD = 'apozpoepo';
+const DB_PASSWORD = '*********';
