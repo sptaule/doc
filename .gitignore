@@ -8,3 +8,4 @@ error_log
 /.idea
 /composer.lock
 /package-lock.json
+/config/core.php
