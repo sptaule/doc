@@ -25,6 +25,6 @@
 <script>
     let loader = document.getElementById('loading-div');
     window.addEventListener("DOMContentLoaded", () => {
-        $(loader).fadeOut(450);
+        $(loader).fadeOut(50);
     });
 </script>

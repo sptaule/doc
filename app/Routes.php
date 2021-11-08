@@ -172,6 +172,48 @@ $path = '/user/logout';
 $routes->add('userLogout', new Route($path, ['controller' => 'AuthController', 'method' => 'logout']));
 define("USER_LOGOUT", $path);
 
+// * DASHBOARD
+
+$path = '/user/dashboard';
+$routes->add('userDashboard', new Route($path, ['controller' => 'UserController', 'method' => 'dashboard']));
+define("USER_DASHBOARD", $path);
+
+$path = '/user/profile';
+$routes->add('userDashboardProfile', new Route($path, ['controller' => 'UserController', 'method' => 'dashboardProfile']));
+define("USER_DASHBOARD_PROFILE", $path);
+
+$path = '/user/licence';
+$routes->add('userDashboardLicence', new Route($path, ['controller' => 'UserController', 'method' => 'dashboardLicence']));
+define("USER_DASHBOARD_LICENCE", $path);
+
+$path = '/user/certificate';
+$routes->add('userDashboardCertificate', new Route($path, ['controller' => 'UserController', 'method' => 'dashboardCertificate']));
+define("USER_DASHBOARD_CERTIFICATE", $path);
+
+$path = '/user/membership';
+$routes->add('userDashboardMembership', new Route($path, ['controller' => 'UserController', 'method' => 'dashboardMembership']));
+define("USER_DASHBOARD_MEMBERSHIP", $path);
+
+$path = '/user/orders';
+$routes->add('userDashboardOrders', new Route($path, ['controller' => 'UserController', 'method' => 'dashboardOrders']));
+define("USER_DASHBOARD_ORDERS", $path);
+
+$path = '/user/bubble';
+$routes->add('userDashboardBubble', new Route($path, ['controller' => 'UserController', 'method' => 'dashboardBubble']));
+define("USER_DASHBOARD_BUBBLE", $path);
+
+$path = '/user/inbox';
+$routes->add('userDashboardInbox', new Route($path, ['controller' => 'UserController', 'method' => 'dashboardInbox']));
+define("USER_DASHBOARD_INBOX", $path);
+
+$path = '/user/albums';
+$routes->add('userDashboardAlbums', new Route($path, ['controller' => 'UserController', 'method' => 'dashboardAlbums']));
+define("USER_DASHBOARD_ALBUMS", $path);
+
+$path = '/user/settings';
+$routes->add('userDashboardSettings', new Route($path, ['controller' => 'UserController', 'method' => 'dashboardSettings']));
+define("USER_DASHBOARD_SETTINGS", $path);
+
 // * EDITOR
 
 $path = '/editor/upload/image';

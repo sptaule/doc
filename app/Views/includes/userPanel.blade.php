@@ -28,7 +28,13 @@
                 x-transition:leave-start="opacity-100 transform scale-100"
                 x-transition:leave-end="opacity-0 transform scale-90"
                     class="dropdown absolute left-1/2 transform -translate-x-1/2 w-max bg-gray-100 rounded-md shadow-xl text-center border border-scuba-dark border-opacity-20">
-                <a href="#"
+                @if(is_admin_connected())
+                    <a target="_blank" href="{{ ADMIN_DASHBOARD }}"
+                       class="w-full flex items-center justify-center space-x-1.5 px-4 py-2 text-sm text-orange-500 hover:bg-orange-100 hover:text-orange-600 font-medium">
+                        <span>Administration</span>
+                    </a>
+                @endif
+                <a href="{{ USER_DASHBOARD }}"
                    class="w-full flex items-center justify-center space-x-1.5 px-4 py-2 text-sm text-gray-700 hover:bg-scuba-green hover:text-white font-medium">
                     <span>Mon compte</span>
                     <i class="fas fa-user-circle text-base inline-flex"></i>
@@ -41,7 +47,7 @@
                 </a>
                 <div class="w-full h-0.5 bg-gray-200"></div>
                 <a href="{{ USER_LOGOUT }}"
-                   class="inline-block px-4 py-2 text-sm text-gray-700 hover:text-red-500 font-medium">
+                   class="w-full flex items-center justify-center space-x-1.5 px-4 py-2 text-sm text-red-500 hover:bg-red-100 hover:text-red-600 font-medium">
                     Déconnexion
                 </a>
             </div>

@@ -26,4 +26,10 @@
         padding: 8px 15px;
         list-style-type: disc;
     }
+
+    #helper-target code {
+        display: block;
+        margin-top: 0.65rem;
+        color: #393a3d;
+    }
 </style>

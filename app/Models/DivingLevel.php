@@ -9,12 +9,12 @@ class DivingLevel
     private string $description;
     private int $rank;
 
-    public static function getAll(string $orderBy = 'position', string $where = null): bool|array
+    public static function getAll(string $orderBy = 'position', string $columns = '*', string $where = null): bool|array
     {
         if (is_null($where)) {
-            $query = pdo()->prepare("SELECT * FROM diving_level ORDER BY {$orderBy}");
+            $query = pdo()->prepare("SELECT {$columns} FROM diving_level ORDER BY {$orderBy}");
         } else {
-            $query = pdo()->prepare("SELECT * FROM diving_level WHERE {$where} ORDER BY {$orderBy}");
+            $query = pdo()->prepare("SELECT {$columns} FROM diving_level WHERE {$where} ORDER BY {$orderBy}");
         }
         $query->execute();
         return $query->fetchAll();

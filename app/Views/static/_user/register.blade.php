@@ -28,7 +28,7 @@
                 @php echo csrf_input() @endphp
 
                 <div class="col-span-full flex flex-col items-center justify-center space-y-3">
-                    <div class="w-full lg:w-max bg-gray-100 p-2 rounded-md shadow">
+                    <div class="w-full bg-gray-100 p-2 rounded-md shadow">
                         <span class="text-gray-600 text-sm font-semibold block mb-2">Sélectionnez votre sexe</span>
                         <div class="flex justify-around sm:justify-start space-x-3">
                             <label class="genre-label relative select-none">
@@ -49,6 +49,7 @@
                                 <img src="https://cdn-icons-png.flaticon.com/64/2922/2922561.png" class="shadow p-2 select-none" alt="Femme">
                             </label>
                         </div>
+                        {{ partial('form_error', ['name' => 'genre']) }}
                     </div>
                 </div>
 
@@ -56,7 +57,7 @@
 
                 <div class="col-span-full grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 p-4 rounded-md shadow bg-red-200 relative">
                     <i class="fas fa-address-card text-shadow-sm text-4xl text-red-600 absolute -top-4 -left-4 transform -rotate-6"></i>
-                    {{ partial('input', ['name' => "firstname", 'label' => "Prénom", 'autofocus' => true, 'required' => true, 'default_value' => "Lucas"]) }}
+                    {{ partial('input', ['name' => "firstname", 'label' => "Prénom", 'required' => true, 'default_value' => "Lucas"]) }}
                     {{ partial('input', ['name' => "lastname", 'label' => "Nom", 'required' => true, 'default_value' => "Chaplain"]) }}
                     {{ partial('input', ['name' => "birthdate", 'label' => "Date de naissance", 'required' => true, 'default_value' => "23/10/1993"]) }}
                     <p class="col-span-full mt-3 text-sm text-gray-600 italic">
@@ -91,6 +92,7 @@
                 <div class="col-span-full p-4 rounded-md shadow bg-blue-200 relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
                     <i class="fas fa-tint text-shadow-sm text-4xl text-blue-600 absolute -top-4 -left-4 transform -rotate-6"></i>
                     <p class="col-span-full text-gray-700 font-semibold mb-2">Sélectionnez votre niveau de plongée</p>
+                    {{ partial('form_error', ['name' => 'diving_level_id', 'class' => 'col-span-full']) }}
                     @foreach($divingLevels as $k => $divingLevel)
                         <label class="radio-label relative flex items-center rounded-lg border-2 border-transparent bg-blue-100 hover:bg-blue-400 select-none">
                             <input
@@ -108,6 +110,7 @@
                 <div class="col-span-full p-4 rounded-md shadow bg-purple-200 relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
                     <i class="fas fa-certificate text-shadow-sm text-4xl text-purple-600 absolute -top-4 -left-4 transform -rotate-6"></i>
                     <p class="col-span-full text-gray-700 font-semibold mb-2">Cochez vos autres formations (optionnel)</p>
+                    {{ partial('form_error', ['name' => 'skills', 'class' => 'col-span-full']) }}
                     @foreach($skills as $skill)
                         <div class="bg-purple-50 rounded-lg shadow-md p-2 flex flex-col items-start justify-start">
                             {{ partial('checkbox', [

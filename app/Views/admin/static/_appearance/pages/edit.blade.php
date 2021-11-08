@@ -18,11 +18,14 @@
             {{ partial('input', ['name' => 'deletable', 'type' => 'hidden', 'label' => '', 'size' => 'hidden', 'model' => $page]) }}
 
             <div class="border-l-2 border-green-400 pl-4 w-full space-y-4">
-                <div class="flex flex-row items-end justify-start space-x-0.5">
-                    <div class="flex flex-col sm:flex-row space-x-4">
-                        {{ partial('input', ['name' => 'name', 'label' => 'Nom', 'model' => $page]) }}
+
+                @if($page->deletable)
+                    <div class="flex flex-row items-end justify-start space-x-0.5">
+                        <div class="flex flex-col sm:flex-row space-x-4">
+                            {{ partial('input', ['name' => 'name', 'label' => 'Nom', 'model' => $page]) }}
+                        </div>
                     </div>
-                </div>
+                @endif
 
                 {{--Si des menus existent et que la page est modifiable--}}
                 @if($menus && $page->deletable)

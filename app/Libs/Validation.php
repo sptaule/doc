@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\Club;
+use App\Models\DivingLevel;
+use App\Models\User;
 
 function get_errors()
 {
@@ -87,7 +89,7 @@ function validate_unique(&$table, &$column, $value)
     $query->execute([$value]);
     $result = $query->rowCount();
     if ($result != 0) {
-        return "<b class='text-red-500 tracking-wide'>$value</b> est déjà utilisé";
+        return "<b class='text-red-500 tracking-wide'>$value</b> existe déjà";
     }
 }
 
@@ -103,15 +105,19 @@ function validate_unique_exception(&$table, &$column, &$ExceptionValue, $value)
 
 function validate_min($string, &$val)
 {
-    if (strlen($string) < $val) {
-        return "Taille minimale de $val " . pluralize(intval($val), 'caractère', 'caractère', 'caractères');
+    if (strlen($string) > 0) {
+        if (strlen($string) < $val) {
+            return "Taille minimale de $val " . pluralize(intval($val), 'caractère', 'caractère', 'caractères');
+        }
     }
 }
 
 function validate_max($string, &$val)
 {
-    if (strlen($string) > $val) {
-        return "Taille maximale de $val " . pluralize(intval($val), 'caractère', 'caractère', 'caractères');
+    if (strlen($string) > 0) {
+        if (strlen($string) > $val) {
+            return "Taille maximale de $val " . pluralize(intval($val), 'caractère', 'caractère', 'caractères');
+        }
     }
 }
 
@@ -218,16 +224,6 @@ function validate_birthdate($birthday)
     }
 }
 
-function validate_password($password)
-{
-    if (strlen($password) < 8) {
-        return "8 caractères minimum";
-    }
-    if (strlen($password) > 100) {
-        return "100 caractères maximum";
-    }
-}
-
 function validate_number($input)
 {
     if (!$input) {
@@ -254,6 +250,32 @@ function validate_telephone($input)
     }
     if (strlen($input) != 10) {
         return "Le numéro doit faire 10 caractères";
+    }
+}
+
+function validate_genre($input)
+{
+    $genres = User::getGenres(true);
+    if (!in_array($input, $genres)) {
+        return "Merci de choisir parmi les sexes proposés";
+    }
+}
+
+function validate_divingLevel($input)
+{
+    $divingLevels = simple_array(DivingLevel::getAll('position', 'id'));
+    if (!in_array($input, $divingLevels)) {
+        return "Merci de choisir parmi les niveaux proposés";
+    }
+}
+
+function validate_skills($input)
+{
+    $skills = simple_array(User::getSkills('id'));
+    foreach ($input as $key => $skill) {
+        if (!in_array($key, $skills)) {
+            return "Merci de choisir parmi les formations proposées";
+        }
     }
 }
 

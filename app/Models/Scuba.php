@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 use App\Libs\Picture;
 use PDO;
 use PDOException;
@@ -157,5 +160,38 @@ class Scuba
     {
         $rgbArray = explode(",", $rgbColor,3);
         return sprintf("#%02x%02x%02x", $rgbArray[0], $rgbArray[1], $rgbArray[2]);
+    }
+
+    /** Emails */
+
+    public static function send_mail(string $subject, string $body, array $recipients)
+    {
+        $mail = new PHPMailer();
+        try {
+            $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'solevitapringles@gmail.com';
+            $mail->Password = 'a****6';
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = 465;
+
+            $mail->setLanguage('fr');
+            $mail->setFrom('solevitapringles@gmail.com', 'Hubert Patoulatchi');
+            foreach ($recipients as $recipient) {
+                $mail->addAddress($recipient);
+            }
+
+            $mail->isHTML(true);
+            $mail->Subject = $subject;
+            $mail->Body = $body;
+            $mail->AltBody =  htmlspecialchars($body);
+
+            $mail->send();
+            echo 'Message has been sent';
+        } catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        }
     }
 }

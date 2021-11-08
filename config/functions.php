@@ -114,6 +114,13 @@ function partial($__name, $params = [])
     require(APP_PATH . "/Partials/{$__name}.html.php");
 }
 
+function partialMail($__name, $params = [])
+{
+    // import HTML view from partials directory
+    extract($params);
+    require(APP_PATH . "/Partials/Mails/{$__name}.html.php");
+}
+
 function is_post(bool $csrf = true): bool
 {
     $is_post = ($_SERVER['REQUEST_METHOD'] ?? 'CLI') === 'POST';
@@ -182,6 +189,15 @@ function pluralize(int $count, string $none, string $one, string $multiples): st
     return str_replace("{count}", $count, $multiples);
 }
 
+function simple_array(array $data, string $column = 'id')
+{
+    $array = [];
+    foreach ($data as $obj) {
+        $array[] = $obj->$column;
+    }
+    return $array;
+}
+
 /**
  * @throws Exception
  */
@@ -189,6 +205,14 @@ function display_date($date, $format = 'd/m/y'): string
 {
     $theDate = new DateTime($date);
     return $stringDate = $theDate->format($format);
+}
+
+function format_date_sql(string $date) {
+    $arr = explode("/", $date);
+    $year  = $arr[2];
+    $month = $arr[1];
+    $day   = $arr[0];
+    return $year . "-" . $month . "-" . $day;
 }
 
 /**
