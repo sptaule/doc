@@ -13,7 +13,7 @@ function require_connected()
 {
     if (!is_connected()) {
         flash_warning("Vous devez être connecté(e) pour voir cette page");
-        redirect(ADMIN_LOGIN);
+        redirect(USER_LOGIN);
     }
 }
 
