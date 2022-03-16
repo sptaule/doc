@@ -6,6 +6,9 @@
 Manage users, registrations, events, diving families (children), social network and inner messaging, account point system with reload (integrated payment system) and much more...
 </p>
 
+<p>The goal was to NOT use any existing PHP framework but to develop from scratch.</p>
+<p>I allowed myself only few external libraries (from Composer).</p>
+
 <p style="text-align: center;">Solution de gestion pour les clubs de plongée sous-marine.</p>
 
 ## Table `rank`
