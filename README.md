@@ -1,5 +1,11 @@
 ![](documentation/static/img/logo-full.png)
 
+<p>Old project, not completed.</p>
+
+<p>The project was to create a CRM with complete front and back.<br>
+Manage users, registrations, events, diving families (children), social network and inner messaging.
+</p>
+
 <p style="text-align: center;">Solution de gestion pour les clubs de plongée sous-marine.</p>
 
 ## Table `rank`
